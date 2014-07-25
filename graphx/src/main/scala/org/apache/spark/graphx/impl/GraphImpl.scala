@@ -85,106 +85,47 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
     val edTag = classTag[ED]
     val vdTag = classTag[VD]
     var newEdges = partitionStrategy match{
-      // case PartitionStrategy.BipartiteCut => {
-      //   println("Bicut")
-      //   var count_map = new HashMap[Long,Array[Long]]() 
-      //   logInfo("size %d".format(edges.count))
-      //   //edges foreach 
-      //   //edges.map { e => 
-      //   val c = for(e <- edges) yield{ 
-      //     //println
-      //     val favorite = e.srcId
-      //     val second = e.dstId
-      //     logInfo("favorite %d, second: %d".format(favorite,second))
-      //     val t = count_map.get(favorite)
-      //     t match{
-      //       case Some(a) => {
-      //         println("add")
-      //         val ownerproc:PartitionID = (second % numPartitions).toInt
-      //         a(ownerproc) += 1    
-      //         println(count_map)
-      //       }
-      //       case None => {
-      //         println("new")
-      //         val ownerproc:PartitionID = (second % numPartitions).toInt
-      //         var a = new Array[Long](numPartitions)
-      //         a(ownerproc) += 1
-      //         count_map += (favorite -> a)
-      //       }
-      //     }
-      //     count_map
-      //   }
-
-      //   println(c)
-      //   logInfo("Countmap Ok")
-      //   logInfo("size %d".format(c.count))
-      //   val n:Int = (c.count).toInt
-      //   val cc = c.take(n)
-      //   val mm = cc(n-1)
-      //   var proc_num_edges = new Array[Long](numPartitions)
-      //   var mht = new HashMap[Long,PartitionID]()
-      //   for ((k,v) <- mm){
-      //     logInfo("key %d".format(k))
-      //     var best_proc :PartitionID = (k % numPartitions).toInt
-      //     var best_score :Double = v.apply(best_proc) - math.sqrt(1.0*proc_num_edges(best_proc))
-      //     for (i <- 0 to numPartitions-1){
-      //       val score :Double = v.apply(i) - math.sqrt(1.0*proc_num_edges(i))
-      //       if (score > best_score){
-      //         best_proc = i
-      //         best_score = score
-      //       }
-      //     }
-      //     for (i <- 0 to numPartitions-1){
-      //       proc_num_edges(best_proc) += v.apply(i)
-      //     }
-      //     mht += (k -> best_proc)
-      //   }
-      //   println(mht.size)
-      //   println(mht)
-      //   println(mht.getOrElse(5,0))
-      //   logInfo("pre-operation OK")
-      //   var count = new Array[HashSet[Long]](numPartitions)
-      //   for (i <- 0 to numPartitions-1){
-      //     count(i) = new HashSet[Long]()
-      //   }
-      //   println(count(2))
-      //   val sum = for (e <- edges) yield {
-      //     println(e.srcId)
-      //     val part: PartitionID = mht.getOrElse(e.srcId,0)
-      //     println(part)
-      //     count(part)+=e.dstId
-      //     count(part)+=e.srcId
-      //     count  
-      //   }
-      //   val nn = (sum.count).toInt
-      //   val s = sum.take(nn)
-      //   val ss = s(nn-1)
-      //   var numReplicas: Long = 0
-      //   for (i <- 0 to numPartitions-1)
-      //   {
-      //     numReplicas += ss(i).size
-      //   }
-      //   println(numReplicas)
-      //   //println(ss(1).size,ss(2).size,ss(3).size,ss(4).size)
-      //   edges.withPartitionsRDD(edges.map { e =>
-      //     val part: PartitionID = mht.getOrElse(e.srcId,0)
-      //     //println("Vertex %d, PartitionID: %d", e.srcId, part)
-      //     logInfo("Vertex %d, PartitionID: %d".format(e.srcId, part))
-
-      //     // Should we be using 3-tuple or an optimized class
-      //     new MessageToPartition(part, (e.srcId, e.dstId, e.attr))
-      //   }
-      //     .partitionBy(new HashPartitioner(numPartitions))
-      //     .mapPartitionsWithIndex( { (pid, iter) =>
-      //       val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
-      //       iter.foreach { message =>
-      //         val data = message.data
-      //         builder.add(data._1, data._2, data._3)
-      //       }
-      //       val edgePartition = builder.toEdgePartition
-      //       Iterator((pid, edgePartition))
-      //     }, preservesPartitioning = true)).cache()
-      // }
+      case PartitionStrategy.BipartiteCut => {
+        val groupE = edges.map{e => (e.srcId,e.dstId)}.groupByKey
+        val count_map = groupE.map{ e =>
+          var arr = new Array[Long](numPartitions)
+          e._2.map{ v => arr((v % numPartitions).toInt) += 1}
+          (e._1,arr)
+        }
+        var proc_num_edges = new Array[Long](numPartitions)
+        val mht = count_map.map { e =>
+          val k = e._1
+          val v = e._2
+          var best_proc :PartitionID = (k % numPartitions).toInt
+          var best_score :Double = v.apply(best_proc) - math.sqrt(1.0*proc_num_edges(best_proc))
+          for (i <- 0 to numPartitions-1){
+            val score :Double = v.apply(i) - math.sqrt(1.0*proc_num_edges(i))
+            if (score > best_score){
+              best_proc = i
+              best_score = score
+            }
+          }
+          for (i <- 0 to numPartitions-1){
+            proc_num_edges(best_proc) += v.apply(i)
+          }
+          (k,best_proc)
+        }
+        
+        val combine_rdd = (edges.map {e => (e.srcId, (e.dstId , e.attr))}).join(mht.map{ e => (e._1 , e._2)})
+        edges.withPartitionsRDD(combine_rdd.map { e =>
+          new MessageToPartition(e._2._2, (e._1, e._2._1._1, e._2._1._2))
+        }
+        .partitionBy(new HashPartitioner(numPartitions))
+        .mapPartitionsWithIndex( { (pid, iter) =>
+          val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
+          iter.foreach { message =>
+            val data = message.data
+            builder.add(data._1, data._2, data._3)
+          }
+          val edgePartition = builder.toEdgePartition
+          Iterator((pid, edgePartition))
+        }, preservesPartitioning = true)).cache()
+      }
       case PartitionStrategy.HybridCut => {
         println("HybridCut")
         // val inDegrees: VertexRDD[Int] = this.inDegrees
