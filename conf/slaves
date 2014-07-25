@@ -1,2 +1,7 @@
 # A Spark Worker will be started on each of the machines listed below.
-localhost
+brick0
+brick1
+brick2
+brick3
+brick4
+brick5

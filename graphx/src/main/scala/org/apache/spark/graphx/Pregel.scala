@@ -119,6 +119,7 @@ object Pregel extends Logging {
       mergeMsg: (A, A) => A)
     : Graph[VD, ED] =
   {
+    val startTime = System.currentTimeMillis
     var g = graph.mapVertices((vid, vdata) => vprog(vid, vdata, initialMsg)).cache()
     // compute the messages
     var messages = g.mapReduceTriplets(sendMsg, mergeMsg)
@@ -154,7 +155,8 @@ object Pregel extends Logging {
       // count the iteration
       i += 1
     }
-
+    logInfo("[Pregel] It took %d ms to finish execution.".format(System.currentTimeMillis - startTime))
+    // println("[Pregel] It took %d ms to finish execution.".format(System.currentTimeMillis - startTime))
     g
   } // end of apply
 

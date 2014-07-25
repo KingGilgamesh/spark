@@ -24,6 +24,9 @@ import org.apache.spark.graphx._
 import org.apache.spark.graphx.lib._
 import org.apache.spark.graphx.PartitionStrategy._
 
+// for PairRDDFunctions
+import org.apache.spark.SparkContext._
+
 /**
  * Driver program for running graph algorithms.
  */
@@ -53,6 +56,7 @@ object Analytics extends Logging {
         case "EdgePartition1D" => EdgePartition1D
         case "EdgePartition2D" => EdgePartition2D
         case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
+        case "HybridCut" => HybridCut
         case _ => throw new IllegalArgumentException("Invalid PartitionStrategy: " + v)
       }
     }
@@ -66,7 +70,9 @@ object Analytics extends Logging {
       println("Set the number of edge partitions using --numEPart.")
       sys.exit(1)
     }
-    val partitionStrategy: Option[PartitionStrategy] = options.remove("partStrategy")
+
+    val StrategyName = options.remove("partStrategy")
+    val partitionStrategy: Option[PartitionStrategy] = StrategyName
       .map(pickPartitioner(_))
     val edgeStorageLevel = options.remove("edgeStorageLevel")
       .map(StorageLevel.fromString(_)).getOrElse(StorageLevel.MEMORY_ONLY)
@@ -87,7 +93,11 @@ object Analytics extends Logging {
         println("|             PageRank               |")
         println("======================================")
 
-        val sc = new SparkContext(conf.setAppName("PageRank(" + fname + ")"))
+        val sc = new SparkContext(
+		conf.setAppName("PageRank(" + fname + ") " + StrategyName)
+		.set("spark.kryoserializer.buffer.mb","96")
+		.set("spark.akka.frameSize","96")
+	)
 
         val unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
@@ -95,15 +105,19 @@ object Analytics extends Logging {
           vertexStorageLevel = vertexStorageLevel).cache()
         val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
 
-        println("GRAPHX: Number of vertices " + graph.vertices.count)
-        println("GRAPHX: Number of edges " + graph.edges.count)
+        logInfo("GRAPHX: Number of vertices " + graph.vertices.count)
+        logInfo("GRAPHX: Number of edges " + graph.edges.count)
+        // count replications
+        val replications = graph.edges.partitionsRDD.mapValues((V) => (V.indexSize+ V.reverse.indexSize)).map(a => a._2).reduce((a, b) => a+b)
+
+        logInfo("GRAPHX: Number of replications " + replications)
 
         val pr = (numIterOpt match {
           case Some(numIter) => PageRank.run(graph, numIter)
           case None => PageRank.runUntilConvergence(graph, tol)
         }).vertices.cache()
 
-        println("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
+        logInfo("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
 
         if (!outFname.isEmpty) {
           logWarning("Saving pageranks of pages to " + outFname)

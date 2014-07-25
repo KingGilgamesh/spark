@@ -17,6 +17,10 @@
 
 package org.apache.spark.graphx
 
+import org.apache.spark.SparkContext._
+import org.apache.spark.rdd.{RDD, ShuffledRDD}
+import org.apache.spark.graphx._
+
 /**
  * Represents the way edges are assigned to edge partitions based on their source and destination
  * vertex IDs.
@@ -75,7 +79,9 @@ object PartitionStrategy {
    * square is used.
    */
   case object EdgePartition2D extends PartitionStrategy {
-    override def getPartition(src: VertexId, dst: VertexId, numParts: PartitionID): PartitionID = {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
       val ceilSqrtNumParts: PartitionID = math.ceil(math.sqrt(numParts)).toInt
       val mixingPrime: VertexId = 1125899906842597L
       val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
@@ -89,7 +95,9 @@ object PartitionStrategy {
    * source.
    */
   case object EdgePartition1D extends PartitionStrategy {
-    override def getPartition(src: VertexId, dst: VertexId, numParts: PartitionID): PartitionID = {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
       val mixingPrime: VertexId = 1125899906842597L
       (math.abs(src * mixingPrime) % numParts).toInt
     }
@@ -101,7 +109,9 @@ object PartitionStrategy {
    * random vertex cut that colocates all same-direction edges between two vertices.
    */
   case object RandomVertexCut extends PartitionStrategy {
-    override def getPartition(src: VertexId, dst: VertexId, numParts: PartitionID): PartitionID = {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
       math.abs((src, dst).hashCode()) % numParts
     }
   }
@@ -113,12 +123,66 @@ object PartitionStrategy {
    * regardless of direction.
    */
   case object CanonicalRandomVertexCut extends PartitionStrategy {
-    override def getPartition(src: VertexId, dst: VertexId, numParts: PartitionID): PartitionID = {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
       if (src < dst) {
         math.abs((src, dst).hashCode()) % numParts
       } else {
         math.abs((dst, src).hashCode()) % numParts
       }
+    }
+  }
+
+  /**
+   * @brief HybridCut, a PartitionStrategy
+   * @details 
+   * 
+   * a Balanced p-way Hybrid-Cut inspired by
+   * PowerLyra : Differentiated Graph Computation and Partitioning on Skewed Graphs 
+   * Institute of Parallel and Distributed Systems 
+   * Chen, R., Shi, J., Chen, Y., Guan, H., Chen, H., Ipadstr--, T. R. N., & Zang, B. (2013). 
+   * 
+   * design 1 (same parameter as before)
+   * @param src [source vertex ID]
+   * @param dst [destination vertex ID]
+   * @param numParts [number of partitions intended to part]
+   * @return PartitionID [PartitionID for this edge]
+   * logic: need graph info
+   */
+  case object HybridCut extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      // this is how to get in-degrees for a given graph
+      // need to persist it and for store reference use
+      // make it one copy, destroy when finish?
+
+      // info Vertex ID or Vetex Name?
+      // val inDegrees: VertexRDD[Int] = graph.inDegrees
+      // var DegreesArray = inDegrees.toArray()
+      // var DegreesMap = Map(DegreesArray:_*)
+      // DegreesMap.get(src)
+      // var ThreshHold = 50
+      // // val DegreeCount : Int = DegreesMap.getOrElse(dst, 0)
+      // val DegreeCount : Int = inDegrees.lookup(dst).head
+      // if (DegreeCount > ThreshHold) {
+      //     // high-cut
+      //     math.abs(src).toInt % numParts
+      //   } else {
+      //     // low-cut
+      //     math.abs(dst).toInt % numParts
+      //   }
+      // dummy
+      math.abs(dst).toInt % numParts
+    }
+  }
+
+  case object BipartiteCut extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+        math.abs(dst).toInt % numParts
     }
   }
 
@@ -128,6 +192,9 @@ object PartitionStrategy {
     case "EdgePartition1D" => EdgePartition1D
     case "EdgePartition2D" => EdgePartition2D
     case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
+    case "HybridCut" => HybridCut
+    case "BipartiteCut" => BipartiteCut
     case _ => throw new IllegalArgumentException("Invalid PartitionStrategy: " + s)
   }
+
 }

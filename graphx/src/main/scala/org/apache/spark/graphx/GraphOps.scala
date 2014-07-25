@@ -20,6 +20,7 @@ package org.apache.spark.graphx
 import scala.reflect.ClassTag
 import scala.util.Random
 
+import org.apache.spark.Logging
 import org.apache.spark.SparkException
 import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
@@ -33,7 +34,8 @@ import org.apache.spark.graphx.lib._
  * @tparam VD the vertex attribute type
  * @tparam ED the edge attribute type
  */
-class GraphOps[VD: ClassTag, ED: ClassTag](graph: Graph[VD, ED]) extends Serializable {
+class GraphOps[VD: ClassTag, ED: ClassTag](graph: Graph[VD, ED])
+  extends Serializable with Logging {
 
   /** The number of edges in the graph. */
   @transient lazy val numEdges: Long = graph.edges.count()
