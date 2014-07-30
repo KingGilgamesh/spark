@@ -1,3 +1,125 @@
+Wed Jul 30 10:35:38 2014 graph property
+
+learn about the in-degrees distribution in a graph
+	dist = graph.inDegrees.map(e => (e._2, 1)).reduceByKey((a, b) => a + b).collect()
+	dist.sortWith(_._1 > _._1)
+	println(dist.sortWith(_._1 > _._1).mkString(" "))
+=>	println(GraphLoader.edgeListFile(sc, "graphx/data/followers.txt", false, 4).inDegrees.map(e => (e._2, 1)).reduceByKey((a, b) => a + b).collect().sortWith(_._1 > _._1).mkString(" "))
+
+P.S. all data are moved to the data folder now
+
+Tue Jul 29 11:47:43 2014 GraphLoader parameter
+val graph = GraphLoader.edgeListFile(sc, "graphx/data/followers.txt", false, 4)
+* @param sc SparkContext
+* @param path the path to the file (e.g., /home/data/file or hdfs://file)
+* @param canonicalOrientation whether to orient edges in the positive direction
+* @param minEdgePartitions the number of partitions for the edge RDD
+* @param edgeStorageLevel the desired storage level for the edge partitions
+* @param vertexStorageLevel the desired storage level for the vertex partitions
+
+
+Mon Jul 28 19:48:16 2014 lone master test
+	
+	show vertices
+		graph.vertices.collect()
+		Array[(org.apache.spark.graphx.VertexId, Int)] = Array((4,1), (1,1), (6,1), (3,1), (7,1), (2,1))
+	show edges
+		graph.edges.collect()
+		Array[org.apache.spark.graphx.Edge[Int]] = Array(Edge(1,2,1), Edge(2,1,1), Edge(3,7,1), Edge(4,1,1), Edge(6,3,1), Edge(6,7,1), Edge(7,3,1), Edge(7,6,1))
+	show partitioned edges
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).edges.partitionsRDD.map(V => (V._1, V._2.srcIds, V._2.dstIds)).collect()
+		Array[(org.apache.spark.graphx.PartitionID, Array[org.apache.spark.graphx.VertexId], Array[org.apache.spark.graphx.VertexId])] = Array(
+			(0,
+				Array(),
+				Array()
+			), 
+			(1,
+				Array(2, 4, 6, 6),
+				Array(1, 1, 3, 7)
+			), 
+			(2,
+				Array(1, 7),
+				Array(2, 6)
+			), 
+			(3,
+				Array(3, 7),
+				Array(7, 3)
+			)
+		)
+	
+	show partitioned vertices
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.partitions
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.partitions.zipWithIndex
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.zipWithIndex
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.zipWithIndex.map(V => (V._1.index, V._2)).collect()
+
+	show routing table (can infer edge partition)
+		graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.map(v => v.routingTable).map(v => v.routingTable).collect()
+		Array[Array[(Array[org.apache.spark.graphx.VertexId], org.apache.spark.util.collection.BitSet, org.apache.spark.util.collection.BitSet)]] = Array(
+			Array
+			(
+				(
+					Array(),
+					org.apache.spark.util.collection.BitSet@504b4b5d,org.apache.spark.util.collection.BitSet@7f40efd9
+				), 
+				(
+					Array(4, 1, 6, 3, 7, 2),
+					org.apache.spark.util.collection.BitSet@42d0d4,org.apache.spark.util.collection.BitSet@229c0e6e
+				), 
+				(
+					Array(1, 6, 7, 2),
+					org.apache.spark.util.collection.BitSet@33776982,org.apache.spark.util.collection.BitSet@64aff033
+				), s
+				(
+					Array(3, 7),
+					org.apache.spark.util.collection.BitSet@5ac2d7e9,org.apache.spark.util.collection.BitSet@2ded308c)
+				)
+			)
+
+		scala> val a = graph.partitionBy(PartitionStrategy.EdgePartition2D, 4).vertices.partitionsRDD.map(v => v.routingTable).map(v => v.routingTable).collect()
+		scala> a(0)
+		res50: Array[(Array[org.apache.spark.graphx.VertexId], org.apache.spark.util.collection.BitSet, org.apache.spark.util.collection.BitSet)] = Array(
+			(Array(),org.apache.spark.util.collection.BitSet@44624e03,org.apache.spark.util.collection.BitSet@11efca08), 
+			(Array(4),org.apache.spark.util.collection.BitSet@15b8dc6b,org.apache.spark.util.collection.BitSet@1b8efff1), 
+			(Array(),org.apache.spark.util.collection.BitSet@49453559,org.apache.spark.util.collection.BitSet@5eb18ba3), 
+			(Array(),org.apache.spark.util.collection.BitSet@5a46aae6,org.apache.spark.util.collection.BitSet@557e1057)
+		)
+
+		scala> a(1)
+		res51: Array[(Array[org.apache.spark.graphx.VertexId], org.apache.spark.util.collection.BitSet, org.apache.spark.util.collection.BitSet)] = Array(
+			(Array(),org.apache.spark.util.collection.BitSet@4762eb9a,org.apache.spark.util.collection.BitSet@2f59f013), 
+			(Array(1),org.apache.spark.util.collection.BitSet@39a087ae,org.apache.spark.util.collection.BitSet@5a2bce10), 
+			(Array(1),org.apache.spark.util.collection.BitSet@71e5aaaf,org.apache.spark.util.collection.BitSet@1d290194), 
+			(Array(),org.apache.spark.util.collection.BitSet@6f26aa80,org.apache.spark.util.collection.BitSet@5383f282)
+		)
+
+		scala> a(2)
+		res52: Array[(Array[org.apache.spark.graphx.VertexId], org.apache.spark.util.collection.BitSet, org.apache.spark.util.collection.BitSet)] = Array(
+			(Array(),org.apache.spark.util.collection.BitSet@7ba65fa3,org.apache.spark.util.collection.BitSet@67d105c0), 
+			(Array(6, 2),org.apache.spark.util.collection.BitSet@4bd0b57f,org.apache.spark.util.collection.BitSet@733bcbbb), 
+			(Array(6, 2),org.apache.spark.util.collection.BitSet@5abc9d17,org.apache.spark.util.collection.BitSet@14ed7f8b), 
+			(Array(),org.apache.spark.util.collection.BitSet@74508968,org.apache.spark.util.collection.BitSet@536d4680)
+		)
+
+		scala> a(3)
+		res53: Array[(Array[org.apache.spark.graphx.VertexId], org.apache.spark.util.collection.BitSet, org.apache.spark.util.collection.BitSet)] = Array(
+			(Array(),org.apache.spark.util.collection.BitSet@2b2fa84a,org.apache.spark.util.collection.BitSet@45d1a86c), 
+			(Array(3, 7),org.apache.spark.util.collection.BitSet@47886e43,org.apache.spark.util.collection.BitSet@4dff1565), 
+			(Array(7),org.apache.spark.util.collection.BitSet@25d5c1e4,org.apache.spark.util.collection.BitSet@74ac7323), 
+			(Array(3, 7),org.apache.spark.util.collection.BitSet@65bb3aac,org.apache.spark.util.collection.BitSet@67092661))
+
+observation
+	VertexRDD.scala
+		val routingTables = createRoutingTables(edges, new HashPartitioner(numPartitions)) ...
+		private def createRoutingTables( ...
+
+Fri Jul 25 16:52:53 CST 2014
+try HDFS
+try twitter?
+
+Fri Jul 25 15:33:01 2014 BiCut
+
+
 Fri Jul 25 11:11:36 2014 Test
 
 > export i=HybridCut

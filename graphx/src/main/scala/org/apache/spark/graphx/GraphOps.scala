@@ -371,6 +371,10 @@ class GraphOps[VD: ClassTag, ED: ClassTag](graph: Graph[VD, ED])
   }
 
   /**
+   *  SVD++
+   */
+
+  /**
    * Compute the strongly connected component (SCC) of each vertex and return a graph with the
    * vertex value containing the lowest vertex id in the SCC containing that vertex.
    *

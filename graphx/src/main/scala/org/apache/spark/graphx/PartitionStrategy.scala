@@ -150,6 +150,13 @@ object PartitionStrategy {
    * @return PartitionID [PartitionID for this edge]
    * logic: need graph info
    */
+  case object GreedyHybridCut extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      0
+    }
+  }
   case object HybridCut extends PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
@@ -178,7 +185,15 @@ object PartitionStrategy {
     }
   }
 
-  case object BipartiteCut extends PartitionStrategy {
+  case object BiSrcCut extends PartitionStrategy {
+      override def getPartition(
+        src: VertexId, dst: VertexId, numParts: PartitionID)
+      : PartitionID = {
+          math.abs(dst).toInt % numParts
+      }
+    }
+
+  case object BiDstCut extends PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
     : PartitionID = {
@@ -193,7 +208,9 @@ object PartitionStrategy {
     case "EdgePartition2D" => EdgePartition2D
     case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
     case "HybridCut" => HybridCut
-    case "BipartiteCut" => BipartiteCut
+    case "GreedyHybridCut" => GreedyHybridCut
+    case "BiSrcCut" => BiSrcCut
+    case "BiDstCut" => BiDstCut
     case _ => throw new IllegalArgumentException("Invalid PartitionStrategy: " + s)
   }
 

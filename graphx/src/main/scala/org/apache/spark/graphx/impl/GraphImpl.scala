@@ -85,7 +85,49 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
     val edTag = classTag[ED]
     val vdTag = classTag[VD]
     var newEdges = partitionStrategy match{
-      case PartitionStrategy.BipartiteCut => {
+      case PartitionStrategy.BiDstCut => {
+        val groupE = edges.map{e => (e.dstId,e.srcId)}.groupByKey
+        val count_map = groupE.map{ e =>
+          var arr = new Array[Long](numPartitions)
+          e._2.map{ v => arr((v % numPartitions).toInt) += 1}
+          (e._1,arr)
+        }
+        var proc_num_edges = new Array[Long](numPartitions)
+        val mht = count_map.map { e =>
+          val k = e._1
+          val v = e._2
+          var best_proc :PartitionID = (k % numPartitions).toInt
+          var best_score :Double = v.apply(best_proc) - math.sqrt(1.0*proc_num_edges(best_proc))
+          for (i <- 0 to numPartitions-1){
+            val score :Double = v.apply(i) - math.sqrt(1.0*proc_num_edges(i))
+            if (score > best_score){
+              best_proc = i
+              best_score = score
+            }
+          }
+          for (i <- 0 to numPartitions-1){
+            proc_num_edges(best_proc) += v.apply(i)
+          }
+          (k,best_proc)
+        }
+        
+        val combine_rdd = (edges.map {e => (e.dstId, (e.srcId , e.attr))}).join(mht.map{ e => (e._1 , e._2)})
+        edges.withPartitionsRDD(combine_rdd.map { e =>
+          new MessageToPartition(e._2._2, (e._1, e._2._1._1, e._2._1._2))
+        }
+        .partitionBy(new HashPartitioner(numPartitions))
+        .mapPartitionsWithIndex( { (pid, iter) =>
+          val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
+          iter.foreach { message =>
+            val data = message.data
+            builder.add(data._1, data._2, data._3)
+          }
+          val edgePartition = builder.toEdgePartition
+          Iterator((pid, edgePartition))
+        }, preservesPartitioning = true)).cache()
+      }
+
+      case PartitionStrategy.BiSrcCut => {
         val groupE = edges.map{e => (e.srcId,e.dstId)}.groupByKey
         val count_map = groupE.map{ e =>
           var arr = new Array[Long](numPartitions)
@@ -126,6 +168,8 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           Iterator((pid, edgePartition))
         }, preservesPartitioning = true)).cache()
       }
+
+
       case PartitionStrategy.HybridCut => {
         println("HybridCut")
         // val inDegrees: VertexRDD[Int] = this.inDegrees
@@ -143,10 +187,10 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           // val DegreeCount : Int = inDegrees.lookup(dst).head
           if (DegreeCount > 70) {
               // high-cut
-              part = math.abs(srcId).toInt % numParts
+              part = math.abs(srcId).toInt.hashCode % numParts
             } else {
               // low-cut
-              part = math.abs(dstId).toInt % numParts
+              part = math.abs(dstId).toInt.hashCode % numParts
             } 
 
           // Should we be using 3-tuple or an optimized class

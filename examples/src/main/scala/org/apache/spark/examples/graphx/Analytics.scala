@@ -57,6 +57,9 @@ object Analytics extends Logging {
         case "EdgePartition2D" => EdgePartition2D
         case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
         case "HybridCut" => HybridCut
+        case "GreedyHybridCut" => GreedyHybridCut
+        case "BiSrcCut" => BiSrcCut
+        case "BiDstCut" => BiDstCut
         case _ => throw new IllegalArgumentException("Invalid PartitionStrategy: " + v)
       }
     }
@@ -99,16 +102,21 @@ object Analytics extends Logging {
 		.set("spark.akka.frameSize","96")
 	)
 
-        val unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
+       val unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
           edgeStorageLevel = edgeStorageLevel,
           vertexStorageLevel = vertexStorageLevel).cache()
         val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
-
+        logInfo("GRAPHX: INPUT" + fname)
+        logInfo("GRAPHX: Requirement PageRank" + tol)
+        logInfo("GRAPHX: PatitionStrategy" + StrategyName)
         logInfo("GRAPHX: Number of vertices " + graph.vertices.count)
         logInfo("GRAPHX: Number of edges " + graph.edges.count)
         // count replications
-        val replications = graph.edges.partitionsRDD.mapValues((V) => (V.indexSize+ V.reverse.indexSize)).map(a => a._2).reduce((a, b) => a+b)
+        // wrong
+        // 1->3 1->2 2->1 yield 4 instead of 3
+        // val replications = graph.edges.partitionsRDD.mapValues((V) => (V.indexSize+ V.reverse.indexSize)).map(a => a._2).reduce((a, b) => a+b)
+        val replications = graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
 
         logInfo("GRAPHX: Number of replications " + replications)
 
