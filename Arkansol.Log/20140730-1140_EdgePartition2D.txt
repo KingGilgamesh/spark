@@ -1,0 +1,100 @@
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|             PageRank               |
+======================================
+14/07/30 11:40:08 INFO SparkConf: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/07/30 11:40:08 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/07/30 11:40:08 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/07/30 11:40:08 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/07/30 11:40:08 INFO SecurityManager: Changing view acls to: xiaodi
+14/07/30 11:40:08 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/07/30 11:40:09 INFO Slf4jLogger: Slf4jLogger started
+14/07/30 11:40:09 INFO Remoting: Starting remoting
+14/07/30 11:40:09 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:59236]
+14/07/30 11:40:09 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:59236]
+14/07/30 11:40:09 INFO SparkEnv: Registering MapOutputTracker
+14/07/30 11:40:09 INFO SparkEnv: Registering BlockManagerMaster
+14/07/30 11:40:09 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140730114009-8925
+14/07/30 11:40:09 INFO ConnectionManager: Bound socket to port 54355 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,54355)
+14/07/30 11:40:09 INFO MemoryStore: MemoryStore started with capacity 34.5 GB
+14/07/30 11:40:09 INFO BlockManagerMaster: Trying to register BlockManager
+14/07/30 11:40:09 INFO BlockManagerInfo: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:54355 with 34.5 GB RAM
+14/07/30 11:40:09 INFO BlockManagerMaster: Registered BlockManager
+14/07/30 11:40:09 INFO HttpServer: Starting HTTP Server
+14/07/30 11:40:09 INFO HttpBroadcast: Broadcast server started at http://192.168.12.124:56107
+14/07/30 11:40:09 INFO HttpFileServer: HTTP File server directory is /tmp/spark-a55b99c7-03e0-4c39-82b5-681c3b0abfbf
+14/07/30 11:40:09 INFO HttpServer: Starting HTTP Server
+14/07/30 11:40:10 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4040
+14/07/30 11:40:10 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/07/30 11:40:10 INFO EventLoggingListener: Logging events to /tmp/spark-events/pagerank(-data-sdd1-xiaodi-data-in-1.8-10m)-some(edgepartition2d)-1406691610711
+14/07/30 11:40:11 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:49021/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1406691611191
+14/07/30 11:40:11 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/07/30 11:40:11 INFO MemoryStore: ensureFreeSpace(42201) called with curMem=0, maxMem=37044092928
+14/07/30 11:40:11 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.2 KB, free 34.5 GB)
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Connected to Spark cluster with app ID app-20140730114011-0018
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/0 on worker-20140729100506-brick4.ipads-lab.se.sjtu.edu.cn-56612 (brick4.ipads-lab.se.sjtu.edu.cn:56612) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/0 on hostPort brick4.ipads-lab.se.sjtu.edu.cn:56612 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/1 on worker-20140729100506-brick3.ipads-lab.se.sjtu.edu.cn-56586 (brick3.ipads-lab.se.sjtu.edu.cn:56586) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/1 on hostPort brick3.ipads-lab.se.sjtu.edu.cn:56586 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/2 on worker-20140729100505-brick0.ipads-lab.se.sjtu.edu.cn-37388 (brick0.ipads-lab.se.sjtu.edu.cn:37388) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/2 on hostPort brick0.ipads-lab.se.sjtu.edu.cn:37388 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/3 on worker-20140729100506-brick1.ipads-lab.se.sjtu.edu.cn-40905 (brick1.ipads-lab.se.sjtu.edu.cn:40905) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/3 on hostPort brick1.ipads-lab.se.sjtu.edu.cn:40905 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/4 on worker-20140729100506-brick5.ipads-lab.se.sjtu.edu.cn-46225 (brick5.ipads-lab.se.sjtu.edu.cn:46225) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/4 on hostPort brick5.ipads-lab.se.sjtu.edu.cn:46225 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor added: app-20140730114011-0018/5 on worker-20140729100506-brick2.ipads-lab.se.sjtu.edu.cn-53349 (brick2.ipads-lab.se.sjtu.edu.cn:53349) with 24 cores
+14/07/30 11:40:11 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140730114011-0018/5 on hostPort brick2.ipads-lab.se.sjtu.edu.cn:53349 with 24 cores, 60.0 GB RAM
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/5 is now RUNNING
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/4 is now RUNNING
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/0 is now RUNNING
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/2 is now RUNNING
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/1 is now RUNNING
+14/07/30 11:40:11 INFO AppClient$ClientActor: Executor updated: app-20140730114011-0018/3 is now RUNNING
+14/07/30 11:40:11 WARN LoadSnappy: Snappy native library not loaded
+Exception in thread "main" org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: file:/data/sdd1/xiaodi/data/in-1.8-10m
+	at org.apache.hadoop.mapred.FileInputFormat.listStatus(FileInputFormat.java:197)
+	at org.apache.hadoop.mapred.FileInputFormat.getSplits(FileInputFormat.java:208)
+	at org.apache.spark.rdd.HadoopRDD.getPartitions(HadoopRDD.scala:176)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:203)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:201)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:201)
+	at org.apache.spark.rdd.MappedRDD.getPartitions(MappedRDD.scala:28)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:203)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:201)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:201)
+	at org.apache.spark.rdd.PartitionCoalescer.<init>(CoalescedRDD.scala:168)
+	at org.apache.spark.rdd.CoalescedRDD.getPartitions(CoalescedRDD.scala:81)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:203)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:201)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:201)
+	at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:32)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:203)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:201)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:201)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:1110)
+	at org.apache.spark.rdd.RDD.count(RDD.scala:880)
+	at org.apache.spark.graphx.GraphLoader$.edgeListFile(GraphLoader.scala:87)
+	at org.apache.spark.graphx.lib.Analytics$.main(Analytics.scala:104)
+	at org.apache.spark.examples.graphx.LiveJournalPageRank$.main(LiveJournalPageRank.scala:47)
+	at org.apache.spark.examples.graphx.LiveJournalPageRank.main(LiveJournalPageRank.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.spark.deploy.SparkSubmit$.launch(SparkSubmit.scala:303)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:55)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
