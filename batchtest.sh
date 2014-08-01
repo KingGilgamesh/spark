@@ -32,5 +32,8 @@ do
 # ./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-2.0-1m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=4 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
 
 # Wed Jul 30 11:39:40 CST 2014
-./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=4 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
+# ./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=4 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
+
+# Fri Aug  1 11:03:37 CST 2014
+	./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=144 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
 done
