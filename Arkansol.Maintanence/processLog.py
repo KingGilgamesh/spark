@@ -12,9 +12,7 @@ import sys
 output = []
 for line in sys.stdin:
 	if "GraphLoader" in line:
-		output.append(line.split('_')[0])
-	#	output.append(line[line.index('_')+1:line.index('.txt')])
-	#	output.append(line[line.index('took')+5:line.index('ms')-1])
+		output.append(line.split()[0]+' '+line.split()[1])
 		output.append(line.split()[6])
 	if "GraphImpl" in line:
 		output.append(line.split()[6])

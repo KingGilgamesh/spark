@@ -5,7 +5,8 @@
 # @Last Modified time: 2014-07-29 16:36:42
 
 # for i in HybridCut EdgePartition2D EdgePartition1D RandomVertexCut CanonicalRandomVertexCut BiSrcCut BiDstCut;
-for i in HybridCut EdgePartition2D EdgePartition1D RandomVertexCut CanonicalRandomVertexCut;
+# for i in HybridCut EdgePartition2D EdgePartition1D RandomVertexCut CanonicalRandomVertexCut;
+for i in EdgePartition2D EdgePartition1D RandomVertexCut CanonicalRandomVertexCut;
 do
 	echo $i;
 # 60 parts not  working
@@ -35,5 +36,7 @@ do
 # ./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=4 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
 
 # Fri Aug  1 11:03:37 CST 2014
-	./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=144 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
+#	./bin/spark-submit --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=144 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
+
+	./bin/spark-submit --total-executor-cores=24 --class org.apache.spark.examples.graphx.LiveJournalPageRank examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar /data/sdd1/xiaodi/data/in-1.8-10m --tol=0.01 --output=output/$(date +"%Y%m%d-%H%M")_$i --numEPart=24 -partStrategy=$i 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i.txt;
 done

@@ -1,3 +1,18 @@
+
+Mon Aug  4 19:17:07 CST 2014 update GraphX
+https://github.com/apache/spark/commit/6c2be93f081f33e9e97e1231b0084a6a0eb4fa22
+Remove GraphX MessageToPartition for compatibility with sort-based sh…
+…uffle
+
+MessageToPartition was used in `Graph#partitionBy`. Unlike a Tuple2, it marked the key as transient to avoid sending it over the network. However, it was incompatible with sort-based shuffle (SPARK-2045) and represented only a minor optimization: for partitionBy, it improved performance by 6.3% (30.4 s to 28.5 s) and reduced communication by 5.6% (114.2 MB to 107.8 MB).
+
+Author: Ankur Dave <ankurdave@gmail.com>
+
+Closes #1537 from ankurdave/remove-MessageToPartition and squashes the following commits:
+
+f9d0054 [Ankur Dave] Remove MessageToPartition
+ab71364 [Ankur Dave] Remove unused VertexBroadcastMsg
+
 Wed Jul 30 10:35:38 2014 graph property
 
 learn about the in-degrees distribution in a graph

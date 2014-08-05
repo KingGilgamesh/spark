@@ -1,0 +1,762 @@
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|             PageRank               |
+======================================
+14/08/01 14:18:36 INFO SparkConf: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/01 14:18:36 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/01 14:18:36 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/01 14:18:36 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/01 14:18:36 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/01 14:18:36 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/01 14:18:37 INFO Slf4jLogger: Slf4jLogger started
+14/08/01 14:18:37 INFO Remoting: Starting remoting
+14/08/01 14:18:37 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:51995]
+14/08/01 14:18:37 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:51995]
+14/08/01 14:18:37 INFO SparkEnv: Registering MapOutputTracker
+14/08/01 14:18:37 INFO SparkEnv: Registering BlockManagerMaster
+14/08/01 14:18:37 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140801141837-e1d9
+14/08/01 14:18:37 INFO ConnectionManager: Bound socket to port 49851 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,49851)
+14/08/01 14:18:37 INFO MemoryStore: MemoryStore started with capacity 34.5 GB
+14/08/01 14:18:37 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/01 14:18:37 INFO BlockManagerInfo: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:49851 with 34.5 GB RAM
+14/08/01 14:18:37 INFO BlockManagerMaster: Registered BlockManager
+14/08/01 14:18:37 INFO HttpServer: Starting HTTP Server
+14/08/01 14:18:37 INFO HttpBroadcast: Broadcast server started at http://192.168.12.124:38994
+14/08/01 14:18:37 INFO HttpFileServer: HTTP File server directory is /tmp/spark-e15a824d-bb5d-45af-9cdf-539db786eedf
+14/08/01 14:18:37 INFO HttpServer: Starting HTTP Server
+14/08/01 14:18:38 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/01 14:18:38 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/01 14:18:38 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/01 14:18:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/01 14:18:39 INFO EventLoggingListener: Logging events to /tmp/spark-events/pagerank(-data-sdd1-xiaodi-data-in-1.8-10m_aa)-some(edgepartition1d)-1406873918965
+14/08/01 14:18:39 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:50431/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1406873919435
+14/08/01 14:18:39 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/08/01 14:18:39 INFO MemoryStore: ensureFreeSpace(42201) called with curMem=0, maxMem=37044092928
+14/08/01 14:18:39 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.2 KB, free 34.5 GB)
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Connected to Spark cluster with app ID app-20140801141839-0002
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/0 on worker-20140801141635-brick2.ipads-lab.se.sjtu.edu.cn-37368 (brick2.ipads-lab.se.sjtu.edu.cn:37368) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/0 on hostPort brick2.ipads-lab.se.sjtu.edu.cn:37368 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/1 on worker-20140801141635-brick5.ipads-lab.se.sjtu.edu.cn-52922 (brick5.ipads-lab.se.sjtu.edu.cn:52922) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/1 on hostPort brick5.ipads-lab.se.sjtu.edu.cn:52922 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/2 on worker-20140801141634-brick0.ipads-lab.se.sjtu.edu.cn-33607 (brick0.ipads-lab.se.sjtu.edu.cn:33607) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/2 on hostPort brick0.ipads-lab.se.sjtu.edu.cn:33607 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/3 on worker-20140801141636-brick4.ipads-lab.se.sjtu.edu.cn-40434 (brick4.ipads-lab.se.sjtu.edu.cn:40434) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/3 on hostPort brick4.ipads-lab.se.sjtu.edu.cn:40434 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/4 on worker-20140801141635-brick1.ipads-lab.se.sjtu.edu.cn-46509 (brick1.ipads-lab.se.sjtu.edu.cn:46509) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/4 on hostPort brick1.ipads-lab.se.sjtu.edu.cn:46509 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor added: app-20140801141839-0002/5 on worker-20140801141635-brick3.ipads-lab.se.sjtu.edu.cn-38437 (brick3.ipads-lab.se.sjtu.edu.cn:38437) with 24 cores
+14/08/01 14:18:39 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140801141839-0002/5 on hostPort brick3.ipads-lab.se.sjtu.edu.cn:38437 with 24 cores, 60.0 GB RAM
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/0 is now RUNNING
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/1 is now RUNNING
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/3 is now RUNNING
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/5 is now RUNNING
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/2 is now RUNNING
+14/08/01 14:18:39 INFO AppClient$ClientActor: Executor updated: app-20140801141839-0002/4 is now RUNNING
+14/08/01 14:18:40 WARN LoadSnappy: Snappy native library not loaded
+14/08/01 14:18:40 INFO FileInputFormat: Total input paths to process : 1
+14/08/01 14:18:40 INFO SparkContext: Starting job: count at GraphLoader.scala:87
+14/08/01 14:18:40 INFO DAGScheduler: Got job 0 (count at GraphLoader.scala:87) with 144 output partitions (allowLocal=false)
+14/08/01 14:18:40 INFO DAGScheduler: Final stage: Stage 0(count at GraphLoader.scala:87)
+14/08/01 14:18:40 INFO DAGScheduler: Parents of final stage: List()
+14/08/01 14:18:40 INFO DAGScheduler: Missing parents: List()
+14/08/01 14:18:40 INFO DAGScheduler: Submitting Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-1.8-10m_aa) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68), which has no missing parents
+14/08/01 14:18:40 INFO DAGScheduler: Submitting 144 missing tasks from Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-1.8-10m_aa) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68)
+14/08/01 14:18:40 INFO TaskSchedulerImpl: Adding task set 0.0 with 144 tasks
+14/08/01 14:18:43 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick0.ipads-lab.se.sjtu.edu.cn:36974/user/Executor#2072179294] with ID 2
+14/08/01 14:18:43 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:0 as TID 0 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:0 as 2330 bytes in 4 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:1 as TID 1 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:1 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:2 as TID 2 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:2 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:3 as TID 3 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:3 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:4 as TID 4 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:4 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:5 as TID 5 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:5 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:6 as TID 6 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:6 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:7 as TID 7 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:7 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:8 as TID 8 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:8 as 2330 bytes in 0 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:9 as TID 9 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:9 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:10 as TID 10 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:10 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:11 as TID 11 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:11 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:12 as TID 12 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:12 as 2330 bytes in 1 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:13 as TID 13 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:43 INFO TaskSetManager: Serialized task 0.0:13 as 2330 bytes in 2 ms
+14/08/01 14:18:43 INFO TaskSetManager: Starting task 0.0:14 as TID 14 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:14 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:15 as TID 15 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:15 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:16 as TID 16 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:16 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:17 as TID 17 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:17 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:18 as TID 18 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:18 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:19 as TID 19 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:19 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:20 as TID 20 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:20 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:21 as TID 21 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:21 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:22 as TID 22 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:22 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:23 as TID 23 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:23 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO BlockManagerInfo: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:57481 with 34.5 GB RAM
+14/08/01 14:18:44 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick1.ipads-lab.se.sjtu.edu.cn:60765/user/Executor#590012730] with ID 4
+14/08/01 14:18:44 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:24 as TID 24 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:24 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:25 as TID 25 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:25 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:26 as TID 26 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:26 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:27 as TID 27 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:27 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:28 as TID 28 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:28 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:29 as TID 29 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:29 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:30 as TID 30 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:30 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:31 as TID 31 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:31 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:32 as TID 32 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:32 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:33 as TID 33 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:33 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:34 as TID 34 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:34 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:35 as TID 35 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:35 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:36 as TID 36 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:36 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:37 as TID 37 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:37 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:38 as TID 38 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:38 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:39 as TID 39 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:39 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:40 as TID 40 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:40 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:41 as TID 41 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:41 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:42 as TID 42 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:42 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:43 as TID 43 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:43 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:44 as TID 44 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:44 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:45 as TID 45 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:45 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:46 as TID 46 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:46 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:47 as TID 47 on executor 4: brick1.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:47 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO BlockManagerInfo: Registering block manager brick1.ipads-lab.se.sjtu.edu.cn:53923 with 34.5 GB RAM
+14/08/01 14:18:44 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick4.ipads-lab.se.sjtu.edu.cn:38315/user/Executor#1206780324] with ID 3
+14/08/01 14:18:44 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:48 as TID 48 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:48 as 2330 bytes in 2 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:49 as TID 49 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:49 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:50 as TID 50 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:50 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:51 as TID 51 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:51 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:52 as TID 52 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:52 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:53 as TID 53 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:53 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:54 as TID 54 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:54 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:55 as TID 55 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:55 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:56 as TID 56 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:56 as 2330 bytes in 0 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:57 as TID 57 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:44 INFO TaskSetManager: Serialized task 0.0:57 as 2330 bytes in 1 ms
+14/08/01 14:18:44 INFO TaskSetManager: Starting task 0.0:58 as TID 58 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:58 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:59 as TID 59 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:59 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:60 as TID 60 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:60 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:61 as TID 61 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:61 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:62 as TID 62 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:62 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:63 as TID 63 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:63 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:64 as TID 64 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:64 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:65 as TID 65 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:65 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:66 as TID 66 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:66 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:67 as TID 67 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:67 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:68 as TID 68 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:68 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:69 as TID 69 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:69 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:70 as TID 70 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:70 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:71 as TID 71 on executor 3: brick4.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:71 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick3.ipads-lab.se.sjtu.edu.cn:50273/user/Executor#1269930406] with ID 5
+14/08/01 14:18:45 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:72 as TID 72 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:72 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:73 as TID 73 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:73 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:74 as TID 74 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:74 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:75 as TID 75 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:75 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:76 as TID 76 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:76 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:77 as TID 77 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:77 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:78 as TID 78 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:78 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:79 as TID 79 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:79 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:80 as TID 80 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:80 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:81 as TID 81 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:81 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:82 as TID 82 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:82 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:83 as TID 83 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:83 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:84 as TID 84 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:84 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:85 as TID 85 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:85 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:86 as TID 86 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:86 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:87 as TID 87 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:87 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:88 as TID 88 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:88 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:89 as TID 89 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:89 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:90 as TID 90 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:90 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:91 as TID 91 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:91 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:92 as TID 92 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:92 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:93 as TID 93 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:93 as 2330 bytes in 1 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:94 as TID 94 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:94 as 2330 bytes in 0 ms
+14/08/01 14:18:45 INFO TaskSetManager: Starting task 0.0:95 as TID 95 on executor 5: brick3.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:45 INFO TaskSetManager: Serialized task 0.0:95 as 2330 bytes in 1 ms
+14/08/01 14:18:46 INFO BlockManagerInfo: Registering block manager brick4.ipads-lab.se.sjtu.edu.cn:42420 with 34.5 GB RAM
+14/08/01 14:18:46 INFO BlockManagerInfo: Registering block manager brick3.ipads-lab.se.sjtu.edu.cn:48150 with 34.5 GB RAM
+14/08/01 14:18:47 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick2.ipads-lab.se.sjtu.edu.cn:42787/user/Executor#-1687598250] with ID 0
+14/08/01 14:18:47 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:96 as TID 96 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:96 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:97 as TID 97 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:97 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:98 as TID 98 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:98 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:99 as TID 99 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:99 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:100 as TID 100 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:100 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:101 as TID 101 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:101 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:102 as TID 102 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:102 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:103 as TID 103 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:103 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:104 as TID 104 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:104 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:105 as TID 105 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:105 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:106 as TID 106 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:106 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:107 as TID 107 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:107 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:108 as TID 108 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:108 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:109 as TID 109 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:109 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:110 as TID 110 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:110 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:111 as TID 111 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:111 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:112 as TID 112 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:112 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:113 as TID 113 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:113 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:114 as TID 114 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:114 as 2330 bytes in 0 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:115 as TID 115 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:115 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:116 as TID 116 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:116 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:117 as TID 117 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:117 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:118 as TID 118 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:118 as 2330 bytes in 1 ms
+14/08/01 14:18:47 INFO TaskSetManager: Starting task 0.0:119 as TID 119 on executor 0: brick2.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:47 INFO TaskSetManager: Serialized task 0.0:119 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_12 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_19 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_6 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_9 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_18 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_15 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_23 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_13 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_14 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_7 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_22 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.2 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_17 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_16 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_8 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.1 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_11 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_20 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_10 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.0 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_21 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.0 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:120 as TID 120 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:120 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:121 as TID 121 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:121 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:122 as TID 122 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:122 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:123 as TID 123 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:123 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:124 as TID 124 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:124 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:125 as TID 125 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:125 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:126 as TID 126 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:126 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 6 in 4255 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 1/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 6)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 3)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 3 in 4283 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 2/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 16)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 16 in 4268 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 3/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 9)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 9 in 4298 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 4/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 11)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 11 in 4309 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 5/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 12)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 12 in 4321 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 6/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 7)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 7 in 4346 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 7/144)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:127 as TID 127 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:127 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:128 as TID 128 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:128 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 19)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 19 in 4341 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 8/144)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 18 in 4358 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 9/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 18)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:129 as TID 129 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:129 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:130 as TID 130 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:130 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 2)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 2 in 4412 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 10/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 15)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 15 in 4396 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 11/144)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:131 as TID 131 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:131 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:132 as TID 132 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:132 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 14)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 14 in 4418 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 12/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 23)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 23 in 4414 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 13/144)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:133 as TID 133 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:133 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:134 as TID 134 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:134 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 5)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 5 in 4473 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 14/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 4)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 4 in 4490 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 15/144)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:135 as TID 135 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:135 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:136 as TID 136 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:136 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 17)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 17 in 4482 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 16/144)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 22 in 4492 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 17/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 22)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:137 as TID 137 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:137 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:138 as TID 138 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:138 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 8)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 8 in 4544 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 18/144)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 21 in 4535 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 19/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 21)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:139 as TID 139 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:139 as 2330 bytes in 0 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:140 as TID 140 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:140 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:141 as TID 141 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:141 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:142 as TID 142 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:142 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 13)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 13 in 4579 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 20/144)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 10 in 4606 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 21/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 10)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 0 in 4661 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 22/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 0)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 20 in 4621 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 23/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 20)
+14/08/01 14:18:48 INFO TaskSetManager: Starting task 0.0:143 as TID 143 on executor 2: brick0.ipads-lab.se.sjtu.edu.cn (PROCESS_LOCAL)
+14/08/01 14:18:48 INFO TaskSetManager: Serialized task 0.0:143 as 2330 bytes in 1 ms
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 1)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 1 in 4682 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 24/144)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_121 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_125 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_120 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_123 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_124 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_126 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.1 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_128 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.2 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_122 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.0 MB, free: 34.3 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_130 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_127 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.2 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_129 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.1 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_132 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_131 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 8.0 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 125 in 675 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 25/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 125)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 121 in 713 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 26/144)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_133 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 121)
+14/08/01 14:18:48 INFO BlockManagerInfo: Added rdd_3_134 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 123)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 123 in 719 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 27/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 120)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 120 in 751 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 28/144)
+14/08/01 14:18:48 INFO TaskSetManager: Finished TID 128 in 627 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 29/144)
+14/08/01 14:18:48 INFO DAGScheduler: Completed ResultTask(0, 128)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 124 in 765 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 30/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 124)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 122 in 791 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 31/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 122)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 126)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 126 in 791 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 32/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Registering block manager brick2.ipads-lab.se.sjtu.edu.cn:54998 with 34.5 GB RAM
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 132)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 132 in 801 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 33/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_135 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 129)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 129 in 848 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 34/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_136 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 130)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 130 in 861 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 35/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_137 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 127)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 127 in 915 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 36/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 131)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 131 in 858 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 37/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 133)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 133 in 839 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 38/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_139 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_138 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_141 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.2 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 135)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 135 in 819 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 39/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 134)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 134 in 861 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 40/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_140 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.1 GB)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_142 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.1 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 136)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 136 in 840 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 41/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 137)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 137 in 816 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 42/144)
+14/08/01 14:18:49 INFO BlockManagerInfo: Added rdd_3_143 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57481 (size: 7.9 MB, free: 34.1 GB)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 138)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 138 in 850 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 43/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 139)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 139 in 825 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 44/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 141)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 141 in 831 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 45/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 140)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 140 in 844 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 46/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 142)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 142 in 851 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 47/144)
+14/08/01 14:18:49 INFO DAGScheduler: Completed ResultTask(0, 143)
+14/08/01 14:18:49 INFO TaskSetManager: Finished TID 143 in 807 ms on brick0.ipads-lab.se.sjtu.edu.cn (progress: 48/144)
+14/08/01 14:18:50 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick5.ipads-lab.se.sjtu.edu.cn:48051/user/Executor#1583209822] with ID 1
+14/08/01 14:18:50 INFO TaskSetManager: Re-computing pending task lists.
+14/08/01 14:18:51 INFO BlockManagerInfo: Registering block manager brick5.ipads-lab.se.sjtu.edu.cn:40485 with 34.5 GB RAM
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_86 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_81 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_75 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_90 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_73 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_80 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_93 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_82 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_87 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_92 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_58 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 8.0 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_59 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_65 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_77 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_67 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_74 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_64 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_84 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_51 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_89 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_48 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_61 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 8.0 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_91 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_62 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_94 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_71 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_50 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_63 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_95 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_69 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_76 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_60 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 8.0 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_83 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_70 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_72 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_54 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 8.0 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_88 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_66 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_78 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_68 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_79 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_55 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_85 in memory on brick3.ipads-lab.se.sjtu.edu.cn:48150 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_52 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_56 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_49 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_57 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:57 INFO BlockManagerInfo: Added rdd_3_53 in memory on brick4.ipads-lab.se.sjtu.edu.cn:42420 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 92)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 92 in 12994 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 49/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 90)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 90 in 13008 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 50/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 63)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 63 in 13074 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 51/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 75)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 75 in 13050 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 52/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 81)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 81 in 13049 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 53/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 77)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 77 in 13065 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 54/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 80)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 80 in 13068 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 55/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 59)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 59 in 13126 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 56/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 87)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 87 in 13074 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 57/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 65)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 65 in 13131 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 58/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 82)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 82 in 13099 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 59/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 51)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 51 in 13173 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 60/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 76)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 76 in 13126 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 61/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 54)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 54 in 13185 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 62/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 89)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 89 in 13121 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 63/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 50)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 50 in 13209 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 64/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 93)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 93 in 13131 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 65/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 52)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 52 in 13222 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 66/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 86)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 86 in 13159 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 67/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 66)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 66 in 13212 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 68/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 74)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 74 in 13196 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 69/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 83)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 83 in 13188 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 70/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 71)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 71 in 13227 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 71/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 64)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 64 in 13250 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 72/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 84)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 84 in 13211 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 73/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 67)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 67 in 13259 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 74/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 73)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 73 in 13246 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 75/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 70)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 70 in 13271 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 76/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 57)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 57 in 13303 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 77/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 88)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 88 in 13244 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 78/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 95)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 95 in 13243 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 79/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 62)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 62 in 13317 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 80/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 91)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 91 in 13263 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 81/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 55)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 55 in 13345 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 82/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 94)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 94 in 13274 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 83/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 79)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 79 in 13306 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 84/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 60)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 60 in 13357 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 85/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 68)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 68 in 13351 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 86/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 48)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 48 in 13401 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 87/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 85)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 85 in 13323 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 88/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 78)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 78 in 13342 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 89/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 49)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 49 in 13413 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 90/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 53)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 53 in 13411 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 91/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 72)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 72 in 13373 ms on brick3.ipads-lab.se.sjtu.edu.cn (progress: 92/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 61)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 61 in 13411 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 93/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 69)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 69 in 13403 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 94/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 56)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 56 in 13433 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 95/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 58)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 58 in 13435 ms on brick4.ipads-lab.se.sjtu.edu.cn (progress: 96/144)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_112 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_116 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_98 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_113 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_100 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_107 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.5 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_106 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_111 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_119 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_103 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_97 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_110 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_104 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_96 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_115 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_101 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_118 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_114 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_109 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.4 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_102 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_99 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_105 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_117 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO BlockManagerInfo: Added rdd_3_108 in memory on brick2.ipads-lab.se.sjtu.edu.cn:54998 (size: 7.9 MB, free: 34.3 GB)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 103)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 103 in 11597 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 97/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 106)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 106 in 11598 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 98/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 107)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 107 in 11603 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 99/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 97)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 97 in 11634 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 100/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 111)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 111 in 11606 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 101/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 110)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 110 in 11615 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 102/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 99)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 99 in 11648 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 103/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 105)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 105 in 11635 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 104/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 116)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 116 in 11620 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 105/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 115)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 115 in 11627 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 106/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 119)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 119 in 11625 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 107/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 112)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 112 in 11644 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 108/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 113)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 113 in 11649 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 109/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 96)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 96 in 11699 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 110/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 98)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 98 in 11695 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 111/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 100)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 100 in 11698 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 112/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 114)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 114 in 11670 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 113/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 104)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 104 in 11695 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 114/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 109)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 109 in 11692 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 115/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 118)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 118 in 11680 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 116/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 117)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 117 in 11686 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 117/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 101)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 101 in 11731 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 118/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 102)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 102 in 11734 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 119/144)
+14/08/01 14:18:58 INFO DAGScheduler: Completed ResultTask(0, 108)
+14/08/01 14:18:58 INFO TaskSetManager: Finished TID 108 in 11721 ms on brick2.ipads-lab.se.sjtu.edu.cn (progress: 120/144)
+14/08/01 14:19:12 INFO TaskSchedulerImpl: Cancelling stage 0
+14/08/01 14:19:12 INFO TaskSchedulerImpl: Stage 0 was cancelled
+14/08/01 14:19:12 INFO DAGScheduler: Failed to run count at GraphLoader.scala:87
+Exception in thread "main" org.apache.spark.SparkException: Job 0 cancelled because Stage 0 was cancelled
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1041)
+	at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1006)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply$mcVI$sp(DAGScheduler.scala:994)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply(DAGScheduler.scala:993)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply(DAGScheduler.scala:993)
+	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)
+	at scala.collection.mutable.ArrayOps$ofInt.foreach(ArrayOps.scala:156)
+	at org.apache.spark.scheduler.DAGScheduler.handleStageCancellation(DAGScheduler.scala:993)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessActor$$anonfun$receive$2.applyOrElse(DAGScheduler.scala:1199)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:498)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:456)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:237)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:219)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)

@@ -113,13 +113,13 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
         
         val combine_rdd = (edges.map {e => (e.dstId, (e.srcId , e.attr))}).join(mht.map{ e => (e._1 , e._2)})
         edges.withPartitionsRDD(combine_rdd.map { e =>
-          new MessageToPartition(e._2._2, (e._1, e._2._1._1, e._2._1._2))
+          (e._2._2, (e._1, e._2._1._1, e._2._1._2))
         }
         .partitionBy(new HashPartitioner(numPartitions))
         .mapPartitionsWithIndex( { (pid, iter) =>
           val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
           iter.foreach { message =>
-            val data = message.data
+            val data = message._2
             builder.add(data._1, data._2, data._3)
           }
           val edgePartition = builder.toEdgePartition
@@ -155,13 +155,14 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
         
         val combine_rdd = (edges.map {e => (e.srcId, (e.dstId , e.attr))}).join(mht.map{ e => (e._1 , e._2)})
         edges.withPartitionsRDD(combine_rdd.map { e =>
-          new MessageToPartition(e._2._2, (e._1, e._2._1._1, e._2._1._2))
+          (e._2._2, (e._1, e._2._1._1, e._2._1._2))
+          // new MessageToPartition(e._2._2, (e._1, e._2._1._1, e._2._1._2))
         }
         .partitionBy(new HashPartitioner(numPartitions))
         .mapPartitionsWithIndex( { (pid, iter) =>
           val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
           iter.foreach { message =>
-            val data = message.data
+            val data = message._2
             builder.add(data._1, data._2, data._3)
           }
           val edgePartition = builder.toEdgePartition
@@ -194,13 +195,14 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
             } 
 
           // Should we be using 3-tuple or an optimized class
-          new MessageToPartition(part, (srcId, dstId, attr))
+          // new MessageToPartition(part, (srcId, dstId, attr))
+          (part, (srcId, dstId, attr))
         }
         .partitionBy(new HashPartitioner(numPartitions))
         .mapPartitionsWithIndex( { (pid, iter) =>
           val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
           iter.foreach { message =>
-            val data = message.data
+            val data = message._2
             builder.add(data._1, data._2, data._3)
           }
           val edgePartition = builder.toEdgePartition
@@ -213,13 +215,13 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           val part: PartitionID = partitionStrategy.getPartition(e.srcId, e.dstId, numPartitions)
 
           // Should we be using 3-tuple or an optimized class
-          new MessageToPartition(part, (e.srcId, e.dstId, e.attr))
+          (part, (e.srcId, e.dstId, e.attr))
         }
         .partitionBy(new HashPartitioner(numPartitions))
         .mapPartitionsWithIndex( { (pid, iter) =>
           val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
           iter.foreach { message =>
-            val data = message.data
+            val data = message._2
             builder.add(data._1, data._2, data._3)
           }
           val edgePartition = builder.toEdgePartition
