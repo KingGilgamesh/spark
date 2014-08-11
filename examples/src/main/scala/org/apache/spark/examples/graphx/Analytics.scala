@@ -53,7 +53,8 @@ object Analytics extends Logging {
       // TODO: Use reflection rather than listing all the partitioning strategies here.
       v match {
         case "RandomVertexCut" => RandomVertexCut
-        case "EdgePartition1D" => EdgePartition1D
+        case "EdgePartition1DSrc" => EdgePartition1DSrc
+        case "EdgePartition1DDst" => EdgePartition1DDst
         case "EdgePartition2D" => EdgePartition2D
         case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
         case "HybridCut" => HybridCut

@@ -29,7 +29,8 @@ object GraphXPartition extends Logging {
         // TODO: Use reflection rather than listing all the partitioning strategies here.
         v match {
           case "RandomVertexCut" => RandomVertexCut
-          case "EdgePartition1D" => EdgePartition1D
+          case "EdgePartition1DSrc" => EdgePartition1DSrc
+          case "EdgePartition1DDst" => EdgePartition1DDst
           case "EdgePartition2D" => EdgePartition2D
           case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
           case "HybridCut" => HybridCut
@@ -79,11 +80,28 @@ object GraphXPartition extends Logging {
           unpartitionedGraph = unpartitionedGraph.reverse 
           reverseString = "-reverse"
         }
-        val graph = unpartitionedGraph.partitionBy(partitionStrategy, numEPart, threshHold)
+        val graph = unpartitionedGraph.partitionBy(partitionStrategy, numEPart, threshHold).cache()
         // val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
 
         // count replications
         val replications = graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
+
+        /*
+        // print partitions
+        // avoid if not necessary: for in-2.0-1m 128mb total
+        var dataSrc = graph.edges.partitionsRDD.mapValues((V) => (V.srcIds)).collect()
+        var dataDst = graph.edges.partitionsRDD.mapValues((V) => (V.dstIds)).collect()
+
+        val pw1 = new java.io.PrintWriter(new File(fname+StrategyName+numEPart.toString+"src.txt"))
+        val pw2 = new java.io.PrintWriter(new File(fname+StrategyName+numEPart.toString+"dst.txt"))
+
+        pw1.write(stringOf(dataSrc))
+        pw2.write(stringOf(dataDst))
+         */
+
+        // vertices per partition
+        graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect()
+        graph.edges.partitionsRDD.mapValues((V) => (V.srcIds.length)).collect()
 
         logInfo("GRAPHX: INPUT " + fname + reverseString)
         logInfo("GRAPHX: PatitionStrategy " + StrategyName)
