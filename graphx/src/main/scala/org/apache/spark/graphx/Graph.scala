@@ -119,7 +119,8 @@ abstract class Graph[VD: ClassTag, ED: ClassTag] protected () extends Serializab
    * in the graph.
    * @param numPartitions the number of edge partitions in the new graph.
    */
-  def partitionBy(partitionStrategy: PartitionStrategy, numPartitions: Int): Graph[VD, ED]
+//  def partitionBy(partitionStrategy: PartitionStrategy, numPartitions: Int): Graph[VD, ED]
+  def partitionBy(partitionStrategy: PartitionStrategy, numPartitions: Int, threshHold: Int): Graph[VD, ED]
 
   /**
    * Transforms each vertex attribute in the graph using the map function.

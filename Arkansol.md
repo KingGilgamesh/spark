@@ -1,4 +1,13 @@
 
+Tue Aug  5 15:40:38 CST 2014 partition benchmark suite
+. benchmark.sh <file> <numParts>
+
+Tue Aug  5 10:40:51 CST 2014 graph property
+indegree
+  println(GraphLoader.edgeListFile(sc, "/data/sdd1/xiaodi/data/in-2.0-1m").inDegrees.map(e => (e._2, 1)).reduceByKey((a, b) => a + b).collect().sortWith(_._1 > _._1).mkString(" "))
+outdegree
+  println(GraphLoader.edgeListFile(sc, "/data/sdd1/xiaodi/data/in-2.0-1m").reverse.inDegrees.map(e => (e._2, 1)).reduceByKey((a, b) => a + b).collect().sortWith(_._1 > _._1).mkString(" "))
+
 Mon Aug  4 19:17:07 CST 2014 update GraphX
 https://github.com/apache/spark/commit/6c2be93f081f33e9e97e1231b0084a6a0eb4fa22
 Remove GraphX MessageToPartition for compatibility with sort-based sh…

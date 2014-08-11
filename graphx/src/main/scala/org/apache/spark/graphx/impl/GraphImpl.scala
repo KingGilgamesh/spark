@@ -78,7 +78,7 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
   }
 
   override def partitionBy(
-      partitionStrategy: PartitionStrategy, numPartitions: Int): Graph[VD, ED] = {
+      partitionStrategy: PartitionStrategy, numPartitions: Int, ThreshHold: Int = 70): Graph[VD, ED] = {
     val startTime = System.currentTimeMillis
 
     // strategy
@@ -184,9 +184,8 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           val DegreeCount = e._2._2
           val numParts = numPartitions
           
-          val ThreshHold = 70
           // val DegreeCount : Int = inDegrees.lookup(dst).head
-          if (DegreeCount > 70) {
+          if (DegreeCount > ThreshHold) {
               // high-cut
               part = math.abs(srcId).toInt.hashCode % numParts
             } else {
