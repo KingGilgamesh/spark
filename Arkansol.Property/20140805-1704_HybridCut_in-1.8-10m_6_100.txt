@@ -1,0 +1,933 @@
+/data/sdd1/xiaodi/spark/conf/spark-env.sh: line 53: ulimit: open files: cannot modify limit: Operation not permitted
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|     benchmark: GraphXPartition     |
+======================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/05 17:04:29 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/05 17:04:29 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/05 17:04:29 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/05 17:04:29 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/05 17:04:29 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/05 17:04:30 INFO Slf4jLogger: Slf4jLogger started
+14/08/05 17:04:30 INFO Remoting: Starting remoting
+14/08/05 17:04:31 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:54578]
+14/08/05 17:04:31 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:54578]
+14/08/05 17:04:31 INFO SparkEnv: Registering MapOutputTracker
+14/08/05 17:04:31 INFO SparkEnv: Registering BlockManagerMaster
+14/08/05 17:04:31 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140805170431-e471
+14/08/05 17:04:31 INFO ConnectionManager: Bound socket to port 36527 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,36527)
+14/08/05 17:04:31 INFO MemoryStore: MemoryStore started with capacity 31.0 GB
+14/08/05 17:04:31 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/05 17:04:31 INFO BlockManagerMasterActor: received a register
+14/08/05 17:04:31 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:36527 with 31.0 GB RAM
+14/08/05 17:04:31 INFO BlockManagerMaster: Registered BlockManager
+14/08/05 17:04:31 INFO HttpFileServer: HTTP File server directory is /tmp/spark-57124d14-b676-4ae9-8b2b-5989bfd34138
+14/08/05 17:04:31 INFO HttpServer: Starting HTTP Server
+14/08/05 17:04:31 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/05 17:04:31 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/05 17:04:31 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/05 17:04:32 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/05 17:04:32 INFO EventLoggingListener: Logging events to file:/tmp/spark-events//pagerank(-data-sdd1-xiaodi-data-in-1.8-10m)-hybridcut-1407229472379
+14/08/05 17:04:32 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:35835/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407229472860
+14/08/05 17:04:32 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:54578/user/HeartbeatReceiver
+14/08/05 17:04:33 INFO MemoryStore: ensureFreeSpace(42049) called with curMem=0, maxMem=33339683635
+14/08/05 17:04:33 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.1 KB, free 31.0 GB)
+14/08/05 17:04:33 WARN LoadSnappy: Snappy native library not loaded
+14/08/05 17:04:33 INFO FileInputFormat: Total input paths to process : 1
+14/08/05 17:04:33 INFO SparkContext: Starting job: count at GraphLoader.scala:87
+14/08/05 17:04:33 INFO DAGScheduler: Got job 0 (count at GraphLoader.scala:87) with 6 output partitions (allowLocal=false)
+14/08/05 17:04:33 INFO DAGScheduler: Final stage: Stage 0(count at GraphLoader.scala:87)
+14/08/05 17:04:33 INFO DAGScheduler: Parents of final stage: List()
+14/08/05 17:04:33 INFO DAGScheduler: Missing parents: List()
+14/08/05 17:04:33 INFO DAGScheduler: Submitting Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-1.8-10m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68), which has no missing parents
+14/08/05 17:04:33 INFO MemoryStore: ensureFreeSpace(2976) called with curMem=42049, maxMem=33339683635
+14/08/05 17:04:33 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 2.9 KB, free 31.0 GB)
+14/08/05 17:04:33 INFO DAGScheduler: Submitting 6 missing tasks from Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-1.8-10m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68)
+14/08/05 17:04:33 INFO TaskSchedulerImpl: Adding task set 0.0 with 6 tasks
+14/08/05 17:04:33 INFO TaskSetManager: Re-computing pending task lists.
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, PROCESS_LOCAL, 9521 bytes)
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, PROCESS_LOCAL, 9680 bytes)
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, PROCESS_LOCAL, 9680 bytes)
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, PROCESS_LOCAL, 9680 bytes)
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, PROCESS_LOCAL, 9680 bytes)
+14/08/05 17:04:33 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, PROCESS_LOCAL, 9680 bytes)
+14/08/05 17:04:33 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+14/08/05 17:04:33 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+14/08/05 17:04:33 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+14/08/05 17:04:33 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+14/08/05 17:04:33 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+14/08/05 17:04:33 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+14/08/05 17:04:33 INFO Executor: Fetching http://192.168.12.124:35835/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407229472860
+14/08/05 17:04:33 INFO Utils: Fetching http://192.168.12.124:35835/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar to /tmp/fetchFileTemp6323231111609278345.tmp
+14/08/05 17:04:34 INFO Executor: Adding file:/tmp/spark-5d245850-e125-47f9-adb2-60d332c6611a/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar to class loader
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_3 not found, computing it
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_4 not found, computing it
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_5 not found, computing it
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_2 not found, computing it
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_1 not found, computing it
+14/08/05 17:04:34 INFO CacheManager: Partition rdd_3_0 not found, computing it
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8858370048+33554432
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7079985152+33554432
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5301600256+33554432
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:0+33554432
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3523215360+33554432
+14/08/05 17:04:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1744830464+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3556769792+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8891924480+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7113539584+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:33554432+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5335154688+33554432
+14/08/05 17:04:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1778384896+33554432
+14/08/05 17:04:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3590324224+33554432
+14/08/05 17:04:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8925478912+33554432
+14/08/05 17:04:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7147094016+33554432
+14/08/05 17:04:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5368709120+33554432
+14/08/05 17:04:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:67108864+33554432
+14/08/05 17:04:46 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1811939328+33554432
+14/08/05 17:04:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8959033344+33554432
+14/08/05 17:04:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3623878656+33554432
+14/08/05 17:04:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7180648448+33554432
+14/08/05 17:04:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5402263552+33554432
+14/08/05 17:05:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1845493760+33554432
+14/08/05 17:05:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:100663296+33554432
+14/08/05 17:05:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8992587776+33554432
+14/08/05 17:05:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3657433088+33554432
+14/08/05 17:05:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7214202880+33554432
+14/08/05 17:05:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1879048192+33554432
+14/08/05 17:05:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5435817984+33554432
+14/08/05 17:05:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:134217728+33554432
+14/08/05 17:05:25 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9026142208+33554432
+14/08/05 17:05:25 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3690987520+33554432
+14/08/05 17:05:25 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7247757312+33554432
+14/08/05 17:05:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1912602624+33554432
+14/08/05 17:05:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:167772160+33554432
+14/08/05 17:05:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5469372416+33554432
+14/08/05 17:05:37 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9059696640+33554432
+14/08/05 17:05:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7281311744+33554432
+14/08/05 17:05:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3724541952+33554432
+14/08/05 17:05:46 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1946157056+33554432
+14/08/05 17:05:46 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:201326592+33554432
+14/08/05 17:05:46 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5502926848+33554432
+14/08/05 17:07:09 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9093251072+33554432
+14/08/05 17:07:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3758096384+33554432
+14/08/05 17:07:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7314866176+33554432
+14/08/05 17:07:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:234881024+33554432
+14/08/05 17:07:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1979711488+33554432
+14/08/05 17:07:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5536481280+33554432
+14/08/05 17:07:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9126805504+33554432
+14/08/05 17:07:38 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3791650816+33554432
+14/08/05 17:07:38 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7348420608+33554432
+14/08/05 17:07:38 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:268435456+33554432
+14/08/05 17:07:39 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2013265920+33554432
+14/08/05 17:07:39 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5570035712+33554432
+14/08/05 17:07:53 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9160359936+33554432
+14/08/05 17:07:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3825205248+33554432
+14/08/05 17:07:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7381975040+33554432
+14/08/05 17:08:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:301989888+33554432
+14/08/05 17:08:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2046820352+33554432
+14/08/05 17:08:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5603590144+33554432
+14/08/05 17:08:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9193914368+33554432
+14/08/05 17:08:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3858759680+33554432
+14/08/05 17:08:20 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7415529472+33554432
+14/08/05 17:08:21 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:335544320+33554432
+14/08/05 17:08:21 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2080374784+33554432
+14/08/05 17:08:21 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5637144576+33554432
+14/08/05 17:08:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9227468800+33554432
+14/08/05 17:08:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3892314112+33554432
+14/08/05 17:08:34 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7449083904+33554432
+14/08/05 17:08:35 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:369098752+33554432
+14/08/05 17:08:35 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2113929216+33554432
+14/08/05 17:08:35 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5670699008+33554432
+14/08/05 17:08:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9261023232+33554432
+14/08/05 17:08:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3925868544+33554432
+14/08/05 17:08:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7482638336+33554432
+14/08/05 17:08:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2147483648+33554432
+14/08/05 17:08:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:402653184+33554432
+14/08/05 17:08:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5704253440+33554432
+14/08/05 17:08:53 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9294577664+33554432
+14/08/05 17:09:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3959422976+33554432
+14/08/05 17:09:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7516192768+33554432
+14/08/05 17:09:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2181038080+33554432
+14/08/05 17:09:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:436207616+33554432
+14/08/05 17:09:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5737807872+33554432
+14/08/05 17:09:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9328132096+33554432
+14/08/05 17:09:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3992977408+33554432
+14/08/05 17:09:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7549747200+33554432
+14/08/05 17:09:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2214592512+33554432
+14/08/05 17:09:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5771362304+33554432
+14/08/05 17:09:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:469762048+33554432
+14/08/05 17:09:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9361686528+33554432
+14/08/05 17:09:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4026531840+33554432
+14/08/05 17:09:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7583301632+33554432
+14/08/05 17:09:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2248146944+33554432
+14/08/05 17:09:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5804916736+33554432
+14/08/05 17:09:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:503316480+33554432
+14/08/05 17:09:46 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9395240960+33554432
+14/08/05 17:09:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4060086272+33554432
+14/08/05 17:09:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7616856064+33554432
+14/08/05 17:09:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2281701376+33554432
+14/08/05 17:09:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5838471168+33554432
+14/08/05 17:10:00 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:536870912+33554432
+14/08/05 17:10:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9428795392+33554432
+14/08/05 17:10:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4093640704+33554432
+14/08/05 17:10:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7650410496+33554432
+14/08/05 17:10:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2315255808+33554432
+14/08/05 17:10:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5872025600+33554432
+14/08/05 17:10:39 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:570425344+33554432
+14/08/05 17:10:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9462349824+33554432
+14/08/05 17:10:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4127195136+33554432
+14/08/05 17:10:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7683964928+33554432
+14/08/05 17:10:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2348810240+33554432
+14/08/05 17:10:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5905580032+33554432
+14/08/05 17:10:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:603979776+33554432
+14/08/05 17:10:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9495904256+33554432
+14/08/05 17:10:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4160749568+33554432
+14/08/05 17:10:57 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7717519360+33554432
+14/08/05 17:10:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2382364672+33554432
+14/08/05 17:10:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5939134464+33554432
+14/08/05 17:10:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:637534208+33554432
+14/08/05 17:11:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4194304000+33554432
+14/08/05 17:11:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9529458688+33554432
+14/08/05 17:11:09 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7751073792+33554432
+14/08/05 17:11:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2415919104+33554432
+14/08/05 17:11:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5972688896+33554432
+14/08/05 17:11:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:671088640+33554432
+14/08/05 17:11:20 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4227858432+33554432
+14/08/05 17:11:20 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9563013120+33554432
+14/08/05 17:11:21 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7784628224+33554432
+14/08/05 17:11:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2449473536+33554432
+14/08/05 17:11:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:704643072+33554432
+14/08/05 17:11:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6006243328+33554432
+14/08/05 17:11:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4261412864+33554432
+14/08/05 17:11:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9596567552+33554432
+14/08/05 17:11:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7818182656+33554432
+14/08/05 17:11:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2483027968+33554432
+14/08/05 17:11:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:738197504+33554432
+14/08/05 17:11:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6039797760+33554432
+14/08/05 17:11:55 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4294967296+33554432
+14/08/05 17:11:55 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9630121984+33554432
+14/08/05 17:12:06 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7851737088+33554432
+14/08/05 17:12:07 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:771751936+33554432
+14/08/05 17:12:07 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2516582400+33554432
+14/08/05 17:12:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6073352192+33554432
+14/08/05 17:12:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4328521728+33554432
+14/08/05 17:12:09 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9663676416+33554432
+14/08/05 17:12:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7885291520+33554432
+14/08/05 17:12:19 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:805306368+33554432
+14/08/05 17:12:19 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2550136832+33554432
+14/08/05 17:12:20 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6106906624+33554432
+14/08/05 17:12:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4362076160+33554432
+14/08/05 17:12:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9697230848+33554432
+14/08/05 17:12:31 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7918845952+33554432
+14/08/05 17:12:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:838860800+33554432
+14/08/05 17:12:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2583691264+33554432
+14/08/05 17:12:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6140461056+33554432
+14/08/05 17:12:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4395630592+33554432
+14/08/05 17:12:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9730785280+33554432
+14/08/05 17:12:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7952400384+33554432
+14/08/05 17:12:45 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:872415232+33554432
+14/08/05 17:12:55 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2617245696+33554432
+14/08/05 17:12:55 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4429185024+33554432
+14/08/05 17:12:56 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6174015488+33554432
+14/08/05 17:12:56 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9764339712+33554432
+14/08/05 17:12:57 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7985954816+33554432
+14/08/05 17:13:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:905969664+33554432
+14/08/05 17:13:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2650800128+33554432
+14/08/05 17:13:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4462739456+33554432
+14/08/05 17:13:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6207569920+33554432
+14/08/05 17:13:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9797894144+33554432
+14/08/05 17:13:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8019509248+33554432
+14/08/05 17:13:31 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:939524096+33554432
+14/08/05 17:13:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2684354560+33554432
+14/08/05 17:13:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4496293888+33554432
+14/08/05 17:13:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6241124352+33554432
+14/08/05 17:13:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9831448576+33554432
+14/08/05 17:13:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8053063680+33554432
+14/08/05 17:13:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:973078528+33554432
+14/08/05 17:13:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2717908992+33554432
+14/08/05 17:13:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4529848320+33554432
+14/08/05 17:13:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6274678784+33554432
+14/08/05 17:13:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9865003008+33554432
+14/08/05 17:14:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8086618112+33554432
+14/08/05 17:14:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1006632960+33554432
+14/08/05 17:14:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4563402752+33554432
+14/08/05 17:14:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2751463424+33554432
+14/08/05 17:14:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6308233216+33554432
+14/08/05 17:14:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9898557440+33554432
+14/08/05 17:14:25 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1040187392+33554432
+14/08/05 17:14:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8120172544+33554432
+14/08/05 17:14:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2785017856+33554432
+14/08/05 17:14:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6341787648+33554432
+14/08/05 17:14:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4596957184+33554432
+14/08/05 17:14:48 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9932111872+33554432
+14/08/05 17:14:50 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1073741824+33554432
+14/08/05 17:15:13 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8153726976+33554432
+14/08/05 17:15:13 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4630511616+33554432
+14/08/05 17:15:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6375342080+33554432
+14/08/05 17:15:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9965666304+33554432
+14/08/05 17:15:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2818572288+33554432
+14/08/05 17:15:39 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1107296256+33554432
+14/08/05 17:15:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8187281408+33554432
+14/08/05 17:15:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4664066048+33554432
+14/08/05 17:15:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6408896512+33554432
+14/08/05 17:15:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:9999220736+33554432
+14/08/05 17:15:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2852126720+33554432
+14/08/05 17:15:52 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1140850688+33554432
+14/08/05 17:15:53 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4697620480+33554432
+14/08/05 17:15:53 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8220835840+33554432
+14/08/05 17:15:53 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6442450944+33554432
+14/08/05 17:15:54 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10032775168+33554432
+14/08/05 17:16:02 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2885681152+33554432
+14/08/05 17:16:04 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1174405120+33554432
+14/08/05 17:16:05 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4731174912+33554432
+14/08/05 17:16:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8254390272+33554432
+14/08/05 17:16:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6476005376+33554432
+14/08/05 17:16:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10066329600+33554432
+14/08/05 17:16:28 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2919235584+33554432
+14/08/05 17:16:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1207959552+33554432
+14/08/05 17:16:39 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4764729344+33554432
+14/08/05 17:16:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6509559808+33554432
+14/08/05 17:16:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8287944704+33554432
+14/08/05 17:16:40 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10099884032+33554432
+14/08/05 17:16:41 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2952790016+33554432
+14/08/05 17:16:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1241513984+33554432
+14/08/05 17:16:56 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4798283776+33554432
+14/08/05 17:16:57 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6543114240+33554432
+14/08/05 17:16:57 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8321499136+33554432
+14/08/05 17:16:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10133438464+33554432
+14/08/05 17:16:58 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:2986344448+33554432
+14/08/05 17:17:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1275068416+33554432
+14/08/05 17:17:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4831838208+33554432
+14/08/05 17:17:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6576668672+33554432
+14/08/05 17:17:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8355053568+33554432
+14/08/05 17:17:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3019898880+33554432
+14/08/05 17:17:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10166992896+33554432
+14/08/05 17:17:30 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1308622848+33554432
+14/08/05 17:17:31 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4865392640+33554432
+14/08/05 17:17:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8388608000+33554432
+14/08/05 17:17:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6610223104+33554432
+14/08/05 17:17:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10200547328+33554432
+14/08/05 17:17:42 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3053453312+33554432
+14/08/05 17:17:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1342177280+33554432
+14/08/05 17:17:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4898947072+33554432
+14/08/05 17:17:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8422162432+33554432
+14/08/05 17:17:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6643777536+33554432
+14/08/05 17:17:59 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10234101760+33554432
+14/08/05 17:18:00 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3087007744+33554432
+14/08/05 17:18:00 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1375731712+33554432
+14/08/05 17:18:01 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4932501504+33554432
+14/08/05 17:18:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8455716864+33554432
+14/08/05 17:18:12 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6677331968+33554432
+14/08/05 17:18:12 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3120562176+33554432
+14/08/05 17:18:12 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10267656192+33554432
+14/08/05 17:18:13 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1409286144+33554432
+14/08/05 17:18:14 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4966055936+33554432
+14/08/05 17:18:47 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8489271296+33554432
+14/08/05 17:18:48 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10301210624+33554432
+14/08/05 17:18:48 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3154116608+33554432
+14/08/05 17:18:48 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6710886400+33554432
+14/08/05 17:18:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1442840576+33554432
+14/08/05 17:19:09 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:4999610368+33554432
+14/08/05 17:19:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8522825728+33554432
+14/08/05 17:19:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10334765056+33554432
+14/08/05 17:19:11 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3187671040+33554432
+14/08/05 17:19:12 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6744440832+33554432
+14/08/05 17:19:12 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1476395008+33554432
+14/08/05 17:19:26 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5033164800+33554432
+14/08/05 17:19:27 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8556380160+33554432
+14/08/05 17:19:30 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3221225472+33554432
+14/08/05 17:19:31 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10368319488+33554432
+14/08/05 17:20:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1509949440+33554432
+14/08/05 17:20:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6777995264+33554432
+14/08/05 17:20:50 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5066719232+33554432
+14/08/05 17:20:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8589934592+33554432
+14/08/05 17:20:52 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10401873920+33554432
+14/08/05 17:20:52 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3254779904+33554432
+14/08/05 17:21:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1543503872+33554432
+14/08/05 17:21:15 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6811549696+33554432
+14/08/05 17:21:16 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5100273664+33554432
+14/08/05 17:21:17 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8623489024+33554432
+14/08/05 17:21:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10435428352+33554432
+14/08/05 17:21:18 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3288334336+33554432
+14/08/05 17:21:29 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1577058304+33554432
+14/08/05 17:21:30 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5133828096+33554432
+14/08/05 17:21:30 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6845104128+33554432
+14/08/05 17:21:31 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8657043456+33554432
+14/08/05 17:21:32 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10468982784+33554432
+14/08/05 17:21:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3321888768+33554432
+14/08/05 17:21:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1610612736+33554432
+14/08/05 17:21:50 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5167382528+33554432
+14/08/05 17:21:50 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6878658560+33554432
+14/08/05 17:21:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8690597888+33554432
+14/08/05 17:21:52 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10502537216+33554432
+14/08/05 17:22:07 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3355443200+33554432
+14/08/05 17:22:07 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1644167168+33554432
+14/08/05 17:22:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5200936960+33554432
+14/08/05 17:22:09 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6912212992+33554432
+14/08/05 17:22:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8724152320+33554432
+14/08/05 17:25:43 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10536091648+33554432
+14/08/05 17:25:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1677721600+33554432
+14/08/05 17:25:44 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3388997632+33554432
+14/08/05 17:25:47 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6945767424+33554432
+14/08/05 17:25:49 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5234491392+33554432
+14/08/05 17:25:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3422552064+33554432
+14/08/05 17:25:51 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8757706752+33554432
+14/08/05 17:26:00 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:6979321856+33554432
+14/08/05 17:26:01 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10569646080+33554432
+14/08/05 17:26:02 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:5268045824+33554432
+14/08/05 17:26:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:1711276032+33554432
+14/08/05 17:26:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3456106496+33554432
+14/08/05 17:26:03 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8791261184+33554432
+14/08/05 17:26:07 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7012876288+33554432
+14/08/05 17:26:08 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:10603200512+7340949
+14/08/05 17:26:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:8824815616+33554432
+14/08/05 17:26:10 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:3489660928+33554432
+14/08/05 17:27:24 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-1.8-10m:7046430720+33554432
+14/08/05 17:53:28 INFO MemoryStore: ensureFreeSpace(2618279752) called with curMem=45025, maxMem=33339683635
+14/08/05 17:53:28 INFO MemoryStore: Block rdd_3_0 stored as values in memory (estimated size 2.4 GB, free 28.6 GB)
+14/08/05 17:53:28 INFO BlockManagerInfo: Added rdd_3_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.4 GB, free: 28.6 GB)
+14/08/05 17:53:28 INFO BlockManagerMaster: Updated info of block rdd_3_0
+14/08/05 17:56:23 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 2178 bytes result sent to driver
+14/08/05 17:56:23 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3110087 ms on localhost (1/6)
+14/08/05 17:58:37 INFO MemoryStore: ensureFreeSpace(2621945272) called with curMem=2618324777, maxMem=33339683635
+14/08/05 17:58:37 INFO MemoryStore: Block rdd_3_5 stored as values in memory (estimated size 2.4 GB, free 26.2 GB)
+14/08/05 17:58:37 INFO BlockManagerInfo: Added rdd_3_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.4 GB, free: 26.2 GB)
+14/08/05 17:58:37 INFO BlockManagerMaster: Updated info of block rdd_3_5
+14/08/05 17:58:37 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 2233 bytes result sent to driver
+14/08/05 17:58:37 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 3243369 ms on localhost (2/6)
+14/08/05 18:02:57 INFO MemoryStore: ensureFreeSpace(2659343712) called with curMem=5240270049, maxMem=33339683635
+14/08/05 18:02:57 INFO MemoryStore: Block rdd_3_2 stored as values in memory (estimated size 2.5 GB, free 23.7 GB)
+14/08/05 18:02:57 INFO BlockManagerInfo: Added rdd_3_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.5 GB, free: 23.7 GB)
+14/08/05 18:02:57 INFO BlockManagerMaster: Updated info of block rdd_3_2
+14/08/05 18:02:57 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 2233 bytes result sent to driver
+14/08/05 18:02:57 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 3503674 ms on localhost (3/6)
+14/08/05 18:05:22 INFO MemoryStore: ensureFreeSpace(2666401432) called with curMem=7899613761, maxMem=33339683635
+14/08/05 18:05:22 INFO MemoryStore: Block rdd_3_4 stored as values in memory (estimated size 2.5 GB, free 21.2 GB)
+14/08/05 18:05:22 INFO BlockManagerInfo: Added rdd_3_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.5 GB, free: 21.2 GB)
+14/08/05 18:05:22 INFO BlockManagerMaster: Updated info of block rdd_3_4
+14/08/05 18:05:22 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 2233 bytes result sent to driver
+14/08/05 18:05:22 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 3648724 ms on localhost (4/6)
+14/08/05 18:05:26 INFO MemoryStore: ensureFreeSpace(2671048832) called with curMem=10566015193, maxMem=33339683635
+14/08/05 18:05:26 INFO MemoryStore: Block rdd_3_3 stored as values in memory (estimated size 2.5 GB, free 18.7 GB)
+14/08/05 18:05:26 INFO BlockManagerInfo: Added rdd_3_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.5 GB, free: 18.7 GB)
+14/08/05 18:05:26 INFO BlockManagerMaster: Updated info of block rdd_3_3
+14/08/05 18:05:26 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 2233 bytes result sent to driver
+14/08/05 18:05:26 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 3652915 ms on localhost (5/6)
+14/08/05 18:05:28 INFO MemoryStore: ensureFreeSpace(2669583752) called with curMem=13237064025, maxMem=33339683635
+14/08/05 18:05:28 INFO MemoryStore: Block rdd_3_1 stored as values in memory (estimated size 2.5 GB, free 16.2 GB)
+14/08/05 18:05:28 INFO BlockManagerInfo: Added rdd_3_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 2.5 GB, free: 16.2 GB)
+14/08/05 18:05:28 INFO BlockManagerMaster: Updated info of block rdd_3_1
+14/08/05 18:05:28 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 2233 bytes result sent to driver
+14/08/05 18:05:28 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 3655024 ms on localhost (6/6)
+14/08/05 18:05:28 INFO DAGScheduler: Stage 0 (count at GraphLoader.scala:87) finished in 3655.075 s
+14/08/05 18:05:28 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+14/08/05 18:05:29 INFO SparkContext: Job finished: count at GraphLoader.scala:87, took 3655.533453679 s
+14/08/05 18:05:29 INFO GraphLoader: It took 3656715 ms to load the edges
+HybridCut
+14/08/05 18:05:29 INFO GraphImpl: It took 191 ms to partition
+14/08/05 18:05:30 INFO SparkContext: Starting job: reduce at GraphXPartition.scala:80
+14/08/05 18:05:30 INFO DAGScheduler: Registering RDD 6 (mapPartitions at VertexRDD.scala:452)
+14/08/05 18:05:30 INFO DAGScheduler: Registering RDD 13 (mapPartitions at GraphImpl.scala:330)
+14/08/05 18:05:30 INFO DAGScheduler: Registering RDD 17 (map at GraphImpl.scala:177)
+14/08/05 18:05:30 INFO DAGScheduler: Registering RDD 12 (map at GraphImpl.scala:177)
+14/08/05 18:05:30 INFO DAGScheduler: Registering RDD 21 (map at GraphImpl.scala:178)
+14/08/05 18:05:30 INFO DAGScheduler: Got job 1 (reduce at GraphXPartition.scala:80) with 6 output partitions (allowLocal=false)
+14/08/05 18:05:30 INFO DAGScheduler: Final stage: Stage 1(reduce at GraphXPartition.scala:80)
+14/08/05 18:05:30 INFO DAGScheduler: Parents of final stage: List(Stage 6)
+14/08/05 18:05:30 INFO DAGScheduler: Missing parents: List(Stage 6)
+14/08/05 18:05:30 INFO DAGScheduler: Submitting Stage 2 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452), which has no missing parents
+14/08/05 18:05:30 INFO MemoryStore: ensureFreeSpace(3672) called with curMem=15906647777, maxMem=33339683635
+14/08/05 18:05:30 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 3.6 KB, free 16.2 GB)
+14/08/05 18:05:30 INFO DAGScheduler: Submitting 6 missing tasks from Stage 2 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452)
+14/08/05 18:05:30 INFO TaskSchedulerImpl: Adding task set 2.0 with 6 tasks
+14/08/05 18:05:30 INFO DAGScheduler: Submitting Stage 3 (GraphImpl.mapReduceTriplets - preAgg MapPartitionsRDD[13] at mapPartitions at GraphImpl.scala:330), which has no missing parents
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 6, localhost, PROCESS_LOCAL, 9510 bytes)
+14/08/05 18:05:30 INFO MemoryStore: ensureFreeSpace(4496) called with curMem=15906651449, maxMem=33339683635
+14/08/05 18:05:30 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 4.4 KB, free 16.2 GB)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 7, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO DAGScheduler: Submitting 6 missing tasks from Stage 3 (GraphImpl.mapReduceTriplets - preAgg MapPartitionsRDD[13] at mapPartitions at GraphImpl.scala:330)
+14/08/05 18:05:30 INFO TaskSchedulerImpl: Adding task set 3.0 with 6 tasks
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 8, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 9, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 4.0 in stage 2.0 (TID 10, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 11, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO Executor: Running task 0.0 in stage 2.0 (TID 6)
+14/08/05 18:05:30 INFO Executor: Running task 1.0 in stage 2.0 (TID 7)
+14/08/05 18:05:30 INFO Executor: Running task 2.0 in stage 2.0 (TID 8)
+14/08/05 18:05:30 INFO Executor: Running task 3.0 in stage 2.0 (TID 9)
+14/08/05 18:05:30 INFO Executor: Running task 4.0 in stage 2.0 (TID 10)
+14/08/05 18:05:30 INFO Executor: Running task 5.0 in stage 2.0 (TID 11)
+14/08/05 18:05:30 INFO DAGScheduler: Submitting Stage 5 (MappedRDD[12] at map at GraphImpl.scala:177), which has no missing parents
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 12, localhost, PROCESS_LOCAL, 9510 bytes)
+14/08/05 18:05:30 INFO MemoryStore: ensureFreeSpace(4032) called with curMem=15906655945, maxMem=33339683635
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 13, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 3.9 KB, free 16.2 GB)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 14, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO DAGScheduler: Submitting 6 missing tasks from Stage 5 (MappedRDD[12] at map at GraphImpl.scala:177)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO TaskSchedulerImpl: Adding task set 5.0 with 6 tasks
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 15, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 4.0 in stage 3.0 (TID 16, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 5.0 in stage 3.0 (TID 17, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO Executor: Running task 0.0 in stage 3.0 (TID 12)
+14/08/05 18:05:30 INFO Executor: Running task 1.0 in stage 3.0 (TID 13)
+14/08/05 18:05:30 INFO Executor: Running task 2.0 in stage 3.0 (TID 14)
+14/08/05 18:05:30 INFO Executor: Running task 3.0 in stage 3.0 (TID 15)
+14/08/05 18:05:30 INFO Executor: Running task 4.0 in stage 3.0 (TID 16)
+14/08/05 18:05:30 INFO Executor: Running task 5.0 in stage 3.0 (TID 17)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 18, localhost, PROCESS_LOCAL, 9510 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_1 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_2 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 19, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_5 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 2.0 in stage 5.0 (TID 20, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 3.0 in stage 5.0 (TID 21, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_1 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_5 locally
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 4.0 in stage 5.0 (TID 22, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO TaskSetManager: Starting task 5.0 in stage 5.0 (TID 23, localhost, PROCESS_LOCAL, 9669 bytes)
+14/08/05 18:05:30 INFO Executor: Running task 0.0 in stage 5.0 (TID 18)
+14/08/05 18:05:30 INFO Executor: Running task 1.0 in stage 5.0 (TID 19)
+14/08/05 18:05:30 INFO Executor: Running task 2.0 in stage 5.0 (TID 20)
+14/08/05 18:05:30 INFO Executor: Running task 3.0 in stage 5.0 (TID 21)
+14/08/05 18:05:30 INFO Executor: Running task 4.0 in stage 5.0 (TID 22)
+14/08/05 18:05:30 INFO Executor: Running task 5.0 in stage 5.0 (TID 23)
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_3 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_4 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_5 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_0 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_2 locally
+14/08/05 18:05:30 INFO BlockManager: Found block rdd_3_1 locally
+14/08/05 18:07:26 INFO Executor: Finished task 5.0 in stage 3.0 (TID 17). 1881 bytes result sent to driver
+14/08/05 18:07:26 INFO TaskSetManager: Finished task 5.0 in stage 3.0 (TID 17) in 116170 ms on localhost (1/6)
+14/08/05 18:07:26 INFO Executor: Finished task 2.0 in stage 3.0 (TID 14). 1881 bytes result sent to driver
+14/08/05 18:07:26 INFO TaskSetManager: Finished task 2.0 in stage 3.0 (TID 14) in 116559 ms on localhost (2/6)
+14/08/05 18:07:27 INFO Executor: Finished task 0.0 in stage 3.0 (TID 12). 1881 bytes result sent to driver
+14/08/05 18:07:27 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 12) in 117325 ms on localhost (3/6)
+14/08/05 18:07:29 INFO Executor: Finished task 4.0 in stage 3.0 (TID 16). 1881 bytes result sent to driver
+14/08/05 18:07:29 INFO TaskSetManager: Finished task 4.0 in stage 3.0 (TID 16) in 119089 ms on localhost (4/6)
+14/08/05 18:07:31 INFO Executor: Finished task 3.0 in stage 3.0 (TID 15). 1881 bytes result sent to driver
+14/08/05 18:07:31 INFO TaskSetManager: Finished task 3.0 in stage 3.0 (TID 15) in 120983 ms on localhost (5/6)
+14/08/05 18:07:36 INFO Executor: Finished task 1.0 in stage 3.0 (TID 13). 1881 bytes result sent to driver
+14/08/05 18:07:36 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 13) in 126013 ms on localhost (6/6)
+14/08/05 18:07:36 INFO DAGScheduler: Stage 3 (mapPartitions at GraphImpl.scala:330) finished in 126.031 s
+14/08/05 18:07:36 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+14/08/05 18:07:36 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 18:07:36 INFO DAGScheduler: running: Set(Stage 5, Stage 2)
+14/08/05 18:07:36 INFO DAGScheduler: waiting: Set(Stage 1, Stage 6, Stage 4)
+14/08/05 18:07:36 INFO DAGScheduler: failed: Set()
+14/08/05 18:07:36 INFO DAGScheduler: Missing parents for Stage 1: List(Stage 6)
+14/08/05 18:07:36 INFO DAGScheduler: Missing parents for Stage 6: List(Stage 5, Stage 4)
+14/08/05 18:07:36 INFO DAGScheduler: Missing parents for Stage 4: List(Stage 2)
+14/08/05 18:07:45 INFO Executor: Finished task 0.0 in stage 2.0 (TID 6). 1881 bytes result sent to driver
+14/08/05 18:07:45 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 6) in 134787 ms on localhost (1/6)
+14/08/05 18:07:45 INFO Executor: Finished task 4.0 in stage 2.0 (TID 10). 1881 bytes result sent to driver
+14/08/05 18:07:45 INFO TaskSetManager: Finished task 4.0 in stage 2.0 (TID 10) in 135095 ms on localhost (2/6)
+14/08/05 18:07:46 INFO Executor: Finished task 5.0 in stage 2.0 (TID 11). 1881 bytes result sent to driver
+14/08/05 18:07:46 INFO TaskSetManager: Finished task 5.0 in stage 2.0 (TID 11) in 136279 ms on localhost (3/6)
+14/08/05 18:07:49 INFO Executor: Finished task 2.0 in stage 2.0 (TID 8). 1881 bytes result sent to driver
+14/08/05 18:07:49 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 8) in 138810 ms on localhost (4/6)
+14/08/05 18:07:50 INFO Executor: Finished task 1.0 in stage 2.0 (TID 7). 1881 bytes result sent to driver
+14/08/05 18:07:50 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 7) in 140276 ms on localhost (5/6)
+14/08/05 18:07:50 INFO Executor: Finished task 3.0 in stage 2.0 (TID 9). 1881 bytes result sent to driver
+14/08/05 18:07:50 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 9) in 140635 ms on localhost (6/6)
+14/08/05 18:07:50 INFO DAGScheduler: Stage 2 (mapPartitions at VertexRDD.scala:452) finished in 140.663 s
+14/08/05 18:07:50 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+14/08/05 18:07:50 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 18:07:50 INFO DAGScheduler: running: Set(Stage 5)
+14/08/05 18:07:50 INFO DAGScheduler: waiting: Set(Stage 1, Stage 6, Stage 4)
+14/08/05 18:07:50 INFO DAGScheduler: failed: Set()
+14/08/05 18:07:50 INFO DAGScheduler: Missing parents for Stage 1: List(Stage 6)
+14/08/05 18:07:50 INFO DAGScheduler: Missing parents for Stage 6: List(Stage 5, Stage 4)
+14/08/05 18:07:50 INFO DAGScheduler: Missing parents for Stage 4: List()
+14/08/05 18:07:51 INFO DAGScheduler: Submitting Stage 4 (MappedRDD[17] at map at GraphImpl.scala:177), which is now runnable
+14/08/05 18:07:51 INFO MemoryStore: ensureFreeSpace(4416) called with curMem=15906659977, maxMem=33339683635
+14/08/05 18:07:51 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 4.3 KB, free 16.2 GB)
+14/08/05 18:07:51 INFO DAGScheduler: Submitting 6 missing tasks from Stage 4 (MappedRDD[17] at map at GraphImpl.scala:177)
+14/08/05 18:07:51 INFO TaskSchedulerImpl: Adding task set 4.0 with 6 tasks
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 24, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 1.0 in stage 4.0 (TID 25, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 2.0 in stage 4.0 (TID 26, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 3.0 in stage 4.0 (TID 27, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 4.0 in stage 4.0 (TID 28, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO TaskSetManager: Starting task 5.0 in stage 4.0 (TID 29, localhost, PROCESS_LOCAL, 1282 bytes)
+14/08/05 18:07:51 INFO Executor: Running task 0.0 in stage 4.0 (TID 24)
+14/08/05 18:07:51 INFO Executor: Running task 5.0 in stage 4.0 (TID 29)
+14/08/05 18:07:51 INFO Executor: Running task 4.0 in stage 4.0 (TID 28)
+14/08/05 18:07:51 INFO Executor: Running task 3.0 in stage 4.0 (TID 27)
+14/08/05 18:07:51 INFO Executor: Running task 1.0 in stage 4.0 (TID 25)
+14/08/05 18:07:51 INFO Executor: Running task 2.0 in stage 4.0 (TID 26)
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_0 not found, computing it
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_1 not found, computing it
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_3 not found, computing it
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_4 not found, computing it
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_5 not found, computing it
+14/08/05 18:07:51 INFO CacheManager: Partition rdd_9_2 not found, computing it
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:07:51 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 65 ms
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357576) called with curMem=15906664393, maxMem=33339683635
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_5 stored as values in memory (estimated size 127.2 MB, free 16.1 GB)
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 16.1 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_5
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357576) called with curMem=16040021969, maxMem=33339683635
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_4 stored as values in memory (estimated size 127.2 MB, free 16.0 GB)
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 16.0 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_4
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357624) called with curMem=16173379545, maxMem=33339683635
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_3 stored as values in memory (estimated size 127.2 MB, free 15.9 GB)
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 15.9 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_3
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357624) called with curMem=16306737169, maxMem=33339683635
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_2 stored as values in memory (estimated size 127.2 MB, free 15.7 GB)
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 15.7 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_2
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357624) called with curMem=16440094793, maxMem=33339683635
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_0 stored as values in memory (estimated size 127.2 MB, free 15.6 GB)
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 15.6 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_0
+14/08/05 18:08:03 INFO MemoryStore: ensureFreeSpace(133357624) called with curMem=16573452417, maxMem=33339683635
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO MemoryStore: Block rdd_9_1 stored as values in memory (estimated size 127.2 MB, free 15.5 GB)
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:08:03 INFO BlockManagerInfo: Added rdd_9_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:36527 (size: 127.2 MB, free: 15.5 GB)
+14/08/05 18:08:03 INFO BlockManagerMaster: Updated info of block rdd_9_1
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:08:03 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:08:08 INFO Executor: Finished task 5.0 in stage 4.0 (TID 29). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 5.0 in stage 4.0 (TID 29) in 17217 ms on localhost (1/6)
+14/08/05 18:08:08 INFO Executor: Finished task 1.0 in stage 4.0 (TID 25). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 1.0 in stage 4.0 (TID 25) in 17243 ms on localhost (2/6)
+14/08/05 18:08:08 INFO Executor: Finished task 3.0 in stage 4.0 (TID 27). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 3.0 in stage 4.0 (TID 27) in 17261 ms on localhost (3/6)
+14/08/05 18:08:08 INFO Executor: Finished task 2.0 in stage 4.0 (TID 26). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO Executor: Finished task 4.0 in stage 4.0 (TID 28). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 2.0 in stage 4.0 (TID 26) in 17288 ms on localhost (4/6)
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 4.0 in stage 4.0 (TID 28) in 17296 ms on localhost (5/6)
+14/08/05 18:08:08 INFO Executor: Finished task 0.0 in stage 4.0 (TID 24). 1486 bytes result sent to driver
+14/08/05 18:08:08 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 24) in 17397 ms on localhost (6/6)
+14/08/05 18:08:08 INFO DAGScheduler: Stage 4 (map at GraphImpl.scala:177) finished in 17.405 s
+14/08/05 18:08:08 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 18:08:08 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+14/08/05 18:08:08 INFO DAGScheduler: running: Set(Stage 5)
+14/08/05 18:08:08 INFO DAGScheduler: waiting: Set(Stage 1, Stage 6)
+14/08/05 18:08:08 INFO DAGScheduler: failed: Set()
+14/08/05 18:08:08 INFO DAGScheduler: Missing parents for Stage 1: List(Stage 6)
+14/08/05 18:08:08 INFO DAGScheduler: Missing parents for Stage 6: List(Stage 5)
+14/08/05 18:08:15 INFO BlockManager: Removing broadcast 5
+14/08/05 18:08:15 INFO BlockManager: Removing block broadcast_5
+14/08/05 18:08:15 INFO MemoryStore: Block broadcast_5 of size 4416 dropped from memory (free 16632878010)
+14/08/05 18:08:15 INFO ContextCleaner: Cleaned broadcast 5
+14/08/05 18:13:15 INFO Executor: Finished task 5.0 in stage 5.0 (TID 23). 1881 bytes result sent to driver
+14/08/05 18:13:15 INFO TaskSetManager: Finished task 5.0 in stage 5.0 (TID 23) in 465106 ms on localhost (1/6)
+14/08/05 18:13:18 INFO Executor: Finished task 0.0 in stage 5.0 (TID 18). 1881 bytes result sent to driver
+14/08/05 18:13:18 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 18) in 468164 ms on localhost (2/6)
+14/08/05 18:13:18 INFO Executor: Finished task 2.0 in stage 5.0 (TID 20). 1881 bytes result sent to driver
+14/08/05 18:13:18 INFO TaskSetManager: Finished task 2.0 in stage 5.0 (TID 20) in 468404 ms on localhost (3/6)
+14/08/05 18:13:25 INFO Executor: Finished task 3.0 in stage 5.0 (TID 21). 1881 bytes result sent to driver
+14/08/05 18:13:25 INFO TaskSetManager: Finished task 3.0 in stage 5.0 (TID 21) in 475395 ms on localhost (4/6)
+14/08/05 18:13:26 INFO Executor: Finished task 4.0 in stage 5.0 (TID 22). 1881 bytes result sent to driver
+14/08/05 18:13:26 INFO TaskSetManager: Finished task 4.0 in stage 5.0 (TID 22) in 475930 ms on localhost (5/6)
+14/08/05 18:13:27 INFO Executor: Finished task 1.0 in stage 5.0 (TID 19). 1881 bytes result sent to driver
+14/08/05 18:13:27 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 19) in 476764 ms on localhost (6/6)
+14/08/05 18:13:27 INFO DAGScheduler: Stage 5 (map at GraphImpl.scala:177) finished in 476.781 s
+14/08/05 18:13:27 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 18:13:27 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+14/08/05 18:13:27 INFO DAGScheduler: running: Set()
+14/08/05 18:13:27 INFO DAGScheduler: waiting: Set(Stage 1, Stage 6)
+14/08/05 18:13:27 INFO DAGScheduler: failed: Set()
+14/08/05 18:13:27 INFO DAGScheduler: Missing parents for Stage 1: List(Stage 6)
+14/08/05 18:13:27 INFO DAGScheduler: Missing parents for Stage 6: List()
+14/08/05 18:13:27 INFO DAGScheduler: Submitting Stage 6 (MappedRDD[21] at map at GraphImpl.scala:178), which is now runnable
+14/08/05 18:13:27 INFO MemoryStore: ensureFreeSpace(2640) called with curMem=16706805625, maxMem=33339683635
+14/08/05 18:13:27 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 2.6 KB, free 15.5 GB)
+14/08/05 18:13:27 INFO DAGScheduler: Submitting 6 missing tasks from Stage 6 (MappedRDD[21] at map at GraphImpl.scala:178)
+14/08/05 18:13:27 INFO TaskSchedulerImpl: Adding task set 6.0 with 6 tasks
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 30, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 1.0 in stage 6.0 (TID 31, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 2.0 in stage 6.0 (TID 32, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 3.0 in stage 6.0 (TID 33, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 4.0 in stage 6.0 (TID 34, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO TaskSetManager: Starting task 5.0 in stage 6.0 (TID 35, localhost, PROCESS_LOCAL, 1711 bytes)
+14/08/05 18:13:27 INFO Executor: Running task 0.0 in stage 6.0 (TID 30)
+14/08/05 18:13:27 INFO Executor: Running task 4.0 in stage 6.0 (TID 34)
+14/08/05 18:13:27 INFO Executor: Running task 5.0 in stage 6.0 (TID 35)
+14/08/05 18:13:27 INFO Executor: Running task 2.0 in stage 6.0 (TID 32)
+14/08/05 18:13:27 INFO Executor: Running task 1.0 in stage 6.0 (TID 31)
+14/08/05 18:13:27 INFO Executor: Running task 3.0 in stage 6.0 (TID 33)
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 2 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 2 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 1 non-empty blocks out of 6 blocks
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 18:13:27 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 18:22:05 INFO BlockManager: Removing broadcast 4
+14/08/05 18:22:05 INFO BlockManager: Removing block broadcast_4
+14/08/05 18:22:05 INFO MemoryStore: Block broadcast_4 of size 4032 dropped from memory (free 16632879402)
+14/08/05 18:22:06 INFO ContextCleaner: Cleaned broadcast 4
+14/08/05 18:22:06 INFO BlockManager: Removing broadcast 3
+14/08/05 18:22:06 INFO ContextCleaner: Cleaned broadcast 3
+14/08/05 18:22:06 INFO BlockManager: Removing block broadcast_3
+14/08/05 18:22:06 INFO MemoryStore: Block broadcast_3 of size 4496 dropped from memory (free 16632883898)
+14/08/05 18:22:06 INFO ContextCleaner: Cleaned broadcast 2
+14/08/05 18:22:06 INFO BlockManager: Removing broadcast 2
+14/08/05 18:22:06 INFO BlockManager: Removing block broadcast_2
+14/08/05 18:22:06 INFO BlockManager: Removing broadcast 1
+14/08/05 18:22:06 INFO MemoryStore: Block broadcast_2 of size 3672 dropped from memory (free 16632887570)
+14/08/05 18:22:06 INFO ContextCleaner: Cleaned broadcast 1
+14/08/05 18:22:06 INFO BlockManager: Removing block broadcast_1
+14/08/05 18:22:06 INFO MemoryStore: Block broadcast_1 of size 2976 dropped from memory (free 16632890546)
+14/08/05 18:25:13 INFO ExternalAppendOnlyMap: Thread 160 spilling in-memory map of 343 MB to disk (1 time so far)
+14/08/05 18:30:54 INFO ExternalAppendOnlyMap: Thread 155 spilling in-memory map of 1532 MB to disk (1 time so far)
+14/08/05 19:02:32 WARN AkkaUtils: Error sending message in 1 attempts
+java.util.concurrent.TimeoutException: Futures timed out after [30 seconds]
+	at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:219)
+	at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:223)
+	at scala.concurrent.Await$$anonfun$result$1.apply(package.scala:107)
+	at scala.concurrent.BlockContext$DefaultBlockContext$.blockOn(BlockContext.scala:53)
+	at scala.concurrent.Await$.result(package.scala:107)
+	at org.apache.spark.util.AkkaUtils$.askWithReply(AkkaUtils.scala:162)
+	at org.apache.spark.executor.Executor$$anon$1.run(Executor.scala:386)
+14/08/05 19:02:32 ERROR Executor: Exception in task 2.0 in stage 6.0 (TID 32)
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:41)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:34)
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:729)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:43)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:34)
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:729)
+	at org.apache.spark.serializer.KryoDeserializationStream.readObject(KryoSerializer.scala:123)
+	at org.apache.spark.serializer.DeserializationStream$$anon$1.getNext(Serializer.scala:129)
+	at org.apache.spark.util.NextIterator.hasNext(NextIterator.scala:71)
+	at org.apache.spark.storage.BlockManager$LazyProxyIterator$1.hasNext(BlockManager.scala:1044)
+	at scala.collection.Iterator$$anon$13.hasNext(Iterator.scala:371)
+	at org.apache.spark.util.CompletionIterator.hasNext(CompletionIterator.scala:30)
+	at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:39)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:327)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:327)
+	at org.apache.spark.util.collection.ExternalAppendOnlyMap.insertAll(ExternalAppendOnlyMap.scala:138)
+	at org.apache.spark.rdd.CoGroupedRDD$$anonfun$compute$5.apply(CoGroupedRDD.scala:159)
+	at org.apache.spark.rdd.CoGroupedRDD$$anonfun$compute$5.apply(CoGroupedRDD.scala:158)
+	at scala.collection.TraversableLike$WithFilter$$anonfun$foreach$1.apply(TraversableLike.scala:772)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:771)
+	at org.apache.spark.rdd.CoGroupedRDD.compute(CoGroupedRDD.scala:158)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.MappedValuesRDD.compute(MappedValuesRDD.scala:31)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.FlatMappedValuesRDD.compute(FlatMappedValuesRDD.scala:31)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.MappedRDD.compute(MappedRDD.scala:31)
+14/08/05 19:02:32 ERROR ActorSystemImpl: exception on LARS’ timer thread
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at akka.actor.LightArrayRevolverScheduler$$anon$12.nextTick(Scheduler.scala:397)
+	at akka.actor.LightArrayRevolverScheduler$$anon$12.run(Scheduler.scala:363)
+	at java.lang.Thread.run(Thread.java:745)
+14/08/05 19:02:32 INFO ActorSystemImpl: starting new LARS thread
+14/08/05 19:02:32 ERROR ActorSystemImpl: Uncaught fatal error from thread [spark-scheduler-1] shutting down ActorSystem [spark]
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at akka.actor.LightArrayRevolverScheduler$$anon$12.nextTick(Scheduler.scala:397)
+	at akka.actor.LightArrayRevolverScheduler$$anon$12.run(Scheduler.scala:363)
+	at java.lang.Thread.run(Thread.java:745)
+14/08/05 19:02:32 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+14/08/05 19:02:33 INFO DAGScheduler: Failed to run reduce at GraphXPartition.scala:80
+Exception in thread "main" 14/08/05 19:02:33 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+org.apache.spark.SparkException: Job cancelled because SparkContext was shut down
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$cleanUpAfterSchedulerStop$1.apply(DAGScheduler.scala:688)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$cleanUpAfterSchedulerStop$1.apply(DAGScheduler.scala:687)
+	at scala.collection.mutable.HashSet.foreach(HashSet.scala:79)
+	at org.apache.spark.scheduler.DAGScheduler.cleanUpAfterSchedulerStop(DAGScheduler.scala:687)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessActor.postStop(DAGScheduler.scala:1342)
+	at akka.actor.dungeon.FaultHandling$class.akka$actor$dungeon$FaultHandling$$finishTerminate(FaultHandling.scala:201)
+	at akka.actor.dungeon.FaultHandling$class.terminate(FaultHandling.scala:163)
+	at akka.actor.ActorCell.terminate(ActorCell.scala:338)
+	at akka.actor.ActorCell.invokeAll$1(ActorCell.scala:431)
+	at akka.actor.ActorCell.systemInvoke(ActorCell.scala:447)
+	at akka.dispatch.Mailbox.processAllSystemMessages(Mailbox.scala:262)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:218)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+14/08/05 19:02:33 ERROR ExecutorUncaughtExceptionHandler: Uncaught exception in thread Thread[Executor task launch worker-18,5,main]
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:41)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:34)
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:729)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:43)
+	at com.twitter.chill.Tuple2Serializer.read(TupleSerializers.scala:34)
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:729)
+	at org.apache.spark.serializer.KryoDeserializationStream.readObject(KryoSerializer.scala:123)
+	at org.apache.spark.serializer.DeserializationStream$$anon$1.getNext(Serializer.scala:129)
+	at org.apache.spark.util.NextIterator.hasNext(NextIterator.scala:71)
+	at org.apache.spark.storage.BlockManager$LazyProxyIterator$1.hasNext(BlockManager.scala:1044)
+	at scala.collection.Iterator$$anon$13.hasNext(Iterator.scala:371)
+	at org.apache.spark.util.CompletionIterator.hasNext(CompletionIterator.scala:30)
+	at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:39)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:327)
+	at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:327)
+	at org.apache.spark.util.collection.ExternalAppendOnlyMap.insertAll(ExternalAppendOnlyMap.scala:138)
+	at org.apache.spark.rdd.CoGroupedRDD$$anonfun$compute$5.apply(CoGroupedRDD.scala:159)
+	at org.apache.spark.rdd.CoGroupedRDD$$anonfun$compute$5.apply(CoGroupedRDD.scala:158)
+	at scala.collection.TraversableLike$WithFilter$$anonfun$foreach$1.apply(TraversableLike.scala:772)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at scala.collection.TraversableLike$WithFilter.foreach(TraversableLike.scala:771)
+	at org.apache.spark.rdd.CoGroupedRDD.compute(CoGroupedRDD.scala:158)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.MappedValuesRDD.compute(MappedValuesRDD.scala:31)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.FlatMappedValuesRDD.compute(FlatMappedValuesRDD.scala:31)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:262)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:229)
+	at org.apache.spark.rdd.MappedRDD.compute(MappedRDD.scala:31)
+14/08/05 19:02:35 INFO Remoting: Remoting shut down
+14/08/05 19:02:35 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.
+14/08/05 19:02:36 WARN AkkaUtils: Error sending message in 2 attempts
+akka.pattern.AskTimeoutException: Recipient[Actor[akka://spark/user/HeartbeatReceiver#-17121657]] had already been terminated.
+	at akka.pattern.AskableActorRef$.ask$extension(AskSupport.scala:134)
+	at org.apache.spark.util.AkkaUtils$.askWithReply(AkkaUtils.scala:161)
+	at org.apache.spark.executor.Executor$$anon$1.run(Executor.scala:386)

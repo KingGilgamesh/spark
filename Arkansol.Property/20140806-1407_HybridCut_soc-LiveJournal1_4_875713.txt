@@ -1,0 +1,82 @@
+/data/sdd1/xiaodi/spark/conf/spark-env.sh: line 53: ulimit: open files: cannot modify limit: Operation not permitted
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|     benchmark: GraphXPartition     |
+======================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/06 14:07:19 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/06 14:07:19 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/06 14:07:19 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/06 14:07:19 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/06 14:07:19 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/06 14:07:20 INFO Slf4jLogger: Slf4jLogger started
+14/08/06 14:07:20 INFO Remoting: Starting remoting
+14/08/06 14:07:20 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:45695]
+14/08/06 14:07:20 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:45695]
+14/08/06 14:07:20 INFO SparkEnv: Registering MapOutputTracker
+14/08/06 14:07:20 INFO SparkEnv: Registering BlockManagerMaster
+14/08/06 14:07:20 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140806140720-888f
+14/08/06 14:07:20 INFO ConnectionManager: Bound socket to port 37569 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,37569)
+14/08/06 14:07:20 INFO MemoryStore: MemoryStore started with capacity 31.0 GB
+14/08/06 14:07:20 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/06 14:07:20 INFO BlockManagerMasterActor: received a register
+14/08/06 14:07:20 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:37569 with 31.0 GB RAM
+14/08/06 14:07:20 INFO BlockManagerMaster: Registered BlockManager
+14/08/06 14:07:20 INFO HttpFileServer: HTTP File server directory is /tmp/spark-821c8349-19d0-43ec-beb0-95de4978cd17
+14/08/06 14:07:20 INFO HttpServer: Starting HTTP Server
+14/08/06 14:07:21 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/06 14:07:21 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/06 14:07:21 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/06 14:07:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/06 14:07:21 INFO EventLoggingListener: Logging events to file:/tmp/spark-events//pagerank(-data-sdd1-xiaodi-data-soc-livejournal1)-hybridcut-1407305241811
+14/08/06 14:07:22 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:51816/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407305242295
+14/08/06 14:07:22 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:45695/user/HeartbeatReceiver
+14/08/06 14:07:22 INFO MemoryStore: ensureFreeSpace(42049) called with curMem=0, maxMem=33339683635
+14/08/06 14:07:22 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.1 KB, free 31.0 GB)
+14/08/06 14:07:22 WARN LoadSnappy: Snappy native library not loaded
+Exception in thread "main" org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: file:/data/sdd1/xiaodi/data/soc-LiveJournal1
+	at org.apache.hadoop.mapred.FileInputFormat.listStatus(FileInputFormat.java:197)
+	at org.apache.hadoop.mapred.FileInputFormat.getSplits(FileInputFormat.java:208)
+	at org.apache.spark.rdd.HadoopRDD.getPartitions(HadoopRDD.scala:179)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:204)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:202)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:202)
+	at org.apache.spark.rdd.MappedRDD.getPartitions(MappedRDD.scala:28)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:204)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:202)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:202)
+	at org.apache.spark.rdd.PartitionCoalescer.<init>(CoalescedRDD.scala:168)
+	at org.apache.spark.rdd.CoalescedRDD.getPartitions(CoalescedRDD.scala:81)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:204)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:202)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:202)
+	at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:32)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:204)
+	at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:202)
+	at scala.Option.getOrElse(Option.scala:120)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:202)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:1116)
+	at org.apache.spark.rdd.RDD.count(RDD.scala:904)
+	at org.apache.spark.graphx.GraphLoader$.edgeListFile(GraphLoader.scala:87)
+	at org.apache.spark.examples.benchmark.GraphXPartition$.main(GraphXPartition.scala:73)
+	at org.apache.spark.examples.benchmark.GraphXPartition.main(GraphXPartition.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.spark.deploy.SparkSubmit$.launch(SparkSubmit.scala:314)
+	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:73)
+	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)

@@ -1,0 +1,373 @@
+/data/sdd1/xiaodi/spark/conf/spark-env.sh: line 53: ulimit: open files: cannot modify limit: Operation not permitted
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|     benchmark: GraphXPartition     |
+======================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/06 16:58:37 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/06 16:58:37 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/06 16:58:37 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/06 16:58:37 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/06 16:58:37 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/06 16:58:38 INFO Slf4jLogger: Slf4jLogger started
+14/08/06 16:58:38 INFO Remoting: Starting remoting
+14/08/06 16:58:38 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:33939]
+14/08/06 16:58:38 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:33939]
+14/08/06 16:58:38 INFO SparkEnv: Registering MapOutputTracker
+14/08/06 16:58:38 INFO SparkEnv: Registering BlockManagerMaster
+14/08/06 16:58:38 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140806165838-3935
+14/08/06 16:58:38 INFO ConnectionManager: Bound socket to port 50839 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,50839)
+14/08/06 16:58:38 INFO MemoryStore: MemoryStore started with capacity 31.0 GB
+14/08/06 16:58:38 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/06 16:58:38 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:38 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:50839 with 31.0 GB RAM
+14/08/06 16:58:38 INFO BlockManagerMaster: Registered BlockManager
+14/08/06 16:58:38 INFO HttpFileServer: HTTP File server directory is /tmp/spark-3e7e54d0-56e6-4be7-8968-b0553d1b735c
+14/08/06 16:58:38 INFO HttpServer: Starting HTTP Server
+14/08/06 16:58:39 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/06 16:58:39 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/06 16:58:39 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/06 16:58:40 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/06 16:58:40 INFO EventLoggingListener: Logging events to file:/tmp/spark-events//pagerank(-data-sdd1-xiaodi-data-web-google-single)-edgepartition1d-1407315520422
+14/08/06 16:58:40 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:51787/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407315520901
+14/08/06 16:58:41 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(42049) called with curMem=0, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.1 KB, free 31.0 GB)
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(72) called with curMem=42049, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_0_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerInfo: Added broadcast_0_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerMaster: Updated info of block broadcast_0_meta
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(6720) called with curMem=42121, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_0_piece0 stored as values in memory (estimated size 6.6 KB, free 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 6.6 KB, free: 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerMaster: Updated info of block broadcast_0_piece0
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Connected to Spark cluster with app ID app-20140806165841-0028
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/0 on worker-20140806113452-brick4.ipads-lab.se.sjtu.edu.cn-51414 (brick4.ipads-lab.se.sjtu.edu.cn:51414) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/0 on hostPort brick4.ipads-lab.se.sjtu.edu.cn:51414 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/1 on worker-20140806113452-brick2.ipads-lab.se.sjtu.edu.cn-47249 (brick2.ipads-lab.se.sjtu.edu.cn:47249) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/1 on hostPort brick2.ipads-lab.se.sjtu.edu.cn:47249 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/2 on worker-20140806113452-brick0.ipads-lab.se.sjtu.edu.cn-37879 (brick0.ipads-lab.se.sjtu.edu.cn:37879) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/2 on hostPort brick0.ipads-lab.se.sjtu.edu.cn:37879 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/3 on worker-20140806113452-brick3.ipads-lab.se.sjtu.edu.cn-44384 (brick3.ipads-lab.se.sjtu.edu.cn:44384) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/3 on hostPort brick3.ipads-lab.se.sjtu.edu.cn:44384 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/4 on worker-20140806113452-brick5.ipads-lab.se.sjtu.edu.cn-57099 (brick5.ipads-lab.se.sjtu.edu.cn:57099) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/4 on hostPort brick5.ipads-lab.se.sjtu.edu.cn:57099 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor added: app-20140806165841-0028/5 on worker-20140806113452-brick1.ipads-lab.se.sjtu.edu.cn-38213 (brick1.ipads-lab.se.sjtu.edu.cn:38213) with 24 cores
+14/08/06 16:58:41 INFO SparkDeploySchedulerBackend: Granted executor ID app-20140806165841-0028/5 on hostPort brick1.ipads-lab.se.sjtu.edu.cn:38213 with 24 cores, 60.0 GB RAM
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/1 is now RUNNING
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/0 is now RUNNING
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/3 is now RUNNING
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/5 is now RUNNING
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/4 is now RUNNING
+14/08/06 16:58:41 INFO AppClient$ClientActor: Executor updated: app-20140806165841-0028/2 is now RUNNING
+14/08/06 16:58:41 WARN LoadSnappy: Snappy native library not loaded
+14/08/06 16:58:41 INFO FileInputFormat: Total input paths to process : 1
+14/08/06 16:58:41 INFO SparkContext: Starting job: count at GraphLoader.scala:87
+14/08/06 16:58:41 INFO DAGScheduler: Got job 0 (count at GraphLoader.scala:87) with 4 output partitions (allowLocal=false)
+14/08/06 16:58:41 INFO DAGScheduler: Final stage: Stage 0(count at GraphLoader.scala:87)
+14/08/06 16:58:41 INFO DAGScheduler: Parents of final stage: List()
+14/08/06 16:58:41 INFO DAGScheduler: Missing parents: List()
+14/08/06 16:58:41 INFO DAGScheduler: Submitting Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/web-google-single) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68), which has no missing parents
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(2984) called with curMem=48841, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 2.9 KB, free 31.0 GB)
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(72) called with curMem=51825, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_1_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerInfo: Added broadcast_1_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerMaster: Updated info of block broadcast_1_meta
+14/08/06 16:58:41 INFO MemoryStore: ensureFreeSpace(3040) called with curMem=51897, maxMem=33339683635
+14/08/06 16:58:41 INFO MemoryStore: Block broadcast_1_piece0 stored as values in memory (estimated size 3.0 KB, free 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:58:41 INFO BlockManagerMaster: Updated info of block broadcast_1_piece0
+14/08/06 16:58:41 INFO DAGScheduler: Submitting 4 missing tasks from Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/web-google-single) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68)
+14/08/06 16:58:41 INFO TaskSchedulerImpl: Adding task set 0.0 with 4 tasks
+14/08/06 16:58:45 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick0.ipads-lab.se.sjtu.edu.cn:40533/user/Executor#1793294698] with ID 2
+14/08/06 16:58:45 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:45 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1419 bytes)
+14/08/06 16:58:45 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1419 bytes)
+14/08/06 16:58:45 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1419 bytes)
+14/08/06 16:58:45 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1419 bytes)
+14/08/06 16:58:46 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:46 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:59665 with 31.0 GB RAM
+14/08/06 16:58:46 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick1.ipads-lab.se.sjtu.edu.cn:36390/user/Executor#1487782921] with ID 5
+14/08/06 16:58:46 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:46 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick2.ipads-lab.se.sjtu.edu.cn:41322/user/Executor#-1560648917] with ID 1
+14/08/06 16:58:46 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:46 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick4.ipads-lab.se.sjtu.edu.cn:40233/user/Executor#847120526] with ID 0
+14/08/06 16:58:46 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:46 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick5.ipads-lab.se.sjtu.edu.cn:54547/user/Executor#998314611] with ID 4
+14/08/06 16:58:46 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:46 INFO SparkDeploySchedulerBackend: Registered executor: Actor[akka.tcp://sparkExecutor@brick3.ipads-lab.se.sjtu.edu.cn:57813/user/Executor#328802698] with ID 3
+14/08/06 16:58:46 INFO TaskSetManager: Re-computing pending task lists.
+14/08/06 16:58:46 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:46 INFO BlockManagerMasterActor: Registering block manager brick1.ipads-lab.se.sjtu.edu.cn:35576 with 31.0 GB RAM
+14/08/06 16:58:46 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:46 INFO BlockManagerMasterActor: Registering block manager brick4.ipads-lab.se.sjtu.edu.cn:46575 with 31.0 GB RAM
+14/08/06 16:58:46 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:46 INFO BlockManagerMasterActor: Registering block manager brick2.ipads-lab.se.sjtu.edu.cn:33031 with 31.0 GB RAM
+14/08/06 16:58:46 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:46 INFO BlockManagerMasterActor: Registering block manager brick5.ipads-lab.se.sjtu.edu.cn:50671 with 31.0 GB RAM
+14/08/06 16:58:47 INFO BlockManagerMasterActor: received a register
+14/08/06 16:58:47 INFO BlockManagerMasterActor: Registering block manager brick3.ipads-lab.se.sjtu.edu.cn:39047 with 31.0 GB RAM
+14/08/06 16:58:47 INFO ConnectionManager: Accepted connection from [brick0.ipads-lab.se.sjtu.edu.cn/192.168.12.124]
+14/08/06 16:58:47 INFO SendingConnection: Initiating connection to [brick0.ipads-lab.se.sjtu.edu.cn/192.168.12.124:59665]
+14/08/06 16:58:47 INFO SendingConnection: Connected to [brick0.ipads-lab.se.sjtu.edu.cn/192.168.12.124:59665], 1 messages pending
+14/08/06 16:58:48 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:58:48 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 6.6 KB, free: 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added rdd_3_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 33.7 MB, free: 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added rdd_3_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 42.3 MB, free: 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added rdd_3_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 33.6 MB, free: 30.9 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added rdd_3_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 42.3 MB, free: 30.9 GB)
+14/08/06 16:58:53 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 7931 ms on brick0.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:58:53 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 7946 ms on brick0.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:58:53 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 7963 ms on brick0.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:58:53 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 7996 ms on brick0.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:58:53 INFO DAGScheduler: Stage 0 (count at GraphLoader.scala:87) finished in 12.169 s
+14/08/06 16:58:53 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+14/08/06 16:58:53 INFO SparkContext: Job finished: count at GraphLoader.scala:87, took 12.299033383 s
+14/08/06 16:58:53 INFO GraphLoader: It took 12679 ms to load the edges
+14/08/06 16:58:53 INFO GraphImpl: It took 25 ms to partition
+14/08/06 16:58:53 INFO SparkContext: Starting job: reduce at GraphXPartition.scala:86
+14/08/06 16:58:53 INFO DAGScheduler: Registering RDD 16 (map at GraphImpl.scala:213)
+14/08/06 16:58:53 INFO DAGScheduler: Got job 1 (reduce at GraphXPartition.scala:86) with 4 output partitions (allowLocal=false)
+14/08/06 16:58:53 INFO DAGScheduler: Final stage: Stage 1(reduce at GraphXPartition.scala:86)
+14/08/06 16:58:53 INFO DAGScheduler: Parents of final stage: List(Stage 2)
+14/08/06 16:58:53 INFO DAGScheduler: Missing parents: List(Stage 2)
+14/08/06 16:58:53 INFO DAGScheduler: Submitting Stage 2 (MappedRDD[16] at map at GraphImpl.scala:213), which has no missing parents
+14/08/06 16:58:53 INFO MemoryStore: ensureFreeSpace(4488) called with curMem=54937, maxMem=33339683635
+14/08/06 16:58:53 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 4.4 KB, free 31.0 GB)
+14/08/06 16:58:53 INFO MemoryStore: ensureFreeSpace(72) called with curMem=59425, maxMem=33339683635
+14/08/06 16:58:53 INFO MemoryStore: Block broadcast_2_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added broadcast_2_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerMaster: Updated info of block broadcast_2_meta
+14/08/06 16:58:53 INFO MemoryStore: ensureFreeSpace(4544) called with curMem=59497, maxMem=33339683635
+14/08/06 16:58:53 INFO MemoryStore: Block broadcast_2_piece0 stored as values in memory (estimated size 4.4 KB, free 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 4.4 KB, free: 31.0 GB)
+14/08/06 16:58:53 INFO BlockManagerMaster: Updated info of block broadcast_2_piece0
+14/08/06 16:58:53 INFO DAGScheduler: Submitting 4 missing tasks from Stage 2 (MappedRDD[16] at map at GraphImpl.scala:213)
+14/08/06 16:58:53 INFO TaskSchedulerImpl: Adding task set 2.0 with 4 tasks
+14/08/06 16:58:53 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 4, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:58:53 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 5, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:58:53 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 6, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:58:53 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 7, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:58:54 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 4.4 KB, free: 30.9 GB)
+14/08/06 16:58:59 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 7) in 5694 ms on brick0.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:58:59 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 6) in 5720 ms on brick0.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:58:59 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 5) in 5740 ms on brick0.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:58:59 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 4) in 5760 ms on brick0.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:58:59 INFO DAGScheduler: Stage 2 (map at GraphImpl.scala:213) finished in 5.776 s
+14/08/06 16:58:59 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+14/08/06 16:58:59 INFO DAGScheduler: looking for newly runnable stages
+14/08/06 16:58:59 INFO DAGScheduler: running: Set()
+14/08/06 16:58:59 INFO DAGScheduler: waiting: Set(Stage 1)
+14/08/06 16:58:59 INFO DAGScheduler: failed: Set()
+14/08/06 16:58:59 INFO DAGScheduler: Missing parents for Stage 1: List()
+14/08/06 16:58:59 INFO DAGScheduler: Submitting Stage 1 (MappedRDD[26] at map at GraphXPartition.scala:86), which is now runnable
+14/08/06 16:58:59 INFO MemoryStore: ensureFreeSpace(2992) called with curMem=64041, maxMem=33339683635
+14/08/06 16:58:59 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 2.9 KB, free 31.0 GB)
+14/08/06 16:58:59 INFO MemoryStore: ensureFreeSpace(72) called with curMem=67033, maxMem=33339683635
+14/08/06 16:58:59 INFO MemoryStore: Block broadcast_3_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:58:59 INFO BlockManagerInfo: Added broadcast_3_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:58:59 INFO BlockManagerMaster: Updated info of block broadcast_3_meta
+14/08/06 16:58:59 INFO MemoryStore: ensureFreeSpace(3056) called with curMem=67105, maxMem=33339683635
+14/08/06 16:58:59 INFO MemoryStore: Block broadcast_3_piece0 stored as values in memory (estimated size 3.0 KB, free 31.0 GB)
+14/08/06 16:58:59 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:58:59 INFO BlockManagerMaster: Updated info of block broadcast_3_piece0
+14/08/06 16:58:59 INFO DAGScheduler: Submitting 4 missing tasks from Stage 1 (MappedRDD[26] at map at GraphXPartition.scala:86)
+14/08/06 16:58:59 INFO TaskSchedulerImpl: Adding task set 1.0 with 4 tasks
+14/08/06 16:58:59 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 8, brick3.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:58:59 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 9, brick4.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:58:59 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 10, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:58:59 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 11, brick2.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:58:59 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 3.0 KB, free: 30.9 GB)
+14/08/06 16:58:59 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 0 to spark@brick0.ipads-lab.se.sjtu.edu.cn:35953
+14/08/06 16:58:59 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 161 bytes
+14/08/06 16:59:03 INFO BlockManagerInfo: Added rdd_18_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 39.4 MB, free: 30.9 GB)
+14/08/06 16:59:05 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 10) in 5613 ms on brick0.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:59:08 INFO ConnectionManager: Accepted connection from [brick4.ipads-lab.se.sjtu.edu.cn/192.168.10.251]
+14/08/06 16:59:08 INFO SendingConnection: Initiating connection to [brick4.ipads-lab.se.sjtu.edu.cn/192.168.10.251:46575]
+14/08/06 16:59:08 INFO SendingConnection: Connected to [brick4.ipads-lab.se.sjtu.edu.cn/192.168.10.251:46575], 1 messages pending
+14/08/06 16:59:08 INFO ConnectionManager: Accepted connection from [brick2.ipads-lab.se.sjtu.edu.cn/192.168.13.34]
+14/08/06 16:59:08 INFO SendingConnection: Initiating connection to [brick2.ipads-lab.se.sjtu.edu.cn/192.168.13.34:33031]
+14/08/06 16:59:08 INFO SendingConnection: Connected to [brick2.ipads-lab.se.sjtu.edu.cn/192.168.13.34:33031], 1 messages pending
+14/08/06 16:59:08 INFO ConnectionManager: Accepted connection from [brick3.ipads-lab.se.sjtu.edu.cn/192.168.10.162]
+14/08/06 16:59:08 INFO SendingConnection: Initiating connection to [brick3.ipads-lab.se.sjtu.edu.cn/192.168.10.162:39047]
+14/08/06 16:59:08 INFO SendingConnection: Connected to [brick3.ipads-lab.se.sjtu.edu.cn/192.168.10.162:39047], 1 messages pending
+14/08/06 16:59:09 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:59:09 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:59:09 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 0 to spark@brick4.ipads-lab.se.sjtu.edu.cn:54623
+14/08/06 16:59:09 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 3.0 KB, free: 31.0 GB)
+14/08/06 16:59:09 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 0 to spark@brick2.ipads-lab.se.sjtu.edu.cn:52860
+14/08/06 16:59:09 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 0 to spark@brick3.ipads-lab.se.sjtu.edu.cn:45492
+14/08/06 16:59:12 INFO BlockManagerInfo: Added rdd_18_1 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 39.4 MB, free: 31.0 GB)
+14/08/06 16:59:13 INFO BlockManagerInfo: Added rdd_18_0 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 39.6 MB, free: 31.0 GB)
+14/08/06 16:59:13 INFO BlockManagerInfo: Added rdd_18_3 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 39.6 MB, free: 31.0 GB)
+14/08/06 16:59:14 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 9) in 14992 ms on brick4.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:59:15 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 8) in 15448 ms on brick3.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:59:15 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 11) in 15922 ms on brick2.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:59:15 INFO DAGScheduler: Stage 1 (reduce at GraphXPartition.scala:86) finished in 15.940 s
+14/08/06 16:59:15 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+14/08/06 16:59:15 INFO SparkContext: Job finished: reduce at GraphXPartition.scala:86, took 21.807030733 s
+14/08/06 16:59:15 INFO GraphXPartition: GRAPHX: INPUT /data/sdd1/xiaodi/data/web-google-single-reverse
+14/08/06 16:59:15 INFO GraphXPartition: GRAPHX: PatitionStrategy EdgePartition1D
+14/08/06 16:59:15 INFO GraphXPartition: GRAPHX: ThreshHold 0
+14/08/06 16:59:15 INFO SparkContext: Starting job: reduce at VertexRDD.scala:111
+14/08/06 16:59:15 INFO DAGScheduler: Registering RDD 20 (mapPartitions at VertexRDD.scala:452)
+14/08/06 16:59:15 INFO DAGScheduler: Registering RDD 6 (mapPartitions at VertexRDD.scala:452)
+14/08/06 16:59:15 INFO DAGScheduler: Got job 2 (reduce at VertexRDD.scala:111) with 4 output partitions (allowLocal=false)
+14/08/06 16:59:15 INFO DAGScheduler: Final stage: Stage 3(reduce at VertexRDD.scala:111)
+14/08/06 16:59:15 INFO DAGScheduler: Parents of final stage: List(Stage 5, Stage 6)
+14/08/06 16:59:15 INFO DAGScheduler: Missing parents: List(Stage 5, Stage 6)
+14/08/06 16:59:15 INFO DAGScheduler: Submitting Stage 5 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[20] at mapPartitions at VertexRDD.scala:452), which has no missing parents
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(2632) called with curMem=70161, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 2.6 KB, free 31.0 GB)
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(72) called with curMem=72793, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_4_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_4_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerMaster: Updated info of block broadcast_4_meta
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(2688) called with curMem=72865, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_4_piece0 stored as values in memory (estimated size 2.6 KB, free 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 2.6 KB, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerMaster: Updated info of block broadcast_4_piece0
+14/08/06 16:59:15 INFO DAGScheduler: Submitting 4 missing tasks from Stage 5 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[20] at mapPartitions at VertexRDD.scala:452)
+14/08/06 16:59:15 INFO TaskSchedulerImpl: Adding task set 5.0 with 4 tasks
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 2.0 in stage 5.0 (TID 12, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 865 bytes)
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 13, brick4.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 865 bytes)
+14/08/06 16:59:15 INFO DAGScheduler: Submitting Stage 6 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452), which has no missing parents
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 3.0 in stage 5.0 (TID 14, brick2.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 865 bytes)
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 15, brick3.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 865 bytes)
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(3680) called with curMem=75553, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 3.6 KB, free 31.0 GB)
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(72) called with curMem=79233, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_5_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_5_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerMaster: Updated info of block broadcast_5_meta
+14/08/06 16:59:15 INFO MemoryStore: ensureFreeSpace(3736) called with curMem=79305, maxMem=33339683635
+14/08/06 16:59:15 INFO MemoryStore: Block broadcast_5_piece0 stored as values in memory (estimated size 3.6 KB, free 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 3.6 KB, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerMaster: Updated info of block broadcast_5_piece0
+14/08/06 16:59:15 INFO DAGScheduler: Submitting 4 missing tasks from Stage 6 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452)
+14/08/06 16:59:15 INFO TaskSchedulerImpl: Adding task set 6.0 with 4 tasks
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 16, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 1.0 in stage 6.0 (TID 17, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 2.0 in stage 6.0 (TID 18, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:59:15 INFO TaskSetManager: Starting task 3.0 in stage 6.0 (TID 19, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1408 bytes)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 2.6 KB, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 2.6 KB, free: 31.0 GB)
+14/08/06 16:59:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 2.6 KB, free: 31.0 GB)
+14/08/06 16:59:17 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 2.6 KB, free: 30.9 GB)
+14/08/06 16:59:17 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 3.6 KB, free: 30.9 GB)
+14/08/06 16:59:17 INFO TaskSetManager: Finished task 3.0 in stage 5.0 (TID 14) in 1579 ms on brick2.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:59:17 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 13) in 1595 ms on brick4.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:59:17 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 15) in 1603 ms on brick3.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:59:18 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 16) in 2520 ms on brick0.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:59:18 INFO TaskSetManager: Finished task 1.0 in stage 6.0 (TID 17) in 2532 ms on brick0.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:59:18 INFO TaskSetManager: Finished task 2.0 in stage 6.0 (TID 18) in 2549 ms on brick0.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:59:18 INFO TaskSetManager: Finished task 3.0 in stage 6.0 (TID 19) in 2602 ms on brick0.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:59:18 INFO DAGScheduler: Stage 6 (mapPartitions at VertexRDD.scala:452) finished in 2.621 s
+14/08/06 16:59:18 INFO DAGScheduler: looking for newly runnable stages
+14/08/06 16:59:18 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool 
+14/08/06 16:59:18 INFO DAGScheduler: running: Set(Stage 5)
+14/08/06 16:59:18 INFO DAGScheduler: waiting: Set(Stage 3)
+14/08/06 16:59:18 INFO DAGScheduler: failed: Set()
+14/08/06 16:59:18 INFO DAGScheduler: Missing parents for Stage 3: List(Stage 5)
+14/08/06 16:59:18 INFO TaskSetManager: Finished task 2.0 in stage 5.0 (TID 12) in 2659 ms on brick0.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:59:18 INFO DAGScheduler: Stage 5 (mapPartitions at VertexRDD.scala:452) finished in 2.670 s
+14/08/06 16:59:18 INFO DAGScheduler: looking for newly runnable stages
+14/08/06 16:59:18 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+14/08/06 16:59:18 INFO DAGScheduler: running: Set()
+14/08/06 16:59:18 INFO DAGScheduler: waiting: Set(Stage 3)
+14/08/06 16:59:18 INFO DAGScheduler: failed: Set()
+14/08/06 16:59:18 INFO DAGScheduler: Missing parents for Stage 3: List()
+14/08/06 16:59:18 INFO DAGScheduler: Submitting Stage 3 (MappedRDD[27] at map at VertexRDD.scala:111), which is now runnable
+14/08/06 16:59:18 INFO MemoryStore: ensureFreeSpace(4360) called with curMem=83041, maxMem=33339683635
+14/08/06 16:59:18 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 4.3 KB, free 31.0 GB)
+14/08/06 16:59:18 INFO MemoryStore: ensureFreeSpace(72) called with curMem=87401, maxMem=33339683635
+14/08/06 16:59:18 INFO MemoryStore: Block broadcast_6_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerInfo: Added broadcast_6_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerMaster: Updated info of block broadcast_6_meta
+14/08/06 16:59:18 INFO MemoryStore: ensureFreeSpace(4416) called with curMem=87473, maxMem=33339683635
+14/08/06 16:59:18 INFO MemoryStore: Block broadcast_6_piece0 stored as values in memory (estimated size 4.3 KB, free 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 4.3 KB, free: 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerMaster: Updated info of block broadcast_6_piece0
+14/08/06 16:59:18 INFO DAGScheduler: Submitting 4 missing tasks from Stage 3 (MappedRDD[27] at map at VertexRDD.scala:111)
+14/08/06 16:59:18 INFO TaskSchedulerImpl: Adding task set 3.0 with 4 tasks
+14/08/06 16:59:18 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 20, brick2.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1293 bytes)
+14/08/06 16:59:18 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 21, brick4.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1293 bytes)
+14/08/06 16:59:18 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 22, brick3.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1293 bytes)
+14/08/06 16:59:18 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 23, brick1.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 1293 bytes)
+14/08/06 16:59:18 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 4.3 KB, free: 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 4.3 KB, free: 31.0 GB)
+14/08/06 16:59:18 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 4.3 KB, free: 31.0 GB)
+14/08/06 16:59:18 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 2 to spark@brick2.ipads-lab.se.sjtu.edu.cn:52860
+14/08/06 16:59:18 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 2 is 165 bytes
+14/08/06 16:59:18 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 2 to spark@brick4.ipads-lab.se.sjtu.edu.cn:54623
+14/08/06 16:59:18 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 2 to spark@brick3.ipads-lab.se.sjtu.edu.cn:45492
+14/08/06 16:59:19 INFO BlockManagerInfo: Added rdd_9_2 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 9.2 MB, free: 31.0 GB)
+14/08/06 16:59:19 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 1 to spark@brick3.ipads-lab.se.sjtu.edu.cn:45492
+14/08/06 16:59:19 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 1 is 200 bytes
+14/08/06 16:59:20 INFO BlockManagerInfo: Added rdd_9_0 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 9.2 MB, free: 31.0 GB)
+14/08/06 16:59:20 INFO BlockManagerInfo: Added rdd_9_1 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 9.2 MB, free: 31.0 GB)
+14/08/06 16:59:20 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 1 to spark@brick2.ipads-lab.se.sjtu.edu.cn:52860
+14/08/06 16:59:20 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 1 to spark@brick4.ipads-lab.se.sjtu.edu.cn:54623
+14/08/06 16:59:20 INFO TaskSetManager: Finished task 2.0 in stage 3.0 (TID 22) in 1696 ms on brick3.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:59:20 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 21) in 2004 ms on brick4.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:59:20 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 20) in 2025 ms on brick2.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:59:21 INFO ConnectionManager: Accepted connection from [brick1.ipads-lab.se.sjtu.edu.cn/192.168.13.26]
+14/08/06 16:59:21 INFO SendingConnection: Initiating connection to [brick1.ipads-lab.se.sjtu.edu.cn/192.168.13.26:35576]
+14/08/06 16:59:21 INFO SendingConnection: Connected to [brick1.ipads-lab.se.sjtu.edu.cn/192.168.13.26:35576], 1 messages pending
+14/08/06 16:59:22 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on brick1.ipads-lab.se.sjtu.edu.cn:35576 (size: 4.3 KB, free: 31.0 GB)
+14/08/06 16:59:22 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 2 to spark@brick1.ipads-lab.se.sjtu.edu.cn:55748
+14/08/06 16:59:23 INFO BlockManagerInfo: Added rdd_9_3 in memory on brick1.ipads-lab.se.sjtu.edu.cn:35576 (size: 9.2 MB, free: 31.0 GB)
+14/08/06 16:59:23 INFO MapOutputTrackerMasterActor: Asked to send map output locations for shuffle 1 to spark@brick1.ipads-lab.se.sjtu.edu.cn:55748
+14/08/06 16:59:24 INFO TaskSetManager: Finished task 3.0 in stage 3.0 (TID 23) in 5688 ms on brick1.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:59:24 INFO DAGScheduler: Stage 3 (reduce at VertexRDD.scala:111) finished in 5.702 s
+14/08/06 16:59:24 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+14/08/06 16:59:24 INFO SparkContext: Job finished: reduce at VertexRDD.scala:111, took 8.450312175 s
+14/08/06 16:59:24 INFO GraphXPartition: GRAPHX: Number of vertices 875713
+14/08/06 16:59:24 INFO SparkContext: Starting job: count at GraphXPartition.scala:92
+14/08/06 16:59:24 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 161 bytes
+14/08/06 16:59:24 INFO DAGScheduler: Got job 3 (count at GraphXPartition.scala:92) with 4 output partitions (allowLocal=false)
+14/08/06 16:59:24 INFO DAGScheduler: Final stage: Stage 7(count at GraphXPartition.scala:92)
+14/08/06 16:59:24 INFO DAGScheduler: Parents of final stage: List(Stage 8)
+14/08/06 16:59:24 INFO DAGScheduler: Missing parents: List()
+14/08/06 16:59:24 INFO DAGScheduler: Submitting Stage 7 (EdgeRDD[19] at RDD at EdgeRDD.scala:35), which has no missing parents
+14/08/06 16:59:24 INFO MemoryStore: ensureFreeSpace(2808) called with curMem=91889, maxMem=33339683635
+14/08/06 16:59:24 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 2.7 KB, free 31.0 GB)
+14/08/06 16:59:24 INFO MemoryStore: ensureFreeSpace(72) called with curMem=94697, maxMem=33339683635
+14/08/06 16:59:24 INFO MemoryStore: Block broadcast_7_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 72.0 B, free: 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerMaster: Updated info of block broadcast_7_meta
+14/08/06 16:59:24 INFO MemoryStore: ensureFreeSpace(2864) called with curMem=94769, maxMem=33339683635
+14/08/06 16:59:24 INFO MemoryStore: Block broadcast_7_piece0 stored as values in memory (estimated size 2.8 KB, free 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:50839 (size: 2.8 KB, free: 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerMaster: Updated info of block broadcast_7_piece0
+14/08/06 16:59:24 INFO DAGScheduler: Submitting 4 missing tasks from Stage 7 (EdgeRDD[19] at RDD at EdgeRDD.scala:35)
+14/08/06 16:59:24 INFO TaskSchedulerImpl: Adding task set 7.0 with 4 tasks
+14/08/06 16:59:24 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 24, brick3.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:59:24 INFO TaskSetManager: Starting task 3.0 in stage 7.0 (TID 25, brick2.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:59:24 INFO TaskSetManager: Starting task 2.0 in stage 7.0 (TID 26, brick0.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:59:24 INFO TaskSetManager: Starting task 1.0 in stage 7.0 (TID 27, brick4.ipads-lab.se.sjtu.edu.cn, PROCESS_LOCAL, 876 bytes)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on brick2.ipads-lab.se.sjtu.edu.cn:33031 (size: 2.8 KB, free: 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:59665 (size: 2.8 KB, free: 30.9 GB)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on brick4.ipads-lab.se.sjtu.edu.cn:46575 (size: 2.8 KB, free: 31.0 GB)
+14/08/06 16:59:24 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on brick3.ipads-lab.se.sjtu.edu.cn:39047 (size: 2.8 KB, free: 31.0 GB)
+14/08/06 16:59:24 INFO TaskSetManager: Finished task 2.0 in stage 7.0 (TID 26) in 228 ms on brick0.ipads-lab.se.sjtu.edu.cn (1/4)
+14/08/06 16:59:24 INFO TaskSetManager: Finished task 3.0 in stage 7.0 (TID 25) in 293 ms on brick2.ipads-lab.se.sjtu.edu.cn (2/4)
+14/08/06 16:59:24 INFO TaskSetManager: Finished task 1.0 in stage 7.0 (TID 27) in 314 ms on brick4.ipads-lab.se.sjtu.edu.cn (3/4)
+14/08/06 16:59:24 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 24) in 329 ms on brick3.ipads-lab.se.sjtu.edu.cn (4/4)
+14/08/06 16:59:24 INFO DAGScheduler: Stage 7 (count at GraphXPartition.scala:92) finished in 0.337 s
+14/08/06 16:59:24 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+14/08/06 16:59:24 INFO SparkContext: Job finished: count at GraphXPartition.scala:92, took 0.358245036 s
+14/08/06 16:59:24 INFO GraphXPartition: GRAPHX: Number of edges 5105039
+14/08/06 16:59:24 INFO GraphXPartition: GRAPHX: Number of replications 2344920
+14/08/06 16:59:24 INFO GraphXPartition: GRAPHX: Number of partitions 4

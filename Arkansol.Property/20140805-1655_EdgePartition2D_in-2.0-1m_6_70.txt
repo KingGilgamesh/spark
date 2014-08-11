@@ -1,0 +1,563 @@
+/data/sdd1/xiaodi/spark/conf/spark-env.sh: line 53: ulimit: open files: cannot modify limit: Operation not permitted
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|     benchmark: GraphXPartition     |
+======================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/05 16:55:29 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/05 16:55:29 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/05 16:55:29 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/05 16:55:29 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/05 16:55:29 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/05 16:55:30 INFO Slf4jLogger: Slf4jLogger started
+14/08/05 16:55:30 INFO Remoting: Starting remoting
+14/08/05 16:55:30 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:52021]
+14/08/05 16:55:30 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:52021]
+14/08/05 16:55:30 INFO SparkEnv: Registering MapOutputTracker
+14/08/05 16:55:30 INFO SparkEnv: Registering BlockManagerMaster
+14/08/05 16:55:30 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140805165530-e009
+14/08/05 16:55:30 INFO ConnectionManager: Bound socket to port 57858 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,57858)
+14/08/05 16:55:30 INFO MemoryStore: MemoryStore started with capacity 31.0 GB
+14/08/05 16:55:30 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/05 16:55:30 INFO BlockManagerMasterActor: received a register
+14/08/05 16:55:30 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:57858 with 31.0 GB RAM
+14/08/05 16:55:30 INFO BlockManagerMaster: Registered BlockManager
+14/08/05 16:55:30 INFO HttpFileServer: HTTP File server directory is /tmp/spark-0be65c38-b108-4102-9791-f335b99b4ef3
+14/08/05 16:55:30 INFO HttpServer: Starting HTTP Server
+14/08/05 16:55:31 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/05 16:55:31 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/05 16:55:31 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/05 16:55:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/05 16:55:31 INFO EventLoggingListener: Logging events to file:/tmp/spark-events//pagerank(-data-sdd1-xiaodi-data-in-2.0-1m)-edgepartition2d-1407228931871
+14/08/05 16:55:32 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:48170/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407228932370
+14/08/05 16:55:32 INFO AkkaUtils: Connecting to HeartbeatReceiver: akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:52021/user/HeartbeatReceiver
+14/08/05 16:55:32 INFO MemoryStore: ensureFreeSpace(42049) called with curMem=0, maxMem=33339683635
+14/08/05 16:55:32 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.1 KB, free 31.0 GB)
+14/08/05 16:55:32 WARN LoadSnappy: Snappy native library not loaded
+14/08/05 16:55:32 INFO FileInputFormat: Total input paths to process : 1
+14/08/05 16:55:32 INFO SparkContext: Starting job: count at GraphLoader.scala:87
+14/08/05 16:55:32 INFO DAGScheduler: Got job 0 (count at GraphLoader.scala:87) with 6 output partitions (allowLocal=false)
+14/08/05 16:55:32 INFO DAGScheduler: Final stage: Stage 0(count at GraphLoader.scala:87)
+14/08/05 16:55:32 INFO DAGScheduler: Parents of final stage: List()
+14/08/05 16:55:32 INFO DAGScheduler: Missing parents: List()
+14/08/05 16:55:32 INFO DAGScheduler: Submitting Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-2.0-1m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68), which has no missing parents
+14/08/05 16:55:32 INFO MemoryStore: ensureFreeSpace(2976) called with curMem=42049, maxMem=33339683635
+14/08/05 16:55:32 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 2.9 KB, free 31.0 GB)
+14/08/05 16:55:32 INFO DAGScheduler: Submitting 6 missing tasks from Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-2.0-1m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68)
+14/08/05 16:55:32 INFO TaskSchedulerImpl: Adding task set 0.0 with 6 tasks
+14/08/05 16:55:32 INFO TaskSetManager: Re-computing pending task lists.
+14/08/05 16:55:32 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:32 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:32 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:33 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:33 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:33 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, PROCESS_LOCAL, 1411 bytes)
+14/08/05 16:55:33 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+14/08/05 16:55:33 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+14/08/05 16:55:33 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+14/08/05 16:55:33 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+14/08/05 16:55:33 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+14/08/05 16:55:33 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+14/08/05 16:55:33 INFO Executor: Fetching http://192.168.12.124:48170/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407228932370
+14/08/05 16:55:33 INFO Utils: Fetching http://192.168.12.124:48170/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar to /tmp/fetchFileTemp109530032682449781.tmp
+14/08/05 16:55:33 INFO Executor: Adding file:/tmp/spark-abcffabf-d0e0-468a-9a0c-70be68ab27ec/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar to class loader
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_1 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_4 not found, computing it
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_0 not found, computing it
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_1 not found, computing it
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_3 not found, computing it
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_5 not found, computing it
+14/08/05 16:55:33 INFO CacheManager: Partition rdd_3_2 not found, computing it
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:37613714+18806857
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:94034285+18806860
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:0+18806857
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:56420571+18806857
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:75227428+18806857
+14/08/05 16:55:33 INFO HadoopRDD: Input split: file:/data/sdd1/xiaodi/data/in-2.0-1m:18806857+18806857
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78077864) called with curMem=45025, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_5 stored as values in memory (estimated size 74.5 MB, free 31.0 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.5 MB, free: 31.0 GB)
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_5
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78007920) called with curMem=78122889, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_2 stored as values in memory (estimated size 74.4 MB, free 30.9 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.4 MB, free: 30.9 GB)
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_2
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78234640) called with curMem=156130809, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_0 stored as values in memory (estimated size 74.6 MB, free 30.8 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.6 MB, free: 30.8 GB)
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_0
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78168720) called with curMem=234365449, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_3 stored as values in memory (estimated size 74.5 MB, free 30.8 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.5 MB, free: 30.8 GB)
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_3
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78121464) called with curMem=312534169, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_4 stored as values in memory (estimated size 74.5 MB, free 30.7 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.5 MB, free: 30.7 GB)
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(78124880) called with curMem=390655633, maxMem=33339683635
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_4
+14/08/05 16:55:40 INFO MemoryStore: Block rdd_3_1 stored as values in memory (estimated size 74.5 MB, free 30.6 GB)
+14/08/05 16:55:40 INFO BlockManagerInfo: Added rdd_3_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 74.5 MB, free: 30.6 GB)
+14/08/05 16:55:40 INFO BlockManagerMaster: Updated info of block rdd_3_1
+14/08/05 16:55:40 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 2178 bytes result sent to driver
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 7483 ms on localhost (1/6)
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 7524 ms on localhost (2/6)
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 7523 ms on localhost (3/6)
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 7540 ms on localhost (4/6)
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 7557 ms on localhost (5/6)
+14/08/05 16:55:40 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 7566 ms on localhost (6/6)
+14/08/05 16:55:40 INFO DAGScheduler: Stage 0 (count at GraphLoader.scala:87) finished in 7.617 s
+14/08/05 16:55:40 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+14/08/05 16:55:40 INFO SparkContext: Job finished: count at GraphLoader.scala:87, took 7.784800104 s
+14/08/05 16:55:40 INFO GraphLoader: It took 8103 ms to load the edges
+14/08/05 16:55:40 INFO GraphImpl: It took 23 ms to partition
+14/08/05 16:55:40 INFO SparkContext: Starting job: reduce at GraphXPartition.scala:80
+14/08/05 16:55:40 INFO DAGScheduler: Registering RDD 12 (map at GraphImpl.scala:213)
+14/08/05 16:55:40 INFO DAGScheduler: Got job 1 (reduce at GraphXPartition.scala:80) with 6 output partitions (allowLocal=false)
+14/08/05 16:55:40 INFO DAGScheduler: Final stage: Stage 1(reduce at GraphXPartition.scala:80)
+14/08/05 16:55:40 INFO DAGScheduler: Parents of final stage: List(Stage 2)
+14/08/05 16:55:40 INFO DAGScheduler: Missing parents: List(Stage 2)
+14/08/05 16:55:40 INFO DAGScheduler: Submitting Stage 2 (MappedRDD[12] at map at GraphImpl.scala:213), which has no missing parents
+14/08/05 16:55:40 INFO MemoryStore: ensureFreeSpace(4192) called with curMem=468780513, maxMem=33339683635
+14/08/05 16:55:40 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 4.1 KB, free 30.6 GB)
+14/08/05 16:55:40 INFO DAGScheduler: Submitting 6 missing tasks from Stage 2 (MappedRDD[12] at map at GraphImpl.scala:213)
+14/08/05 16:55:40 INFO TaskSchedulerImpl: Adding task set 2.0 with 6 tasks
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 6, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 7, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 8, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 9, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 4.0 in stage 2.0 (TID 10, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 11, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:40 INFO Executor: Running task 0.0 in stage 2.0 (TID 6)
+14/08/05 16:55:40 INFO Executor: Running task 4.0 in stage 2.0 (TID 10)
+14/08/05 16:55:40 INFO Executor: Running task 5.0 in stage 2.0 (TID 11)
+14/08/05 16:55:40 INFO Executor: Running task 3.0 in stage 2.0 (TID 9)
+14/08/05 16:55:40 INFO Executor: Running task 2.0 in stage 2.0 (TID 8)
+14/08/05 16:55:40 INFO Executor: Running task 1.0 in stage 2.0 (TID 7)
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_1 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_0 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_2 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_3 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_4 locally
+14/08/05 16:55:40 INFO BlockManager: Found block rdd_3_5 locally
+14/08/05 16:55:45 INFO Executor: Finished task 1.0 in stage 2.0 (TID 7). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO Executor: Finished task 2.0 in stage 2.0 (TID 8). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO Executor: Finished task 4.0 in stage 2.0 (TID 10). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO Executor: Finished task 3.0 in stage 2.0 (TID 9). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO Executor: Finished task 5.0 in stage 2.0 (TID 11). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 7) in 4795 ms on localhost (1/6)
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 8) in 4818 ms on localhost (2/6)
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 5.0 in stage 2.0 (TID 11) in 4823 ms on localhost (3/6)
+14/08/05 16:55:45 INFO Executor: Finished task 0.0 in stage 2.0 (TID 6). 1881 bytes result sent to driver
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 9) in 4837 ms on localhost (4/6)
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 4.0 in stage 2.0 (TID 10) in 4844 ms on localhost (5/6)
+14/08/05 16:55:45 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 6) in 4864 ms on localhost (6/6)
+14/08/05 16:55:45 INFO DAGScheduler: Stage 2 (map at GraphImpl.scala:213) finished in 4.872 s
+14/08/05 16:55:45 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+14/08/05 16:55:45 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 16:55:45 INFO DAGScheduler: running: Set()
+14/08/05 16:55:45 INFO DAGScheduler: waiting: Set(Stage 1)
+14/08/05 16:55:45 INFO DAGScheduler: failed: Set()
+14/08/05 16:55:45 INFO DAGScheduler: Missing parents for Stage 1: List()
+14/08/05 16:55:45 INFO DAGScheduler: Submitting Stage 1 (MappedRDD[22] at map at GraphXPartition.scala:80), which is now runnable
+14/08/05 16:55:45 INFO MemoryStore: ensureFreeSpace(2992) called with curMem=468784705, maxMem=33339683635
+14/08/05 16:55:45 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 2.9 KB, free 30.6 GB)
+14/08/05 16:55:45 INFO DAGScheduler: Submitting 6 missing tasks from Stage 1 (MappedRDD[22] at map at GraphXPartition.scala:80)
+14/08/05 16:55:45 INFO TaskSchedulerImpl: Adding task set 1.0 with 6 tasks
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 12, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 13, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 14, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 15, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 16, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 17, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:55:45 INFO Executor: Running task 0.0 in stage 1.0 (TID 12)
+14/08/05 16:55:45 INFO Executor: Running task 4.0 in stage 1.0 (TID 16)
+14/08/05 16:55:45 INFO Executor: Running task 3.0 in stage 1.0 (TID 15)
+14/08/05 16:55:45 INFO Executor: Running task 2.0 in stage 1.0 (TID 14)
+14/08/05 16:55:45 INFO Executor: Running task 5.0 in stage 1.0 (TID 17)
+14/08/05 16:55:45 INFO Executor: Running task 1.0 in stage 1.0 (TID 13)
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO BlockManager: Found block broadcast_3 locally
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_0 not found, computing it
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_4 not found, computing it
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_5 not found, computing it
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_2 not found, computing it
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_1 not found, computing it
+14/08/05 16:55:45 INFO CacheManager: Partition rdd_14_3 not found, computing it
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:45 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 9 ms
+14/08/05 16:55:49 INFO MemoryStore: ensureFreeSpace(35264560) called with curMem=468787697, maxMem=33339683635
+14/08/05 16:55:49 INFO MemoryStore: Block rdd_14_5 stored as values in memory (estimated size 33.6 MB, free 30.6 GB)
+14/08/05 16:55:49 INFO BlockManagerInfo: Added rdd_14_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 33.6 MB, free: 30.6 GB)
+14/08/05 16:55:49 INFO BlockManagerMaster: Updated info of block rdd_14_5
+14/08/05 16:55:49 INFO MemoryStore: ensureFreeSpace(37044696) called with curMem=504052257, maxMem=33339683635
+14/08/05 16:55:49 INFO MemoryStore: Block rdd_14_3 stored as values in memory (estimated size 35.3 MB, free 30.5 GB)
+14/08/05 16:55:49 INFO BlockManagerInfo: Added rdd_14_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 35.3 MB, free: 30.5 GB)
+14/08/05 16:55:49 INFO BlockManagerMaster: Updated info of block rdd_14_3
+14/08/05 16:55:50 INFO MemoryStore: ensureFreeSpace(33087568) called with curMem=541096953, maxMem=33339683635
+14/08/05 16:55:50 INFO MemoryStore: Block rdd_14_4 stored as values in memory (estimated size 31.6 MB, free 30.5 GB)
+14/08/05 16:55:50 INFO BlockManagerInfo: Added rdd_14_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 31.6 MB, free: 30.5 GB)
+14/08/05 16:55:50 INFO BlockManagerMaster: Updated info of block rdd_14_4
+14/08/05 16:55:51 INFO Executor: Finished task 3.0 in stage 1.0 (TID 15). 1315 bytes result sent to driver
+14/08/05 16:55:51 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 15) in 5441 ms on localhost (1/6)
+14/08/05 16:55:51 INFO Executor: Finished task 5.0 in stage 1.0 (TID 17). 1315 bytes result sent to driver
+14/08/05 16:55:51 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 17) in 5601 ms on localhost (2/6)
+14/08/05 16:55:51 INFO Executor: Finished task 4.0 in stage 1.0 (TID 16). 1315 bytes result sent to driver
+14/08/05 16:55:51 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 16) in 5910 ms on localhost (3/6)
+14/08/05 16:55:51 INFO MemoryStore: ensureFreeSpace(61379888) called with curMem=574184521, maxMem=33339683635
+14/08/05 16:55:51 INFO MemoryStore: Block rdd_14_0 stored as values in memory (estimated size 58.5 MB, free 30.5 GB)
+14/08/05 16:55:51 INFO BlockManagerInfo: Added rdd_14_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 58.5 MB, free: 30.5 GB)
+14/08/05 16:55:51 INFO BlockManagerMaster: Updated info of block rdd_14_0
+14/08/05 16:55:51 INFO MemoryStore: ensureFreeSpace(57825288) called with curMem=635564409, maxMem=33339683635
+14/08/05 16:55:51 INFO MemoryStore: Block rdd_14_2 stored as values in memory (estimated size 55.1 MB, free 30.4 GB)
+14/08/05 16:55:51 INFO BlockManagerInfo: Added rdd_14_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 55.1 MB, free: 30.4 GB)
+14/08/05 16:55:51 INFO BlockManagerMaster: Updated info of block rdd_14_2
+14/08/05 16:55:53 INFO BlockManager: Removing broadcast 2
+14/08/05 16:55:53 INFO BlockManager: Removing block broadcast_2
+14/08/05 16:55:53 INFO MemoryStore: Block broadcast_2 of size 4192 dropped from memory (free 32646298130)
+14/08/05 16:55:53 INFO ContextCleaner: Cleaned broadcast 2
+14/08/05 16:55:53 INFO BlockManager: Removing broadcast 1
+14/08/05 16:55:53 INFO ContextCleaner: Cleaned broadcast 1
+14/08/05 16:55:53 INFO BlockManager: Removing block broadcast_1
+14/08/05 16:55:53 INFO MemoryStore: Block broadcast_1 of size 2976 dropped from memory (free 32646301106)
+14/08/05 16:55:54 INFO MemoryStore: ensureFreeSpace(78851552) called with curMem=693382529, maxMem=33339683635
+14/08/05 16:55:54 INFO MemoryStore: Block rdd_14_1 stored as values in memory (estimated size 75.2 MB, free 30.3 GB)
+14/08/05 16:55:54 INFO BlockManagerInfo: Added rdd_14_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 75.2 MB, free: 30.3 GB)
+14/08/05 16:55:54 INFO BlockManagerMaster: Updated info of block rdd_14_1
+14/08/05 16:55:57 INFO Executor: Finished task 2.0 in stage 1.0 (TID 14). 1315 bytes result sent to driver
+14/08/05 16:55:57 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 14) in 11389 ms on localhost (4/6)
+14/08/05 16:55:57 INFO Executor: Finished task 1.0 in stage 1.0 (TID 13). 1315 bytes result sent to driver
+14/08/05 16:55:57 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 13) in 11625 ms on localhost (5/6)
+14/08/05 16:55:58 INFO Executor: Finished task 0.0 in stage 1.0 (TID 12). 1315 bytes result sent to driver
+14/08/05 16:55:58 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 12) in 13268 ms on localhost (6/6)
+14/08/05 16:55:58 INFO DAGScheduler: Stage 1 (reduce at GraphXPartition.scala:80) finished in 13.274 s
+14/08/05 16:55:58 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+14/08/05 16:55:58 INFO SparkContext: Job finished: reduce at GraphXPartition.scala:80, took 18.223519043 s
+14/08/05 16:55:58 INFO GraphXPartition: GRAPHX: INPUT /data/sdd1/xiaodi/data/in-2.0-1m
+14/08/05 16:55:58 INFO GraphXPartition: GRAPHX: PatitionStrategy EdgePartition2D
+14/08/05 16:55:58 INFO GraphXPartition: GRAPHX: ThreshHold 70
+14/08/05 16:55:58 INFO SparkContext: Starting job: reduce at VertexRDD.scala:111
+14/08/05 16:55:58 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 212 bytes
+14/08/05 16:55:58 INFO DAGScheduler: Registering RDD 16 (mapPartitions at VertexRDD.scala:452)
+14/08/05 16:55:58 INFO DAGScheduler: Registering RDD 6 (mapPartitions at VertexRDD.scala:452)
+14/08/05 16:55:58 INFO DAGScheduler: Got job 2 (reduce at VertexRDD.scala:111) with 6 output partitions (allowLocal=false)
+14/08/05 16:55:58 INFO DAGScheduler: Final stage: Stage 3(reduce at VertexRDD.scala:111)
+14/08/05 16:55:58 INFO DAGScheduler: Parents of final stage: List(Stage 5, Stage 6)
+14/08/05 16:55:58 INFO DAGScheduler: Missing parents: List(Stage 5, Stage 6)
+14/08/05 16:55:58 INFO DAGScheduler: Submitting Stage 5 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[16] at mapPartitions at VertexRDD.scala:452), which has no missing parents
+14/08/05 16:55:58 INFO MemoryStore: ensureFreeSpace(2632) called with curMem=772234081, maxMem=33339683635
+14/08/05 16:55:58 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 2.6 KB, free 30.3 GB)
+14/08/05 16:55:58 INFO DAGScheduler: Submitting 6 missing tasks from Stage 5 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[16] at mapPartitions at VertexRDD.scala:452)
+14/08/05 16:55:58 INFO TaskSchedulerImpl: Adding task set 5.0 with 6 tasks
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 18, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 19, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO DAGScheduler: Submitting Stage 6 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452), which has no missing parents
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 2.0 in stage 5.0 (TID 20, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 3.0 in stage 5.0 (TID 21, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 4.0 in stage 5.0 (TID 22, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 5.0 in stage 5.0 (TID 23, localhost, PROCESS_LOCAL, 865 bytes)
+14/08/05 16:55:58 INFO MemoryStore: ensureFreeSpace(3672) called with curMem=772236713, maxMem=33339683635
+14/08/05 16:55:58 INFO Executor: Running task 0.0 in stage 5.0 (TID 18)
+14/08/05 16:55:58 INFO Executor: Running task 5.0 in stage 5.0 (TID 23)
+14/08/05 16:55:58 INFO Executor: Running task 4.0 in stage 5.0 (TID 22)
+14/08/05 16:55:58 INFO Executor: Running task 2.0 in stage 5.0 (TID 20)
+14/08/05 16:55:58 INFO Executor: Running task 1.0 in stage 5.0 (TID 19)
+14/08/05 16:55:58 INFO Executor: Running task 3.0 in stage 5.0 (TID 21)
+14/08/05 16:55:58 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 3.6 KB, free 30.3 GB)
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block broadcast_4 locally
+14/08/05 16:55:58 INFO DAGScheduler: Submitting 6 missing tasks from Stage 6 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[6] at mapPartitions at VertexRDD.scala:452)
+14/08/05 16:55:58 INFO TaskSchedulerImpl: Adding task set 6.0 with 6 tasks
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_0 locally
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 24, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_5 locally
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_4 locally
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_3 locally
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_1 locally
+14/08/05 16:55:58 INFO BlockManager: Found block rdd_14_2 locally
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 1.0 in stage 6.0 (TID 25, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 2.0 in stage 6.0 (TID 26, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 3.0 in stage 6.0 (TID 27, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 4.0 in stage 6.0 (TID 28, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO TaskSetManager: Starting task 5.0 in stage 6.0 (TID 29, localhost, PROCESS_LOCAL, 1400 bytes)
+14/08/05 16:55:58 INFO Executor: Running task 0.0 in stage 6.0 (TID 24)
+14/08/05 16:55:58 INFO Executor: Running task 1.0 in stage 6.0 (TID 25)
+14/08/05 16:55:58 INFO Executor: Running task 2.0 in stage 6.0 (TID 26)
+14/08/05 16:55:58 INFO Executor: Running task 3.0 in stage 6.0 (TID 27)
+14/08/05 16:55:58 INFO Executor: Running task 4.0 in stage 6.0 (TID 28)
+14/08/05 16:55:58 INFO Executor: Running task 5.0 in stage 6.0 (TID 29)
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_5 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block broadcast_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_0 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_1 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_2 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_3 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_4 locally
+14/08/05 16:55:59 INFO BlockManager: Found block rdd_3_5 locally
+14/08/05 16:56:00 INFO Executor: Finished task 4.0 in stage 5.0 (TID 22). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 4.0 in stage 5.0 (TID 22) in 1147 ms on localhost (1/6)
+14/08/05 16:56:00 INFO Executor: Finished task 5.0 in stage 5.0 (TID 23). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO Executor: Finished task 3.0 in stage 5.0 (TID 21). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 5.0 in stage 5.0 (TID 23) in 1203 ms on localhost (2/6)
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 3.0 in stage 5.0 (TID 21) in 1214 ms on localhost (3/6)
+14/08/05 16:56:00 INFO Executor: Finished task 4.0 in stage 6.0 (TID 28). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 4.0 in stage 6.0 (TID 28) in 1380 ms on localhost (1/6)
+14/08/05 16:56:00 INFO Executor: Finished task 2.0 in stage 6.0 (TID 26). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 2.0 in stage 6.0 (TID 26) in 1397 ms on localhost (2/6)
+14/08/05 16:56:00 INFO Executor: Finished task 0.0 in stage 6.0 (TID 24). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO Executor: Finished task 1.0 in stage 6.0 (TID 25). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO Executor: Finished task 5.0 in stage 6.0 (TID 29). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 24) in 1473 ms on localhost (3/6)
+14/08/05 16:56:00 INFO Executor: Finished task 3.0 in stage 6.0 (TID 27). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 1.0 in stage 6.0 (TID 25) in 1477 ms on localhost (4/6)
+14/08/05 16:56:00 INFO Executor: Finished task 2.0 in stage 5.0 (TID 20). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 5.0 in stage 6.0 (TID 29) in 1478 ms on localhost (5/6)
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 3.0 in stage 6.0 (TID 27) in 1491 ms on localhost (6/6)
+14/08/05 16:56:00 INFO DAGScheduler: Stage 6 (mapPartitions at VertexRDD.scala:452) finished in 1.504 s
+14/08/05 16:56:00 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool 
+14/08/05 16:56:00 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 16:56:00 INFO DAGScheduler: running: Set(Stage 5)
+14/08/05 16:56:00 INFO DAGScheduler: waiting: Set(Stage 3)
+14/08/05 16:56:00 INFO DAGScheduler: failed: Set()
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 2.0 in stage 5.0 (TID 20) in 1515 ms on localhost (4/6)
+14/08/05 16:56:00 INFO DAGScheduler: Missing parents for Stage 3: List(Stage 5)
+14/08/05 16:56:00 INFO Executor: Finished task 0.0 in stage 5.0 (TID 18). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 18) in 1563 ms on localhost (5/6)
+14/08/05 16:56:00 INFO Executor: Finished task 1.0 in stage 5.0 (TID 19). 1881 bytes result sent to driver
+14/08/05 16:56:00 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 19) in 1795 ms on localhost (6/6)
+14/08/05 16:56:00 INFO DAGScheduler: Stage 5 (mapPartitions at VertexRDD.scala:452) finished in 1.802 s
+14/08/05 16:56:00 INFO DAGScheduler: looking for newly runnable stages
+14/08/05 16:56:00 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+14/08/05 16:56:00 INFO DAGScheduler: running: Set()
+14/08/05 16:56:00 INFO DAGScheduler: waiting: Set(Stage 3)
+14/08/05 16:56:00 INFO DAGScheduler: failed: Set()
+14/08/05 16:56:00 INFO DAGScheduler: Missing parents for Stage 3: List()
+14/08/05 16:56:00 INFO DAGScheduler: Submitting Stage 3 (MappedRDD[23] at map at VertexRDD.scala:111), which is now runnable
+14/08/05 16:56:00 INFO MemoryStore: ensureFreeSpace(4136) called with curMem=772240385, maxMem=33339683635
+14/08/05 16:56:00 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 4.0 KB, free 30.3 GB)
+14/08/05 16:56:00 INFO DAGScheduler: Submitting 6 missing tasks from Stage 3 (MappedRDD[23] at map at VertexRDD.scala:111)
+14/08/05 16:56:00 INFO TaskSchedulerImpl: Adding task set 3.0 with 6 tasks
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 30, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 31, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 32, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 33, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 4.0 in stage 3.0 (TID 34, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO TaskSetManager: Starting task 5.0 in stage 3.0 (TID 35, localhost, PROCESS_LOCAL, 1293 bytes)
+14/08/05 16:56:00 INFO Executor: Running task 0.0 in stage 3.0 (TID 30)
+14/08/05 16:56:00 INFO Executor: Running task 3.0 in stage 3.0 (TID 33)
+14/08/05 16:56:00 INFO Executor: Running task 4.0 in stage 3.0 (TID 34)
+14/08/05 16:56:00 INFO Executor: Running task 5.0 in stage 3.0 (TID 35)
+14/08/05 16:56:00 INFO Executor: Running task 2.0 in stage 3.0 (TID 32)
+14/08/05 16:56:00 INFO Executor: Running task 1.0 in stage 3.0 (TID 31)
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO BlockManager: Found block broadcast_6 locally
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_0 not found, computing it
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_4 not found, computing it
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_5 not found, computing it
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_2 not found, computing it
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_3 not found, computing it
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO CacheManager: Partition rdd_9_1 not found, computing it
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 2 ms
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:00 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 2 ms
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9859312) called with curMem=772244521, maxMem=33339683635
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_0 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_0
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9861096) called with curMem=782103833, maxMem=33339683635
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_2 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_2 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_2
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9857024) called with curMem=791964929, maxMem=33339683635
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_1 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_1 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_1
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9862768) called with curMem=801821953, maxMem=33339683635
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_5 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9861040) called with curMem=811684721, maxMem=33339683635
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_3 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_5 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO MemoryStore: ensureFreeSpace(9863768) called with curMem=821545761, maxMem=33339683635
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_5
+14/08/05 16:56:01 INFO MemoryStore: Block rdd_9_4 stored as values in memory (estimated size 9.4 MB, free 30.3 GB)
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_3 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_3
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 16:56:01 INFO BlockManagerInfo: Added rdd_9_4 in memory on brick0.ipads-lab.se.sjtu.edu.cn:57858 (size: 9.4 MB, free: 30.3 GB)
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO BlockManagerMaster: Updated info of block rdd_9_4
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 1 ms
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: maxBytesInFlight: 50331648, targetRequestSize: 10066329
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Getting 6 non-empty blocks out of 6 blocks
+14/08/05 16:56:01 INFO BlockFetcherIterator$BasicBlockFetcherIterator: Started 0 remote fetches in 0 ms
+14/08/05 16:56:01 INFO Executor: Finished task 0.0 in stage 3.0 (TID 30). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 30) in 1097 ms on localhost (1/6)
+14/08/05 16:56:01 INFO Executor: Finished task 2.0 in stage 3.0 (TID 32). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO TaskSetManager: Finished task 2.0 in stage 3.0 (TID 32) in 1132 ms on localhost (2/6)
+14/08/05 16:56:01 INFO Executor: Finished task 1.0 in stage 3.0 (TID 31). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 31) in 1145 ms on localhost (3/6)
+14/08/05 16:56:01 INFO Executor: Finished task 5.0 in stage 3.0 (TID 35). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO Executor: Finished task 3.0 in stage 3.0 (TID 33). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO TaskSetManager: Finished task 5.0 in stage 3.0 (TID 35) in 1178 ms on localhost (4/6)
+14/08/05 16:56:01 INFO Executor: Finished task 4.0 in stage 3.0 (TID 34). 1315 bytes result sent to driver
+14/08/05 16:56:01 INFO TaskSetManager: Finished task 3.0 in stage 3.0 (TID 33) in 1187 ms on localhost (5/6)
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 4.0 in stage 3.0 (TID 34) in 1191 ms on localhost (6/6)
+14/08/05 16:56:02 INFO DAGScheduler: Stage 3 (reduce at VertexRDD.scala:111) finished in 1.201 s
+14/08/05 16:56:02 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+14/08/05 16:56:02 INFO SparkContext: Job finished: reduce at VertexRDD.scala:111, took 3.066385242 s
+14/08/05 16:56:02 INFO GraphXPartition: GRAPHX: Number of vertices 1000000
+14/08/05 16:56:02 INFO SparkContext: Starting job: count at GraphXPartition.scala:86
+14/08/05 16:56:02 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 212 bytes
+14/08/05 16:56:02 INFO DAGScheduler: Got job 3 (count at GraphXPartition.scala:86) with 6 output partitions (allowLocal=false)
+14/08/05 16:56:02 INFO DAGScheduler: Final stage: Stage 7(count at GraphXPartition.scala:86)
+14/08/05 16:56:02 INFO DAGScheduler: Parents of final stage: List(Stage 8)
+14/08/05 16:56:02 INFO DAGScheduler: Missing parents: List()
+14/08/05 16:56:02 INFO DAGScheduler: Submitting Stage 7 (EdgeRDD[15] at RDD at EdgeRDD.scala:35), which has no missing parents
+14/08/05 16:56:02 INFO MemoryStore: ensureFreeSpace(2808) called with curMem=831409529, maxMem=33339683635
+14/08/05 16:56:02 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 2.7 KB, free 30.3 GB)
+14/08/05 16:56:02 INFO DAGScheduler: Submitting 6 missing tasks from Stage 7 (EdgeRDD[15] at RDD at EdgeRDD.scala:35)
+14/08/05 16:56:02 INFO TaskSchedulerImpl: Adding task set 7.0 with 6 tasks
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 36, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 1.0 in stage 7.0 (TID 37, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 2.0 in stage 7.0 (TID 38, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 3.0 in stage 7.0 (TID 39, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 4.0 in stage 7.0 (TID 40, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO TaskSetManager: Starting task 5.0 in stage 7.0 (TID 41, localhost, PROCESS_LOCAL, 876 bytes)
+14/08/05 16:56:02 INFO Executor: Running task 0.0 in stage 7.0 (TID 36)
+14/08/05 16:56:02 INFO Executor: Running task 1.0 in stage 7.0 (TID 37)
+14/08/05 16:56:02 INFO Executor: Running task 5.0 in stage 7.0 (TID 41)
+14/08/05 16:56:02 INFO Executor: Running task 3.0 in stage 7.0 (TID 39)
+14/08/05 16:56:02 INFO Executor: Running task 4.0 in stage 7.0 (TID 40)
+14/08/05 16:56:02 INFO Executor: Running task 2.0 in stage 7.0 (TID 38)
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block broadcast_7 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_0 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_1 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_4 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_3 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_5 locally
+14/08/05 16:56:02 INFO BlockManager: Found block rdd_14_2 locally
+14/08/05 16:56:02 INFO Executor: Finished task 5.0 in stage 7.0 (TID 41). 1708 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 5.0 in stage 7.0 (TID 41) in 108 ms on localhost (1/6)
+14/08/05 16:56:02 INFO Executor: Finished task 4.0 in stage 7.0 (TID 40). 1708 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 4.0 in stage 7.0 (TID 40) in 117 ms on localhost (2/6)
+14/08/05 16:56:02 INFO Executor: Finished task 3.0 in stage 7.0 (TID 39). 1708 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 3.0 in stage 7.0 (TID 39) in 128 ms on localhost (3/6)
+14/08/05 16:56:02 INFO Executor: Finished task 2.0 in stage 7.0 (TID 38). 1709 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 2.0 in stage 7.0 (TID 38) in 165 ms on localhost (4/6)
+14/08/05 16:56:02 INFO Executor: Finished task 0.0 in stage 7.0 (TID 36). 1709 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 36) in 179 ms on localhost (5/6)
+14/08/05 16:56:02 INFO Executor: Finished task 1.0 in stage 7.0 (TID 37). 1709 bytes result sent to driver
+14/08/05 16:56:02 INFO TaskSetManager: Finished task 1.0 in stage 7.0 (TID 37) in 186 ms on localhost (6/6)
+14/08/05 16:56:02 INFO DAGScheduler: Stage 7 (count at GraphXPartition.scala:86) finished in 0.192 s
+14/08/05 16:56:02 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+14/08/05 16:56:02 INFO SparkContext: Job finished: count at GraphXPartition.scala:86, took 0.207364649 s
+14/08/05 16:56:02 INFO GraphXPartition: GRAPHX: Number of edges 8179662
+14/08/05 16:56:02 INFO GraphXPartition: GRAPHX: Number of replications 3523256
+14/08/05 16:56:02 INFO GraphXPartition: GRAPHX: Number of partitions 6
