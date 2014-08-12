@@ -187,10 +187,10 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           // val DegreeCount : Int = inDegrees.lookup(dst).head
           if (DegreeCount > ThreshHold) {
               // high-cut
-              part = math.abs(srcId).toInt.hashCode % numParts
+              part = (math.abs(srcId).hashCode % numParts).toInt
             } else {
               // low-cut
-              part = math.abs(dstId).toInt.hashCode % numParts
+              part = (math.abs(dstId).hashCode % numParts).toInt
             } 
 
           // Should we be using 3-tuple or an optimized class

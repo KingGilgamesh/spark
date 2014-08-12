@@ -86,7 +86,7 @@ object PartitionStrategy {
       val mixingPrime: VertexId = 1125899906842597L
       val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
       val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
-      (col * ceilSqrtNumParts + row) % numParts
+      ((col * ceilSqrtNumParts + row) % numParts).toInt
     }
   }
 
@@ -105,14 +105,14 @@ object PartitionStrategy {
 
   /**
    * Assigns edges to partitions using only the destination vertex ID, colocating edges with the same
-   * source.
+   * destination.
    */
   case object EdgePartition1DDst extends PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
     : PartitionID = {
       val mixingPrime: VertexId = 1125899906842597L
-      (math.abs(dst) * mixingPrime).toInt % numParts
+      ((math.abs(dst) * mixingPrime) % numParts).toInt
     }
   }
 
@@ -125,7 +125,7 @@ object PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
     : PartitionID = {
-      math.abs((src, dst).hashCode()) % numParts
+      (math.abs((src, dst).hashCode()) % numParts).toInt
     }
   }
 
@@ -140,9 +140,9 @@ object PartitionStrategy {
       src: VertexId, dst: VertexId, numParts: PartitionID)
     : PartitionID = {
       if (src < dst) {
-        math.abs((src, dst).hashCode()) % numParts
+        (math.abs((src, dst).hashCode()) % numParts).toInt
       } else {
-        math.abs((dst, src).hashCode()) % numParts
+        (math.abs((dst, src).hashCode()) % numParts).toInt
       }
     }
   }
@@ -194,7 +194,7 @@ object PartitionStrategy {
       //     math.abs(dst).toInt % numParts
       //   }
       // dummy
-      math.abs(dst).toInt % numParts
+      (math.abs(dst) % numParts).toInt
     }
   }
 
@@ -202,7 +202,7 @@ object PartitionStrategy {
       override def getPartition(
         src: VertexId, dst: VertexId, numParts: PartitionID)
       : PartitionID = {
-          math.abs(dst).toInt % numParts
+          (math.abs(dst) % numParts).toInt
       }
     }
 
@@ -210,7 +210,7 @@ object PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
     : PartitionID = {
-        math.abs(dst).toInt % numParts
+        (math.abs(dst) % numParts).toInt
     }
   }
 

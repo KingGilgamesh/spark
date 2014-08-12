@@ -99,10 +99,6 @@ object GraphXPartition extends Logging {
         pw2.write(stringOf(dataDst))
          */
 
-        // vertices per partition
-        graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect()
-        graph.edges.partitionsRDD.mapValues((V) => (V.srcIds.length)).collect()
-
         logInfo("GRAPHX: INPUT " + fname + reverseString)
         logInfo("GRAPHX: PatitionStrategy " + StrategyName)
         logInfo("GRAPHX: ThreshHold " + threshHold)
@@ -111,5 +107,14 @@ object GraphXPartition extends Logging {
         logInfo("GRAPHX: Number of replications " + replications)
         logInfo("GRAPHX: Number of partitions " + numEPart)
 
+        // vertices per partition
+        import scala.runtime.ScalaRunTime._
+        val psrc = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.srcIds.length)).collect())
+        val pdst = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect())
+        logInfo("GRAPHX: psrc " + psrc) 
+        logInfo("GRAPHX: pdst " + pdst)
+  //      val pw1 = new java.io.PrintWriter(new java.io.File(StrategyName+fname.replace("/","_")+numEPart.toString+".txt"))
+  //      pw1.write(psrc)
+  //      pw1.write(pdst)
         }
   }
