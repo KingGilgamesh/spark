@@ -107,12 +107,15 @@ object GraphXPartition extends Logging {
         logInfo("GRAPHX: Number of replications " + replications)
         logInfo("GRAPHX: Number of partitions " + numEPart)
 
-        // vertices per partition
+        // unique vertices per partition
         import scala.runtime.ScalaRunTime._
-        val psrc = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.srcIds.length)).collect())
-        val pdst = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect())
-        logInfo("GRAPHX: psrc " + psrc) 
-        logInfo("GRAPHX: pdst " + pdst)
+        val vertices = stringOf(graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).collect())
+        logInfo("GRAPHX: stat_vertices " + vertices) 
+
+        // edges per partition
+        val edges  = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect())
+        logInfo("GRAPHX: stat_edges " + edges) 
+
   //      val pw1 = new java.io.PrintWriter(new java.io.File(StrategyName+fname.replace("/","_")+numEPart.toString+".txt"))
   //      pw1.write(psrc)
   //      pw1.write(pdst)

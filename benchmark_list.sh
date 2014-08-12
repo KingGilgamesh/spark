@@ -177,29 +177,29 @@
 
 #Tue Aug 12 11:26:32 CST 2014 full suite, retest, because of toInt overflow ...
 
-#. benchmark.sh in-2.0-1m 16 0 false HybridCut
-#. benchmark.sh in-2.0-1m 16 100 false HybridCut
-#. benchmark.sh in-2.0-1m 16 1000000 false HybridCut
-#. benchmark.sh in-2.0-1m 16 0 false EdgePartition2D
-#. benchmark.sh in-2.0-1m 16 0 false EdgePartition1DDst
-#. benchmark.sh in-2.0-1m 16 0 false RandomVertexCut
-#. benchmark.sh in-2.0-1m 16 0 false CanonicalRandomVertexCut
-#
-#. benchmark.sh in-2.0-1m 25 0 false HybridCut
-#. benchmark.sh in-2.0-1m 25 100 false HybridCut
+. benchmark.sh in-2.0-1m 16 0 false HybridCut
+. benchmark.sh in-2.0-1m 16 100 false HybridCut
+. benchmark.sh in-2.0-1m 16 1000000 false HybridCut
+. benchmark.sh in-2.0-1m 16 0 false EdgePartition2D
+. benchmark.sh in-2.0-1m 16 0 false EdgePartition1DDst
+. benchmark.sh in-2.0-1m 16 0 false RandomVertexCut
+. benchmark.sh in-2.0-1m 16 0 false CanonicalRandomVertexCut
+
+. benchmark.sh in-2.0-1m 25 0 false HybridCut
+. benchmark.sh in-2.0-1m 25 100 false HybridCut
 . benchmark.sh in-2.0-1m 25 1000000 false HybridCut
-#. benchmark.sh in-2.0-1m 25 0 false EdgePartition2D
+. benchmark.sh in-2.0-1m 25 0 false EdgePartition2D
 . benchmark.sh in-2.0-1m 25 0 false EdgePartition1DDst
-#. benchmark.sh in-2.0-1m 25 0 false RandomVertexCut
-#. benchmark.sh in-2.0-1m 25 0 false CanonicalRandomVertexCut
-#
-#. benchmark.sh in-2.0-1m 48 0 false HybridCut
-#. benchmark.sh in-2.0-1m 48 100 false HybridCut
+. benchmark.sh in-2.0-1m 25 0 false RandomVertexCut
+. benchmark.sh in-2.0-1m 25 0 false CanonicalRandomVertexCut
+
+. benchmark.sh in-2.0-1m 48 0 false HybridCut
+. benchmark.sh in-2.0-1m 48 100 false HybridCut
 . benchmark.sh in-2.0-1m 48 1000000 false HybridCut
-#. benchmark.sh in-2.0-1m 48 0 false EdgePartition2D
+. benchmark.sh in-2.0-1m 48 0 false EdgePartition2D
 . benchmark.sh in-2.0-1m 48 0 false EdgePartition1DDst
-#. benchmark.sh in-2.0-1m 48 0 false RandomVertexCut
-#. benchmark.sh in-2.0-1m 48 0 false CanonicalRandomVertexCut
+. benchmark.sh in-2.0-1m 48 0 false RandomVertexCut
+. benchmark.sh in-2.0-1m 48 0 false CanonicalRandomVertexCut
 
 #. benchmark.sh in-2.0-1m 48 36 false HybridCut
 

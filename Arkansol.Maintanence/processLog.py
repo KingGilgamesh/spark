@@ -6,6 +6,7 @@
 # @Last Modified time: 2014-07-30 09:30:18
 
 import sys
+import numpy
 
 # pagerank output format
 # from lib/Analytics.scala
@@ -32,5 +33,6 @@ for line in sys.stdin:
 		output.append(line.split()[7])
 	if "rank" in line:
 		output.append(line.split()[-1])
+
 for i in [','.join(output[11 * i: 11 * i + 11]) for i in range(0, len(output) / 11)]:
 	print i
