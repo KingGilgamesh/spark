@@ -7,7 +7,7 @@
 # for i in HybridCut EdgePartition2D EdgePartition1D RandomVertexCut CanonicalRandomVertexCut;
 # for i in HybridCut; 
 # do
-	echo $i\_$1\_$2;
+	echo $5\_$1\_$2\_$3\_$4;
 	# echo /data/sdd1/xiaodi/data/$i\_$1\_$2;
-	MASTER=spark://brick0:7077 ./bin/run-example benchmark.GraphXPartition /data/sdd1/xiaodi/data/$1 $5 --numEPart=$2 --threshHold=$3 --reverse=$4 2>&1 | tee $(date +"%Y%m%d-%H%M")_$i\_$1\_$2\_$3.txt;
+	MASTER=spark://brick0:7077 ./bin/run-example benchmark.GraphXPartition /data/sdd1/xiaodi/data/$1 $5 --numEPart=$2 --threshHold=$3 --reverse=$4 2>&1 | tee $(date +"%Y%m%d-%H%M")_$5\_$1\_$2\_$3\_$4.txt;
 # done

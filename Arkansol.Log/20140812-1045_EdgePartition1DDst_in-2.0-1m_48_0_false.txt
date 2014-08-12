@@ -1,0 +1,115 @@
+/data/sdd1/xiaodi/spark/conf/spark-env.sh: line 53: ulimit: open files: cannot modify limit: Operation not permitted
+Warning: SPARK_MEM is deprecated, please use a more specific config option
+(e.g., spark.executor.memory or SPARK_DRIVER_MEMORY).
+======================================
+|     benchmark: GraphXPartition     |
+======================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/08/12 10:46:00 WARN SparkConf: 
+SPARK_JAVA_OPTS was detected (set to '-Dspark.executor.memory=60g').
+This is deprecated in Spark 1.0+.
+
+Please instead use:
+ - ./spark-submit with conf/spark-defaults.conf to set defaults for an application
+ - ./spark-submit with --driver-java-options to set -X options for a driver
+ - spark.executor.extraJavaOptions to set -X options for executors
+ - SPARK_DAEMON_JAVA_OPTS to set java options for standalone daemons (master or worker)
+        
+14/08/12 10:46:00 WARN SparkConf: Setting 'spark.executor.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/12 10:46:00 WARN SparkConf: Setting 'spark.driver.extraJavaOptions' to '-Dspark.executor.memory=60g' as a work-around.
+14/08/12 10:46:00 INFO SecurityManager: Changing view acls to: xiaodi
+14/08/12 10:46:00 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(xiaodi)
+14/08/12 10:46:01 INFO Slf4jLogger: Slf4jLogger started
+14/08/12 10:46:01 INFO Remoting: Starting remoting
+14/08/12 10:46:02 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:56160]
+14/08/12 10:46:02 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@brick0.ipads-lab.se.sjtu.edu.cn:56160]
+14/08/12 10:46:02 INFO SparkEnv: Registering MapOutputTracker
+14/08/12 10:46:02 INFO SparkEnv: Registering BlockManagerMaster
+14/08/12 10:46:02 INFO DiskBlockManager: Created local directory at /tmp/spark-local-20140812104602-aef8
+14/08/12 10:46:02 INFO ConnectionManager: Bound socket to port 60794 with id = ConnectionManagerId(brick0.ipads-lab.se.sjtu.edu.cn,60794)
+14/08/12 10:46:02 INFO MemoryStore: MemoryStore started with capacity 31.0 GB
+14/08/12 10:46:02 INFO BlockManagerMaster: Trying to register BlockManager
+14/08/12 10:46:02 INFO BlockManagerMasterActor: received a register
+14/08/12 10:46:02 INFO BlockManagerMasterActor: Registering block manager brick0.ipads-lab.se.sjtu.edu.cn:60794 with 31.0 GB RAM
+14/08/12 10:46:02 INFO BlockManagerMaster: Registered BlockManager
+14/08/12 10:46:02 INFO HttpFileServer: HTTP File server directory is /tmp/spark-f0667aba-3dec-47e4-a173-1184301811f2
+14/08/12 10:46:02 INFO HttpServer: Starting HTTP Server
+14/08/12 10:46:02 WARN JettyUtils: Failed to create UI on port 4040. Trying again on port 4041. - Failure(java.net.BindException: Address already in use)
+14/08/12 10:46:02 WARN JettyUtils: Failed to create UI on port 4041. Trying again on port 4042. - Failure(java.net.BindException: Address already in use)
+14/08/12 10:46:02 INFO SparkUI: Started SparkUI at http://brick0.ipads-lab.se.sjtu.edu.cn:4042
+14/08/12 10:46:03 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/08/12 10:46:03 INFO EventLoggingListener: Logging events to file:/tmp/spark-events//pagerank(-data-sdd1-xiaodi-data-in-2.0-1m)-edgepartition1ddst-1407811563441
+14/08/12 10:46:03 INFO SparkContext: Added JAR file:/data/sdd1/xiaodi/spark/examples/target/scala-2.10/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar at http://192.168.12.124:59816/jars/spark-examples-1.1.0-SNAPSHOT-hadoop1.0.4.jar with timestamp 1407811563913
+14/08/12 10:46:04 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(42049) called with curMem=0, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 41.1 KB, free 31.0 GB)
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(72) called with curMem=42049, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_0_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerInfo: Added broadcast_0_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:60794 (size: 72.0 B, free: 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerMaster: Updated info of block broadcast_0_meta
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(6720) called with curMem=42121, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_0_piece0 stored as values in memory (estimated size 6.6 KB, free 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:60794 (size: 6.6 KB, free: 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerMaster: Updated info of block broadcast_0_piece0
+14/08/12 10:46:04 WARN LoadSnappy: Snappy native library not loaded
+14/08/12 10:46:04 INFO FileInputFormat: Total input paths to process : 1
+14/08/12 10:46:04 INFO SparkContext: Starting job: count at GraphLoader.scala:87
+14/08/12 10:46:04 INFO DAGScheduler: Got job 0 (count at GraphLoader.scala:87) with 48 output partitions (allowLocal=false)
+14/08/12 10:46:04 INFO DAGScheduler: Final stage: Stage 0(count at GraphLoader.scala:87)
+14/08/12 10:46:04 INFO DAGScheduler: Parents of final stage: List()
+14/08/12 10:46:04 INFO DAGScheduler: Missing parents: List()
+14/08/12 10:46:04 INFO DAGScheduler: Submitting Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-2.0-1m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68), which has no missing parents
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(2976) called with curMem=48841, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 2.9 KB, free 31.0 GB)
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(72) called with curMem=51817, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_1_meta stored as values in memory (estimated size 72.0 B, free 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerInfo: Added broadcast_1_meta in memory on brick0.ipads-lab.se.sjtu.edu.cn:60794 (size: 72.0 B, free: 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerMaster: Updated info of block broadcast_1_meta
+14/08/12 10:46:04 INFO MemoryStore: ensureFreeSpace(3032) called with curMem=51889, maxMem=33339683635
+14/08/12 10:46:04 INFO MemoryStore: Block broadcast_1_piece0 stored as values in memory (estimated size 3.0 KB, free 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on brick0.ipads-lab.se.sjtu.edu.cn:60794 (size: 3.0 KB, free: 31.0 GB)
+14/08/12 10:46:04 INFO BlockManagerMaster: Updated info of block broadcast_1_piece0
+14/08/12 10:46:04 INFO DAGScheduler: Submitting 48 missing tasks from Stage 0 (GraphLoader.edgeListFile - edges (/data/sdd1/xiaodi/data/in-2.0-1m) MapPartitionsRDD[3] at mapPartitionsWithIndex at GraphLoader.scala:68)
+14/08/12 10:46:04 INFO TaskSchedulerImpl: Adding task set 0.0 with 48 tasks
+14/08/12 10:46:19 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:19 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:19 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:19 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:19 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient memory
+14/08/12 10:46:24 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/08/12 10:46:24 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:24 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:24 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:24 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:34 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient memory
+14/08/12 10:46:44 INFO AppClient$ClientActor: Connecting to master spark://brick0:7077...
+14/08/12 10:46:44 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:44 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:44 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:44 WARN AppClient$ClientActor: Could not connect to akka.tcp://sparkMaster@brick0:7077: akka.remote.EndpointAssociationException: Association failed with [akka.tcp://sparkMaster@brick0:7077]
+14/08/12 10:46:49 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient memory
+14/08/12 10:47:04 ERROR SparkDeploySchedulerBackend: Application has been killed. Reason: All masters are unresponsive! Giving up.
+14/08/12 10:47:04 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+14/08/12 10:47:04 INFO TaskSchedulerImpl: Cancelling stage 0
+14/08/12 10:47:04 INFO DAGScheduler: Failed to run count at GraphLoader.scala:87
+Exception in thread "main" org.apache.spark.SparkException: Job aborted due to stage failure: All masters are unresponsive! Giving up.
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1128)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1117)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1116)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1116)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:682)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:682)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:682)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessActor$$anonfun$receive$2.applyOrElse(DAGScheduler.scala:1334)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:498)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:456)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:237)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:219)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
