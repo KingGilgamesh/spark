@@ -184,13 +184,18 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           val DegreeCount = e._2._2
           val numParts = numPartitions
           
+          val mixingPrime: VertexId = 1125899906842597L
           // val DegreeCount : Int = inDegrees.lookup(dst).head
           if (DegreeCount > ThreshHold) {
               // high-cut
-              part = (math.abs(srcId).hashCode % numParts).toInt
+              // hash code
+              //part = (math.abs(srcId).hashCode % numParts).toInt
+              part = ((math.abs(srcId) * mixingPrime) % numParts).toInt
             } else {
               // low-cut
-              part = (math.abs(dstId).hashCode % numParts).toInt
+              // hash code
+              //part = (math.abs(dstId).hashCode % numParts).toInt
+              part = ((math.abs(dstId) * mixingPrime) % numParts).toInt
             } 
 
           // Should we be using 3-tuple or an optimized class
