@@ -127,11 +127,12 @@ object GraphXPartition extends Logging {
 
         if (run) {
           val pr = (
-            if (numIter > 0)
+            if (numIter > 0){
               PageRank.run(graph, numIter)
-            else
-              PageRank.runUntilConvergence(graph, tol)
+            } else {
               logInfo("GRAPHX: Requirement PageRank" + tol)
+              PageRank.runUntilConvergence(graph, tol)
+            }
           ).vertices.cache()
           logInfo("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
         }

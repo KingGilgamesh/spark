@@ -25,6 +25,8 @@ class ReportEntry:
 	Requirement = ''
 	TimetoExecute = ''
 	Result = ''
+	ShuffleRead = ''
+	ShuffleWrite = ''
 
 out = ReportEntry()
 # out.Factor = '1'
@@ -69,7 +71,7 @@ for line in sys.stdin:
 		out.BalanceVertex.append(str(numpy.average(narray)))
 		out.BalanceVertex.append(str(numpy.min(narray)))
 		out.BalanceVertex.append(str(numpy.max(narray)))
-		out.BalanceVertex.append(str((numpy.max(narray)-numpy.min(narray)/numpy.average(narray))))
+		out.BalanceVertex.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
 	if "stat_edges" in line:
 		stringlist = line.split("Array")[1].replace("(","").replace(")","").split(",")[1::2]
 #		print stringlist
@@ -80,7 +82,21 @@ for line in sys.stdin:
 		out.BalanceEdge.append(str(numpy.average(narray)))
 		out.BalanceEdge.append(str(numpy.min(narray)))
 		out.BalanceEdge.append(str(numpy.max(narray)))
-		out.BalanceEdge.append(str((numpy.max(narray)-numpy.min(narray)/numpy.average(narray))))
+		out.BalanceEdge.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
+	if "SparkDeploySchedulerBackend: Connected to Spark cluster with app ID" in line:
+		import urllib2
+		# get correct ID, and omit newline \n
+		appID = line.split('ID ')[1][:-1]
+		url = 'http://brick0:8080/history/' + appID + '/executors/'
+		response = urllib2.urlopen(url)
+		html = response.read()
+		import re
+		matchObj = re.findall(r'<td sorttable_customkey="(.*?)">', html)
+		# shuffle read
+		out.ShuffleRead = str(sum(map(int,matchObj[4::6])))
+		# shuffle write
+		out.ShuffleWrite = str(sum(map(int,matchObj[5::6])))
+
 
 out.Factor = str( float(out.Replications) / float(out.Vertices) )
 #print out.DateTime
@@ -103,10 +119,10 @@ out.Factor = str( float(out.Replications) / float(out.Vertices) )
 #print out.Result
 
 sys.stdout.write( out.DateTime + ',' )
+sys.stdout.write( out.Strategy + ',' )
 sys.stdout.write( out.TimetoLoad + ',' )
 sys.stdout.write( out.TimetoPartition + ',' )
 sys.stdout.write( out.Data + ',' )
-sys.stdout.write( out.Strategy + ',' )
 sys.stdout.write( out.ThreshHold + ',' )
 sys.stdout.write( out.Vertices + ',' )
 sys.stdout.write( out.Edges + ',' )
@@ -119,4 +135,6 @@ for i in out.BalanceEdge:
 	sys.stdout.write( i + ',' )
 sys.stdout.write( out.Requirement + ',' )
 sys.stdout.write( out.TimetoExecute + ',' )
-sys.stdout.write( out.Result + '\n' )
+sys.stdout.write( out.Result + ',' )
+sys.stdout.write( out.ShuffleRead + ',' )
+sys.stdout.write( out.ShuffleWrite + '\n' )
