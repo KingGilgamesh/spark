@@ -4,6 +4,7 @@ import scala.collection.mutable
 import org.apache.spark._
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.graphx._
+import org.apache.spark.graphx.lib._
 import org.apache.spark.graphx.PartitionStrategy._
 
 // for PairRDDFunctions
@@ -13,7 +14,7 @@ object GraphXPartition extends Logging {
   def main(args: Array[String]) {
     if (args.length < 2) {
       System.err.println(
-        "Usage: GraphXPartition <file> <strategy> --numEPart=<num_edge_partitions> --threshHold=<threshold> [other options]")
+        "Usage: GraphXPartition <file> <strategy> --numEPart=<num_edge_partitions> --threshHold=<threshold> --run=false --tol --numIter [other options]")
       System.exit(1)
     }
     val optionsList = args.drop(2).map { arg =>
@@ -60,6 +61,10 @@ object GraphXPartition extends Logging {
         val vertexStorageLevel = options.remove("vertexStorageLevel").map(StorageLevel.fromString(_)).getOrElse(StorageLevel.MEMORY_ONLY)
         val reverse = options.remove("reverse").map(_.toBoolean).getOrElse(false)
         var reverseString = ""
+
+        val run = options.remove("run").map(_.toBoolean).getOrElse(false)
+        val numIter = options.remove("numIter").map(_.toInt).getOrElse(0)
+        val tol = options.remove("tol").map(_.toFloat).getOrElse(0.001F)
 
         println("======================================")
         println("|     benchmark: GraphXPartition     |")
@@ -116,8 +121,20 @@ object GraphXPartition extends Logging {
         val edges  = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect())
         logInfo("GRAPHX: stat_edges " + edges) 
 
-  //      val pw1 = new java.io.PrintWriter(new java.io.File(StrategyName+fname.replace("/","_")+numEPart.toString+".txt"))
-  //      pw1.write(psrc)
-  //      pw1.write(pdst)
+        //      val pw1 = new java.io.PrintWriter(new java.io.File(StrategyName+fname.replace("/","_")+numEPart.toString+".txt"))
+        //      pw1.write(psrc)
+        //      pw1.write(pdst)
+
+        if (run) {
+          val pr = (
+            if (numIter > 0)
+              PageRank.run(graph, numIter)
+            else
+              PageRank.runUntilConvergence(graph, tol)
+              logInfo("GRAPHX: Requirement PageRank" + tol)
+          ).vertices.cache()
+          logInfo("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
+        }
+
         }
   }
