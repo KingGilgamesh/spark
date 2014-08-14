@@ -3,12 +3,11 @@
 #     File Name           :     IPADS_GraphX_Plot_Shuffle.py
 #     Created By          :     xd
 #     Creation Date       :     [2014-08-14 21:12]
-#     Last Modified       :     [2014-08-14 22:04]
+#     Last Modified       :     [2014-08-14 22:09]
 #     Description         :     report on the shuffle (cross executor communication)
 #################################################################################
 
 #!/usr/bin/env python
-# a stacked bar plot with errorbars
 import numpy as np
 import matplotlib.pyplot as plt
 

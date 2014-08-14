@@ -3,12 +3,11 @@
 #     File Name           :     IPADS_GraphX_Plot_Shuffle.py
 #     Created By          :     xd
 #     Creation Date       :     [2014-08-14 21:40]
-#     Last Modified       :     [2014-08-14 21:59]
+#     Last Modified       :     [2014-08-14 22:09]
 #     Description         :     report on the execution time
 #################################################################################
 
 #!/usr/bin/env python
-# a stacked bar plot with errorbars
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
@@ -30,7 +29,7 @@ for i in range(0, 6):
         plt.bar(ind+i*width, executionTime[i::6], width, color=cm.Paired(1.0/(i+1)))
 
 
-plt.ylabel('Execution Time (second')
+plt.ylabel('Execution Time (second)')
 plt.xlabel('Number of Partitions')
 plt.title('Execution Time (in-2.0-1m)')
 plt.xticks(ind + 2 * width, ('16', '25', '48'))
