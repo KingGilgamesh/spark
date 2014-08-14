@@ -3,7 +3,7 @@
 #     File Name           :     IPADS_GraphX_Plot.py
 #     Created By          :     xiaodi
 #     Creation Date       :     [2014-08-13 08:46]
-#     Last Modified       :     [2014-08-13 08:46]
+#     Last Modified       :     [2014-08-14 22:04]
 #     Description         :      
 #################################################################################
 
@@ -89,7 +89,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('Replication Factor')
 plt.title('Replication Factor by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()
@@ -151,7 +151,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('Ingress Time (ms)')
 plt.title('Replication Factor by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()
@@ -213,7 +213,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('stdev of vertices')
 plt.title('stdev of vertices by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()
@@ -274,7 +274,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('stdev of edges')
 plt.title('stdev of edges by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()
@@ -336,7 +336,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('(max-min)/avg of vertices')
 plt.title('(max-min)/avg of vertices by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()
@@ -397,7 +397,7 @@ plt.xlabel('# of Partitions')
 plt.ylabel('(max-min)/avg of edges')
 plt.title('(max-min)/avg of edges by # of Partitions (in-2.0-1m V1000000 E8179662)')
 plt.xticks(index + 2 * bar_width, ('16', '25', '48'))
-plt.legend()
+plt.legend(loc="upper left", ncol=2)
 
 plt.tight_layout()
 # plt.show()

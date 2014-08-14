@@ -22,7 +22,28 @@ notify (){
 #foo in-2.0-1m 25 30 false HybridCut true 0 0.01
 #foo in-2.0-1m 48 30 false HybridCut true 0 0.01
 
-#foo in-2.0-1m 16 100 false HybridCut true 0 0.01
+#foo in-2.0-1m 16 100 false HybridCut false 0 0.01
+#foo in-2.0-1m 16 30 false HybridCut false 0 0.01
+#foo in-2.0-1m 16 0 false EdgePartition2D false 0 0.01
+#foo in-2.0-1m 16 0 false EdgePartition1DDst false 0 0.01
+#foo in-2.0-1m 16 0 false RandomVertexCut false 0 0.01
+#foo in-2.0-1m 16 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo in-2.0-1m 25 100 false HybridCut false 0 0.01
+#foo in-2.0-1m 25 30 false HybridCut false 0 0.01
+#foo in-2.0-1m 25 0 false EdgePartition2D false 0 0.01
+#foo in-2.0-1m 25 0 false EdgePartition1DDst false 0 0.01
+#foo in-2.0-1m 25 0 false RandomVertexCut false 0 0.01
+#foo in-2.0-1m 25 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo in-2.0-1m 48 100 false HybridCut false 0 0.01
+#foo in-2.0-1m 48 30 false HybridCut false 0 0.01
+#foo in-2.0-1m 48 0 false EdgePartition2D false 0 0.01
+#foo in-2.0-1m 48 0 false EdgePartition1DDst false 0 0.01
+#foo in-2.0-1m 48 0 false RandomVertexCut false 0 0.01
+#foo in-2.0-1m 48 0 false CanonicalRandomVertexCut false 0 0.01
+
+#foo in-2.0-1m 16 100 false HybridCut ture 0 0.01
 #foo in-2.0-1m 16 0 false EdgePartition2D true 0 0.01
 #foo in-2.0-1m 16 0 false EdgePartition1DDst true 0 0.01
 #foo in-2.0-1m 16 0 false RandomVertexCut true 0 0.01
@@ -36,8 +57,50 @@ notify (){
 #
 #foo in-2.0-1m 48 100 false HybridCut true 0 0.01
 #foo in-2.0-1m 48 0 false EdgePartition2D true 0 0.01
-#foo in-2.0-1m 48 0 false EdgePartition1DDst true 0 0.01
-foo in-2.0-1m 48 0 false RandomVertexCut true 0 0.01
+foo in-2.0-1m 48 0 false EdgePartition1DDst true 0 0.01
+#foo in-2.0-1m 48 0 false RandomVertexCut true 0 0.01
 #foo in-2.0-1m 48 0 false CanonicalRandomVertexCut true 0 0.01
+
+#foo web-google-single 16 100 false HybridCut false 0 0.01
+#foo web-google-single 16 30 false HybridCut false 0 0.01
+#foo web-google-single 16 0 false EdgePartition2D false 0 0.01
+#foo web-google-single 16 0 false EdgePartition1DDst false 0 0.01
+#foo web-google-single 16 0 false RandomVertexCut false 0 0.01
+#foo web-google-single 16 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo web-google-single 25 100 false HybridCut false 0 0.01
+#foo web-google-single 25 30 false HybridCut false 0 0.01
+#foo web-google-single 25 0 false EdgePartition2D false 0 0.01
+#foo web-google-single 25 0 false EdgePartition1DDst false 0 0.01
+#foo web-google-single 25 0 false RandomVertexCut false 0 0.01
+#foo web-google-single 25 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo web-google-single 48 100 false HybridCut false 0 0.01
+#foo web-google-single 48 30 false HybridCut false 0 0.01
+#foo web-google-single 48 0 false EdgePartition2D false 0 0.01
+#foo web-google-single 48 0 false EdgePartition1DDst false 0 0.01
+#foo web-google-single 48 0 false RandomVertexCut false 0 0.01
+#foo web-google-single 48 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo soc-LiveJournal1.txt 16 100 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 16 30 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 16 0 false EdgePartition2D false 0 0.01
+#foo soc-LiveJournal1.txt 16 0 false EdgePartition1DDst false 0 0.01
+#foo soc-LiveJournal1.txt 16 0 false RandomVertexCut false 0 0.01
+#foo soc-LiveJournal1.txt 16 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo soc-LiveJournal1.txt 25 100 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 25 30 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 25 0 false EdgePartition2D false 0 0.01
+#foo soc-LiveJournal1.txt 25 0 false EdgePartition1DDst false 0 0.01
+#foo soc-LiveJournal1.txt 25 0 false RandomVertexCut false 0 0.01
+#foo soc-LiveJournal1.txt 25 0 false CanonicalRandomVertexCut false 0 0.01
+#
+#foo soc-LiveJournal1.txt 48 100 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 48 30 false HybridCut false 0 0.01
+#foo soc-LiveJournal1.txt 48 0 false EdgePartition2D false 0 0.01
+#foo soc-LiveJournal1.txt 48 0 false EdgePartition1DDst false 0 0.01
+#foo soc-LiveJournal1.txt 48 0 false RandomVertexCut false 0 0.01
+#foo soc-LiveJournal1.txt 48 0 false CanonicalRandomVertexCut false 0 0.01
 
 notify
