@@ -170,6 +170,13 @@ object PartitionStrategy {
       0
     }
   }
+  case object HybridCutPlus extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      0
+    }
+  }
   case object HybridCut extends PartitionStrategy {
     override def getPartition(
       src: VertexId, dst: VertexId, numParts: PartitionID)
@@ -222,6 +229,7 @@ object PartitionStrategy {
     case "EdgePartition2D" => EdgePartition2D
     case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
     case "HybridCut" => HybridCut
+    case "HybridCutPlus" => HybridCutPlus
     case "GreedyHybridCut" => GreedyHybridCut
     case "BiSrcCut" => BiSrcCut
     case "BiDstCut" => BiDstCut

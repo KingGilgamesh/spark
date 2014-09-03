@@ -170,6 +170,63 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
         }, preservesPartitioning = true)).cache()
       }
 
+      // it's actually HybridCut plus Edge2D (Grid)
+      case PartitionStrategy.HybridCutPlus => {
+        println("HybridCutPlus")
+        // val inDegrees: VertexRDD[Int] = this.inDegrees
+        val LookUpTable0 = edges.map(e => (e.dstId, (e.srcId, e.attr))).join(this.degrees.map(e => (e._1, e._2)))
+        // (dstId, ( (srcId, attr), (Total Degree Count of dst) ))
+        val LookUpTable1 = LookUpTable0.map(e => (e._2._1._1, (e._1, e._2._1._2,
+          e._2._2))).join(this.degrees.map(e => (e._1, e._2)))
+        // (srcID, ((dstId, attr, dstDegreeCount), srcDegreeCount) )
+
+        edges.withPartitionsRDD( LookUpTable1.map { e =>
+
+          var part: PartitionID = 0
+          val srcId = e._1
+          val dstId = e._2._1._1
+          val attr = e._2._1._2
+          val srcDegreeCount = e._2._2
+          val dstDegreeCount = e._2._1._3
+          val numParts = numPartitions
+          
+          val mixingPrime: VertexId = 1125899906842597L
+          var flag: Boolean = true
+          // high high : 2D
+          if (srcDegreeCount > ThreshHold && dstDegreeCount > ThreshHold) {
+            part = PartitionStrategy.EdgePartition2D.getPartition(srcId, dstId, numPartitions)
+            flag = false
+          } 
+          // high low : Low
+          if (flag && srcDegreeCount > ThreshHold){
+            part = ((math.abs(dstId) * mixingPrime) % numParts).toInt
+            flag = false
+          }
+          // low high : Low
+          if (flag && dstDegreeCount > ThreshHold){
+            part = ((math.abs(srcId) * mixingPrime) % numParts).toInt
+            flag = false
+          }
+          // low low : 2D
+          if (flag) {
+            part = PartitionStrategy.EdgePartition2D.getPartition(srcId, dstId, numPartitions)
+          } 
+
+          // Should we be using 3-tuple or an optimized class
+          // new MessageToPartition(part, (srcId, dstId, attr))
+          (part, (srcId, dstId, attr))
+        }
+        .partitionBy(new HashPartitioner(numPartitions))
+        .mapPartitionsWithIndex( { (pid, iter) =>
+          val builder = new EdgePartitionBuilder[ED, VD]()(edTag, vdTag)
+          iter.foreach { message =>
+            val data = message._2
+            builder.add(data._1, data._2, data._3)
+          }
+          val edgePartition = builder.toEdgePartition
+          Iterator((pid, edgePartition))
+        }, preservesPartitioning = true)).cache() 
+      }
 
       case PartitionStrategy.HybridCut => {
         println("HybridCut")
