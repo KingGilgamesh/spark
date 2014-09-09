@@ -33,6 +33,10 @@ object GraphXPartition extends Logging {
           case "EdgePartition1DSrc" => EdgePartition1DSrc
           case "EdgePartition1DDst" => EdgePartition1DDst
           case "EdgePartition2D" => EdgePartition2D
+          case "CanonicalEdgePartition2DV1" => CanonicalEdgePartition2DV1
+          case "CanonicalEdgePartition2DV2" => CanonicalEdgePartition2DV2
+          case "EdgePartition2DV1" => EdgePartition2DV1
+          case "EdgePartition2DV2" => EdgePartition2DV2
           case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
           case "HybridCut" => HybridCut
           case "HybridCutPlus" => HybridCutPlus

@@ -31,6 +31,9 @@
 
 usage="Usage: spark-daemon.sh [--config <conf-dir>] (start|stop) <spark-command> <spark-instance-number> <args...>"
 
+echo spark-daemon enter
+echo $@
+
 # if no args specified, show usage
 if [ $# -le 1 ]; then
   echo $usage
@@ -86,6 +89,7 @@ spark_rotate_log ()
     fi
 }
 
+echo spark-daemon prepare0
 . "$SPARK_PREFIX/bin/load-spark-env.sh"
 
 if [ "$SPARK_IDENT_STRING" = "" ]; then
@@ -95,23 +99,30 @@ fi
 
 export SPARK_PRINT_LAUNCH_COMMAND="1"
 
+echo spark-daemon prepare0-1
 # get log directory
 if [ "$SPARK_LOG_DIR" = "" ]; then
   export SPARK_LOG_DIR="$SPARK_HOME/logs"
 fi
 mkdir -p "$SPARK_LOG_DIR"
-touch "$SPARK_LOG_DIR"/.spark_test > /dev/null 2>&1
+echo spark-daemon prepare0-2 $SPARK_LOG_DIR
+# touch $SPARK_LOG_DIR/.spark_test > /dev/null 2>&1
+#touch $SPARK_LOG_DIR/.spark_test 
+echo spark-daemon prepare0-2-1
 TEST_LOG_DIR=$?
+echo spark-daemon prepare0-2-2
 if [ "${TEST_LOG_DIR}" = "0" ]; then
   rm -f "$SPARK_LOG_DIR"/.spark_test
 else
   chown "$SPARK_IDENT_STRING" "$SPARK_LOG_DIR"
 fi
+echo spark-daemon prepare0-3
 
 if [ "$SPARK_PID_DIR" = "" ]; then
   SPARK_PID_DIR=/tmp
 fi
 
+echo spark-daemon prepare1
 # some variables
 log="$SPARK_LOG_DIR/spark-$SPARK_IDENT_STRING-$command-$instance-$HOSTNAME.out"
 pid="$SPARK_PID_DIR/spark-$SPARK_IDENT_STRING-$command-$instance.pid"
@@ -126,7 +137,9 @@ case $startStop in
 
   (start)
 
+echo spark-daemon start0 $SPARK_PID_DIR
     mkdir -p "$SPARK_PID_DIR"
+echo spark-daemon start0-1
 
     if [ -f $pid ]; then
       if kill -0 `cat $pid` > /dev/null 2>&1; then
@@ -134,12 +147,14 @@ case $startStop in
         exit 1
       fi
     fi
+echo spark-daemon start flag1
 
     if [ "$SPARK_MASTER" != "" ]; then
       echo rsync from "$SPARK_MASTER"
       rsync -a -e ssh --delete --exclude=.svn --exclude='logs/*' --exclude='contrib/hod/logs/*' $SPARK_MASTER/ "$SPARK_HOME"
     fi
 
+echo spark-daemon start flag2
     spark_rotate_log "$log"
     echo starting $command, logging to $log
     cd "$SPARK_PREFIX"
@@ -148,15 +163,19 @@ case $startStop in
     echo $newpid > $pid
     sleep 2
     # Check if the process has died; in that case we'll tail the log so the user can see
+echo spark-daemon start flag3
     if ! kill -0 $newpid >/dev/null 2>&1; then
       echo "failed to launch $command:"
       tail -2 "$log" | sed 's/^/  /'
       echo "full log in $log"
     fi
-    ;;
+echo spark-daemon start flag4
 
+    ;;
   (stop)
 
+echo spark-daemon stop
+    mkdir -p "$SPARK_PID_DIR"
     if [ -f $pid ]; then
       if kill -0 `cat $pid` > /dev/null 2>&1; then
         echo stopping $command

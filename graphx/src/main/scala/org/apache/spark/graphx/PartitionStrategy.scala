@@ -21,6 +21,8 @@ import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.{RDD, ShuffledRDD}
 import org.apache.spark.graphx._
 
+import scala.util.Random
+
 /**
  * Represents the way edges are assigned to edge partitions based on their source and destination
  * vertex IDs.
@@ -87,6 +89,80 @@ object PartitionStrategy {
       val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
       val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
       ((col * ceilSqrtNumParts + row) % numParts).toInt
+    }
+  }
+
+  // solve square => factor
+  case object EdgePartition2DV1 extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      val ceilSqrtNumParts: PartitionID =
+        math.ceil(math.sqrt(numParts)).toInt * math.ceil(math.sqrt(numParts)).toInt
+      val mixingPrime: VertexId = 1125899906842597L
+      val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
+      val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
+      ((col * ceilSqrtNumParts + row) % numParts).toInt
+    }
+  }
+  // solve square => rectangle
+  case object EdgePartition2DV2 extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      val ceilSqrtNumParts: PartitionID = math.ceil(math.sqrt(numParts)).toInt
+      val mixingPrime: VertexId = 1125899906842597L
+      val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
+      val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
+      ((col * ceilSqrtNumParts + row) % numParts).toInt
+    }
+  }
+  /* Canonical
+  O---
+  OO--
+  OOO-
+  OOOO
+  1 3 6 10 15 21 28 36 45 55 66 78 91
+  */
+  case object CanonicalEdgePartition2DV2 extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      val ceilSqrtNumParts: PartitionID =
+        math.ceil(math.sqrt(numParts)).toInt * 10
+      val mixingPrime: VertexId = 1125899906842597L
+      val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
+      val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
+      if (col >= row) {
+        ((col * ceilSqrtNumParts + row) % numParts).toInt
+      }else{
+        ((row * ceilSqrtNumParts + col) % numParts).toInt
+      }
+    }
+  }
+
+  /* Grid
+  OO*O
+  OOOO
+  *OOO
+  OOOO
+  */
+  case object CanonicalEdgePartition2DV1 extends PartitionStrategy {
+    override def getPartition(
+      src: VertexId, dst: VertexId, numParts: PartitionID)
+    : PartitionID = {
+      val ceilSqrtNumParts: PartitionID = math.ceil(math.sqrt(numParts)).toInt
+      val mixingPrime: VertexId = 1125899906842597L
+      val col: PartitionID = (math.abs(src * mixingPrime) % ceilSqrtNumParts).toInt
+      val row: PartitionID = (math.abs(dst * mixingPrime) % ceilSqrtNumParts).toInt
+      val rand = new Random()
+      //random true / false
+      if (rand.nextBoolean()) {
+        ((col * ceilSqrtNumParts + row) % numParts).toInt
+      }else{
+        ((row * ceilSqrtNumParts + col) % numParts).toInt
+      }
+
     }
   }
 
@@ -227,6 +303,10 @@ object PartitionStrategy {
     case "EdgePartition1DSrc" => EdgePartition1DSrc
     case "EdgePartition1DDst" => EdgePartition1DDst
     case "EdgePartition2D" => EdgePartition2D
+    case "CanonicalEdgePartition2DV1" => CanonicalEdgePartition2DV1
+    case "CanonicalEdgePartition2DV2" => CanonicalEdgePartition2DV2
+    case "EdgePartition2DV1" => EdgePartition2DV1
+    case "EdgePartition2DV2" => EdgePartition2DV2
     case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
     case "HybridCut" => HybridCut
     case "HybridCutPlus" => HybridCutPlus
