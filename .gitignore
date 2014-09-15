@@ -76,3 +76,4 @@ sql/hive-thriftserver/test_warehouses
 hs_err_pid*
 
 output/*
+Arkansol.Log/*
