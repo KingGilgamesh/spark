@@ -146,7 +146,7 @@ object Pregel extends Logging {
       // vertices of prevG (depended on by newVerts, oldMessages, and the vertices of g).
       activeMessages = messages.count()
 
-      logInfo("Pregel finished iteration" + i + "to finish iteration it took" 
+      logInfo("Pregel finished iteration " + i + "to finish iteration it took " 
         + (System.currentTimeMillis - iterStart))
 
       // Unpersist the RDDs hidden by newly-materialized RDDs

@@ -255,5 +255,8 @@ notify (){
 #suite10 in-2.0-10m 36 true
 #suite10 web-google-single 36 true
 #Tue Sep 23 10:19:25 CST 2014
-suite10 in-2.0-10m 72 true
+#suite10 in-2.0-10m 72 true
+#suite10 in-2.0-10m 36 true
+Tue Sep 23 14:48:56 CST 2014
+cc in-2.0-10m 36
 notify
