@@ -128,6 +128,7 @@ object Pregel extends Logging {
     var prevG: Graph[VD, ED] = null
     var i = 0
     while (activeMessages > 0 && i < maxIterations) {
+      val iterStart = System.currentTimeMillis
       // Receive the messages. Vertices that didn't get any messages do not appear in newVerts.
       val newVerts = g.vertices.innerJoin(messages)(vprog).cache()
       // Update the graph with the new vertices.
@@ -145,7 +146,8 @@ object Pregel extends Logging {
       // vertices of prevG (depended on by newVerts, oldMessages, and the vertices of g).
       activeMessages = messages.count()
 
-      logInfo("Pregel finished iteration " + i)
+      logInfo("Pregel finished iteration" + i + "to finish iteration it took" 
+        + (System.currentTimeMillis - iterStart))
 
       // Unpersist the RDDs hidden by newly-materialized RDDs
       oldMessages.unpersist(blocking=false)
@@ -156,7 +158,6 @@ object Pregel extends Logging {
       i += 1
     }
     logInfo("[Pregel] It took %d ms to finish execution.".format(System.currentTimeMillis - startTime))
-    // println("[Pregel] It took %d ms to finish execution.".format(System.currentTimeMillis - startTime))
     g
   } // end of apply
 
