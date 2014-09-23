@@ -77,3 +77,6 @@ hs_err_pid*
 
 output/*
 Arkansol.Log/*
+._*
+*.log
+*.txt
