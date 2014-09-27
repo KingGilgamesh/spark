@@ -231,8 +231,10 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
       case PartitionStrategy.HybridCut => {
         println("HybridCut")
         // val inDegrees: VertexRDD[Int] = this.inDegrees
-        val LookUpTable = edges.map(e => (e.dstId, (e.srcId, e.attr))).join(this.inDegrees.map(e => (e._1, e._2)))
-        edges.withPartitionsRDD( LookUpTable.map { e =>
+        val LookUpTable = edges.map(e => (e.dstId, (e.srcId, e.attr)))
+          .join(this.inDegrees.map(e => (e._1, e._2)))
+          .partitionBy(new HashPartitioner(numPartitions))
+        val ret= edges.withPartitionsRDD( LookUpTable.map { e =>
 
           var part: PartitionID = 0
           val srcId = e._2._1._1
@@ -269,14 +271,24 @@ class GraphImpl[VD: ClassTag, ED: ClassTag] protected (
           val edgePartition = builder.toEdgePartition
           Iterator((pid, edgePartition))
         }, preservesPartitioning = true)).cache() 
+        LookUpTable.unpersist()
+        ret
       }
       case _ => {
         // Default = true
+        // add same overhead?
+        //val LookUpTable = edges.map(e => (e.dstId, (e.srcId, e.attr))).join(this.inDegrees.map(e => (e._1, e._2)))
+        //edges.withPartitionsRDD( LookUpTable.map { e =>
+        //val srcId = e._2._1._1
+        //val dstId = e._1
+        //val attr = e._2._1._2
         edges.withPartitionsRDD(edges.map { e =>
           val part: PartitionID = partitionStrategy.getPartition(e.srcId, e.dstId, numPartitions)
+          //val part: PartitionID = partitionStrategy.getPartition(srcId, dstId, numPartitions)
 
           // Should we be using 3-tuple or an optimized class
           (part, (e.srcId, e.dstId, e.attr))
+          //(part, (srcId, dstId, attr))
         }
         .partitionBy(new HashPartitioner(numPartitions))
         .mapPartitionsWithIndex( { (pid, iter) =>

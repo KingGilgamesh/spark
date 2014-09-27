@@ -1,3 +1,20 @@
+Fri Sep 26 10:25:58 CST 2014 shell debug
+
+./bin/spark-shell --master spark://brick0:7077
+
+
+import org.apache.spark._
+import org.apache.spark.graphx._
+import org.apache.spark.graphx.lib._
+import org.apache.spark.graphx.PartitionStrategy._
+val graph = GraphLoader.edgeListFile(sc, "hdfs://sjx-ipads:54310/dataset/in-2.0-10m", false, 36)
+val pgraph1 = graph.partitionBy(EdgePartition2D).cache()
+pgraph1.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
+pgraph1.vertices.count
+val pgraph2 = pgraph1.partitionBy(HybridCut, 36, 100).cache()
+pgraph2.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
+pgraph2.vertices.count
+PageRank.run(pgraph, 10)
 
 Tue Aug  5 15:40:38 CST 2014 partition benchmark suite
 . benchmark.sh <file> <numParts>

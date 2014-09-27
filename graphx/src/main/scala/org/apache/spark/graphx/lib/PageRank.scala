@@ -89,9 +89,15 @@ object PageRank extends Logging {
       // Set the vertex attributes to the initial pagerank values
       .mapVertices( (id, attr) => resetProb )
 
+
+    val VC = graph.vertices.count
+    val EC = graph.edges.count
+    logInfo("PageRank VC EC: " + VC + " " + EC)
     var iteration = 0
     var prevRankGraph: Graph[Double, Double] = null
+    val startTime = System.currentTimeMillis
     while (iteration < numIter) {
+      val iterStart = System.currentTimeMillis
       rankGraph.cache()
 
       // Compute the outgoing rank contributions of each vertex, perform local preaggregation, and
@@ -108,12 +114,15 @@ object PageRank extends Logging {
       }.cache()
 
       rankGraph.edges.foreachPartition(x => {}) // also materializes rankGraph.vertices
-      logInfo(s"PageRank finished iteration $iteration.")
+      logInfo("PageRank finished iteration " + iteration + " , to finish iteration it took " + (System.currentTimeMillis - iterStart))
       prevRankGraph.vertices.unpersist(false)
       prevRankGraph.edges.unpersist(false)
 
       iteration += 1
     }
+    // note that graphx use its own implementation of graph operations instead
+    // of pregel in 1.1.0
+    logInfo("It actually took %d ms to finish execution.".format(System.currentTimeMillis - startTime))
 
     rankGraph
   }

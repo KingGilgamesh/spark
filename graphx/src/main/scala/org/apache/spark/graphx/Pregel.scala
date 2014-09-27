@@ -119,14 +119,24 @@ object Pregel extends Logging {
       mergeMsg: (A, A) => A)
     : Graph[VD, ED] =
   {
-    val startTime = System.currentTimeMillis
+    val strangeStart = System.currentTimeMillis
     var g = graph.mapVertices((vid, vdata) => vprog(vid, vdata, initialMsg)).cache()
+    logInfo("Pregel finished iteration strange (mapVertices), to finish iteration it took " 
+        + (System.currentTimeMillis - strangeStart))
     // compute the messages
     var messages = g.mapReduceTriplets(sendMsg, mergeMsg)
+    logInfo("Pregel finished iteration strange (mapReduceTriplets), to finish iteration it took " 
+        + (System.currentTimeMillis - strangeStart))
     var activeMessages = messages.count()
+    logInfo("Pregel finished iteration strange (count), to finish iteration it took " 
+        + (System.currentTimeMillis - strangeStart) + ". Msg#: " +
+        activeMessages)
     // Loop
     var prevG: Graph[VD, ED] = null
     var i = 0
+    logInfo("Pregel finished iteration strange, to finish iteration it took " 
+        + (System.currentTimeMillis - strangeStart))
+    val startTime = System.currentTimeMillis
     while (activeMessages > 0 && i < maxIterations) {
       val iterStart = System.currentTimeMillis
       // Receive the messages. Vertices that didn't get any messages do not appear in newVerts.
@@ -146,7 +156,7 @@ object Pregel extends Logging {
       // vertices of prevG (depended on by newVerts, oldMessages, and the vertices of g).
       activeMessages = messages.count()
 
-      logInfo("Pregel finished iteration " + i + "to finish iteration it took " 
+      logInfo("Pregel finished iteration " + i + " to finish iteration it took " 
         + (System.currentTimeMillis - iterStart))
 
       // Unpersist the RDDs hidden by newly-materialized RDDs

@@ -1,6 +1,6 @@
 # process log
 for i in *.txt; do
-	grep "It\ took\|GRAPHX\|SparkDeploySchedulerBackend" $i | grep "INFO\|GRAPHX\|SparkDeploySchedulerBackend" | Arkansol.Maintanence/ProcessLog.py
+	grep "It\ actually\|took\|GRAPHX\|SparkDeploySchedulerBackend" $i | grep "INFO\|GRAPHX\|SparkDeploySchedulerBackend" | Arkansol.Maintanence/ProcessLog.py
 done
 ls *.txt
 read -p "Move log to "$1" (Y or N)" -n 1 -r

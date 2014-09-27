@@ -106,11 +106,12 @@ object Analytics extends Logging {
        val unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
           edgeStorageLevel = edgeStorageLevel,
-          vertexStorageLevel = vertexStorageLevel).cache()
+          vertexStorageLevel =
+            vertexStorageLevel).cache()
         val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
         logInfo("GRAPHX: INPUT" + fname)
-        logInfo("GRAPHX: Requirement PageRank" + tol)
-        logInfo("GRAPHX: PatitionStrategy" + StrategyName)
+        logInfo("GRAPHX: Requirement PageRank " + tol)
+        logInfo("GRAPHX: PatitionStrategy " + StrategyName)
         logInfo("GRAPHX: Number of vertices " + graph.vertices.count)
         logInfo("GRAPHX: Number of edges " + graph.edges.count)
         // count replications
@@ -144,7 +145,8 @@ object Analytics extends Logging {
         println("|      Connected Components          |")
         println("======================================")
 
-        val sc = new SparkContext(conf.setAppName("ConnectedComponents(" + fname + ")"))
+        val sc = new SparkContext(conf.setAppName("ConnectedComponents(" + fname
+          + ")_" + numEPart + "_" + StrategyName ))
         val unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
           edgeStorageLevel = edgeStorageLevel,
@@ -153,6 +155,26 @@ object Analytics extends Logging {
 
         val cc = ConnectedComponents.run(graph)
         println("Components: " + cc.vertices.map{ case (vid,data) => data}.distinct())
+        // count replications
+        val replications = graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
+
+        logInfo("GRAPHX: INPUT " + fname )
+        logInfo("GRAPHX: PatitionStrategy " + StrategyName)
+        logInfo("GRAPHX: Number of vertices " + graph.vertices.count)
+        logInfo("GRAPHX: Number of edges " + graph.edges.count)
+        logInfo("GRAPHX: Number of replications " + replications)
+        logInfo("GRAPHX: Number of partitions " + numEPart)
+
+        // unique vertices per partition
+        import scala.runtime.ScalaRunTime._
+        val vertices = stringOf(graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).collect())
+        logInfo("GRAPHX: stat_vertices " + vertices) 
+
+        // edges per partition
+        val edges  = stringOf(graph.edges.partitionsRDD.mapValues((V) => (V.dstIds.length)).collect())
+        logInfo("GRAPHX: stat_edges " + edges) 
+
+        logInfo("GRAPHX: Requirement CC")
         sc.stop()
 
       case "triangles" =>

@@ -84,14 +84,31 @@ object GraphXPartition extends Logging {
         var unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
           edgeStorageLevel = edgeStorageLevel,
-          vertexStorageLevel = vertexStorageLevel).cache()
+          vertexStorageLevel =
+            vertexStorageLevel).cache()
 
         if (reverse) {
           unpartitionedGraph = unpartitionedGraph.reverse 
           reverseString = "-reverse"
         }
+        
+        val ccccc = unpartitionedGraph.inDegrees.count
+        logInfo("GRAPHX: ccccc " + ccccc)
+
         val graph = unpartitionedGraph.partitionBy(partitionStrategy, numEPart, threshHold).cache()
         // val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
+
+        if (run) {
+          val pr = (
+            if (numIter > 0){
+              PageRank.run(graph, numIter)
+            } else {
+              logInfo("GRAPHX: Requirement PageRank" + tol)
+              PageRank.runUntilConvergence(graph, tol)
+            }
+          ).vertices.cache()
+          logInfo("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
+        }
 
         // count replications
         val replications = graph.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
@@ -130,17 +147,6 @@ object GraphXPartition extends Logging {
         //      pw1.write(psrc)
         //      pw1.write(pdst)
 
-        if (run) {
-          val pr = (
-            if (numIter > 0){
-              PageRank.run(graph, numIter)
-            } else {
-              logInfo("GRAPHX: Requirement PageRank" + tol)
-              PageRank.runUntilConvergence(graph, tol)
-            }
-          ).vertices.cache()
-          logInfo("GRAPHX: Total rank: " + pr.map(_._2).reduce(_ + _))
-        }
 
         }
   }

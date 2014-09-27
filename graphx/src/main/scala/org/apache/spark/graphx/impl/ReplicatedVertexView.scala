@@ -24,6 +24,8 @@ import org.apache.spark.rdd.RDD
 
 import org.apache.spark.graphx._
 
+import org.apache.spark.Logging
+
 /**
  * Manages shipping vertex attributes to the edge partitions of an
  * [[org.apache.spark.graphx.EdgeRDD]]. Vertex attributes may be partially shipped to construct a
@@ -35,7 +37,7 @@ private[impl]
 class ReplicatedVertexView[VD: ClassTag, ED: ClassTag](
     var edges: EdgeRDD[ED, VD],
     var hasSrcId: Boolean = false,
-    var hasDstId: Boolean = false) {
+    var hasDstId: Boolean = false) extends Logging {
 
   /**
    * Return a new `ReplicatedVertexView` with the specified `EdgeRDD`, which must have the same
@@ -64,6 +66,7 @@ class ReplicatedVertexView[VD: ClassTag, ED: ClassTag](
     val shipSrc = includeSrc && !hasSrcId
     val shipDst = includeDst && !hasDstId
     if (shipSrc || shipDst) {
+      logInfo("Upgrade View (Strange), from ("+hasSrcId+","+hasDstId+") to ("+shipSrc+","+shipDst+")")
       val shippedVerts: RDD[(Int, VertexAttributeBlock[VD])] =
         vertices.shipVertexAttributes(shipSrc, shipDst)
           .setName("ReplicatedVertexView.upgrade(%s, %s) - shippedVerts %s %s (broadcast)".format(

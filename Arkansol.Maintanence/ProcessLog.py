@@ -9,24 +9,24 @@ import sys
 import numpy
 
 class ReportEntry:
-	DateTime = ''
-	TimetoLoad = ''
-	TimetoPartition = ''
-	Data = ''
-	Strategy = ''
-	ThreshHold = ''
-	Vertices = ''
-	Edges = ''
-	Replications = ''
-	NumParts = ''
-	Factor = ''
-	BalanceVertex = []
-	BalanceEdge = []
-	Requirement = ''
-	TimetoExecute = ''
-	Result = ''
-	ShuffleRead = ''
-	ShuffleWrite = ''
+    DateTime = ''
+    TimetoLoad = ''
+    TimetoPartition = ''
+    Data = ''
+    Strategy = ''
+    ThreshHold = ''
+    Vertices = ''
+    Edges = ''
+    Replications = ''
+    NumParts = ''
+    Factor = ''
+    BalanceVertex = []
+    BalanceEdge = []
+    Requirement = ''
+    TimetoExecute = ''
+    Result = ''
+    ShuffleRead = ''
+    ShuffleWrite = ''
 
 out = ReportEntry()
 # out.Factor = '1'
@@ -36,69 +36,74 @@ out = ReportEntry()
 # pagerank output format
 # from lib/Analytics.scala
 for line in sys.stdin:
-	if "GraphLoader" in line:
-		out.DateTime = line.split('INFO')[0]
-		out.TimetoLoad = (line.split()[6])
-	if "GraphImpl" in line:
-		out.TimetoPartition = (line.split()[6])
-	if "INPUT" in line:
-		out.Data = (line[line.index('INPUT')+5:-1])
-	if "Requirement" in line:
-		out.Requirement = (line.split()[-1])
-	if "PatitionStrategy" in line:
-		out.Strategy = (line.split()[-1])
-	if "vertices" in line and "stat_vertices" not in line:
-		out.Vertices = (line.split()[-1])
-	if "GRAPHX" in line and "edges" in line and "stat_edges" not in line:
-		out.Edges = (line.split()[-1])
-	if "replications" in line:
-		out.Replications = (line.split()[-1])
-	if "Pregel" in line:
-		out.TimetoExecute = (line.split()[7])
-	if "rank" in line:
-		out.Result = (line.split()[-1])
-	if "partitions" in line:
-		out.NumParts = (line.split()[-1])
-	if "ThreshHold" in line:
-		out.ThreshHold = (line.split()[-1])
-	if "stat_vertices" in line:
-		stringlist = line.split("Array")[1].replace("(","").replace(")","").split(",")[1::2]
+    if "GraphLoader" in line:
+        out.DateTime = line.split('INFO')[0]
+        out.TimetoLoad = (line.split()[6])
+    if "GraphImpl" in line:
+        out.TimetoPartition = (line.split()[6])
+    if "INPUT" in line:
+        out.Data = (line[line.index('INPUT')+5:-1])
+    if "Requirement" in line:
+        out.Requirement = (line.split()[-1])
+    if "PatitionStrategy" in line:
+        out.Strategy = (line.split()[-1])
+    if "vertices" in line and "stat_vertices" not in line:
+        out.Vertices = (line.split()[-1])
+    if "GRAPHX" in line and "edges" in line and "stat_edges" not in line:
+        out.Edges = (line.split()[-1])
+    if "replications" in line:
+        out.Replications = (line.split()[-1])
+    if "execution" in line:
+        out.TimetoExecute = (line.split()[7])
+    if "rank" in line:
+        out.Result = (line.split()[-1])
+    if "partitions" in line:
+        out.NumParts = (line.split()[-1])
+    if "ThreshHold" in line:
+        out.ThreshHold = (line.split()[-1])
+    if "stat_vertices" in line:
+        stringlist = line.split("Array")[1].replace("(","").replace(")","").split(",")[1::2]
 #		print stringlist
-		intlist = map(int, stringlist)
-		narray = numpy.array(intlist)
-		out.BalanceVertex.append("vertices")
-		out.BalanceVertex.append(str(numpy.std(narray)))
-		out.BalanceVertex.append(str(numpy.average(narray)))
-		out.BalanceVertex.append(str(numpy.min(narray)))
-		out.BalanceVertex.append(str(numpy.max(narray)))
-		out.BalanceVertex.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
-	if "stat_edges" in line:
-		stringlist = line.split("Array")[1].replace("(","").replace(")","").split(",")[1::2]
+        intlist = map(int, stringlist)
+        narray = numpy.array(intlist)
+        out.BalanceVertex.append("vertices")
+        out.BalanceVertex.append(str(numpy.std(narray)))
+        out.BalanceVertex.append(str(numpy.average(narray)))
+        out.BalanceVertex.append(str(numpy.min(narray)))
+        out.BalanceVertex.append(str(numpy.max(narray)))
+        out.BalanceVertex.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
+    if "stat_edges" in line:
+        stringlist = line.split("Array")[1].replace("(","").replace(")","").split(",")[1::2]
 #		print stringlist
-		intlist = map(int, stringlist)
-		narray = numpy.array(intlist)
-		out.BalanceEdge.append("edges")
-		out.BalanceEdge.append(str(numpy.std(narray)))
-		out.BalanceEdge.append(str(numpy.average(narray)))
-		out.BalanceEdge.append(str(numpy.min(narray)))
-		out.BalanceEdge.append(str(numpy.max(narray)))
-		out.BalanceEdge.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
-	if "SparkDeploySchedulerBackend: Connected to Spark cluster with app ID" in line:
-		import urllib2
-		# get correct ID, and omit newline \n
-		appID = line.split('ID ')[1][:-1]
-		url = 'http://brick0:8080/history/' + appID + '/executors/'
-		response = urllib2.urlopen(url)
-		html = response.read()
-		import re
-		matchObj = re.findall(r'<td sorttable_customkey="(.*?)">', html)
-		# shuffle read
-		out.ShuffleRead = str(sum(map(int,matchObj[4::6])))
-		# shuffle write
-		out.ShuffleWrite = str(sum(map(int,matchObj[5::6])))
+        intlist = map(int, stringlist)
+        narray = numpy.array(intlist)
+        out.BalanceEdge.append("edges")
+        out.BalanceEdge.append(str(numpy.std(narray)))
+        out.BalanceEdge.append(str(numpy.average(narray)))
+        out.BalanceEdge.append(str(numpy.min(narray)))
+        out.BalanceEdge.append(str(numpy.max(narray)))
+        out.BalanceEdge.append(str((numpy.max(narray)-numpy.min(narray))/numpy.average(narray)))
+    if "SparkDeploySchedulerBackend: Connected to Spark cluster with app ID" in line:
+        try:
+            import urllib2
+            # get correct ID, and omit newline \n
+            appID = line.split('ID ')[1][:-1]
+            url = 'http://brick0:8080/history/' + appID + '/executors/'
+            response = urllib2.urlopen(url)
+            html = response.read()
+            import re
+            matchObj = re.findall(r'<td sorttable_customkey="(.*?)">', html)
+            # shuffle read
+            out.ShuffleRead = str(sum(map(int,matchObj[4::6])))
+            # shuffle write
+            out.ShuffleWrite = str(sum(map(int,matchObj[5::6])))
+        except Exception: 
+            pass
 
-
-out.Factor = str( float(out.Replications) / float(out.Vertices) )
+try:
+    out.Factor = str( float(out.Replications) / float(out.Vertices) )
+except Exception:
+    pass
 #print out.DateTime
 #print out.TimetoLoad
 #print out.TimetoPartition
@@ -151,9 +156,9 @@ sys.stdout.write( out.Replications + '\t' )
 sys.stdout.write( out.NumParts + '\t' )
 sys.stdout.write( out.Factor + '\t' )
 for i in out.BalanceVertex: 
-	sys.stdout.write( i + '\t' )
+    sys.stdout.write( i + '\t' )
 for i in out.BalanceEdge: 
-	sys.stdout.write( i + '\t' )
+    sys.stdout.write( i + '\t' )
 sys.stdout.write( out.Requirement + '\t' )
 sys.stdout.write( out.TimetoExecute + '\t' )
 sys.stdout.write( out.Result + '\t' )
