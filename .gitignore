@@ -80,3 +80,5 @@ Arkansol.Log/*
 ._*
 *.log
 *.txt
+
+conf/slaves

@@ -1,3 +1,43 @@
+
+Tue Sep 30 10:34:00 CST 2014
+$(id |awk -F'[^0-9]*' '$0=$3')
+
+
+System.gc();
+
+Mon Sep 29 15:11:28 CST 2014 worker output
+    can now get println in map functions
+    #in work directory, grep newest Application log
+    grep NINJA $(find $(l -tr1 | tail -1) -name stdout)
+    tail +1  $(find $(l -tr1 | tail -1) -name stdout)
+
+Mon Sep 29 10:06:39 CST 2014
+[Tuning Spark - Spark 1.1.0 Documentation](http://spark.apache.org/docs/latest/tuning.html#garbage-collection-tuning)
+
+Sun Sep 28 15:00:15 UTC 2014 JVM GC
+[Spark Configuration - Spark 1.1.0 Documentation](http://spark.apache.org/docs/latest/configuration.html)
+    Available Properties
+    Application Properties
+    Runtime Environment
+    Shuffle Behavior
+    Spark UI
+    Compression and Serialization
+    Execution Behavior
+        spark.default.parallelism
+    Networking
+    Scheduling
+        spark.task.cpus
+        speculation
+
+    Security
+    Spark Streaming
+    Cluster Managers
+
+[Monitoring and Instrumentation - Spark 1.1.0 Documentation](http://spark.apache.org/docs/latest/monitoring.html)
+
+[Apache Spark User List - java.lang.OutOfMemoryError: GC overhead limit exceeded](http://apache-spark-user-list.1001560.n3.nabble.com/java-lang-OutOfMemoryError-GC-overhead-limit-exceeded-td10301.html)
+[java.lang.OutOfMemoryError: GC overhead limit exceeded – Plumbr](https://plumbr.eu/outofmemoryerror/gc-overhead-limit-exceeded)
+
 Fri Sep 26 10:25:58 CST 2014 shell debug
 
 ./bin/spark-shell --master spark://brick0:7077
@@ -8,6 +48,7 @@ import org.apache.spark.graphx._
 import org.apache.spark.graphx.lib._
 import org.apache.spark.graphx.PartitionStrategy._
 val graph = GraphLoader.edgeListFile(sc, "hdfs://sjx-ipads:54310/dataset/in-2.0-10m", false, 36)
+val graph = GraphLoader.edgeListFile(sc, "/data/sdc1/xiaodi/data/web-google-single", false, 36)
 val pgraph1 = graph.partitionBy(EdgePartition2D).cache()
 pgraph1.edges.partitionsRDD.mapValues((V) => (Set(V.srcIds: _*) ++ Set(V.dstIds: _*)).size).map(a => a._2).reduce((a, b) => a+b)
 pgraph1.vertices.count
