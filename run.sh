@@ -452,6 +452,17 @@ fullsuite () {
 #suite "/data/sdc1/xiaodi/data/in-2.0-10m-split/in-2.0-10m*" 60 false "shuffle_stat-Z"
 #ccsuite "/data/sdc1/xiaodi/data/in-2.0-10m-split/in-2.0-10m*" 60 "shuffle_stat-Z"
 # use local copy of data file
-suite "/data/sdb1/xiaodi/twitter" 36 false "twitter_partition"
+# loading file improves 7.6min
+# edge2d finish in 26 min
+# hybird finish in 56 min
+# suite "/data/sdb1/xiaodi/twitter" 36 false "twitter_partition"
+# run
+#suite "/data/sdb1/xiaodi/twitter" 36 true "twitter_run"
+
+#spark.core.connection.ack.wait.timeout 60 -> 120
+#suite "/data/sdb1/xiaodi/twitter" 36 true "twitter_run_ack_timeout120"
+
+# Successfully run twitter PR, now proceed to CC. GG
+ccsuite "/data/sdb1/xiaodi/twitter" 36 true "twitter_run_ack_timeout120"
 
 notify GraphX_OK_$(date +"%Y%m%d-%H%M") &

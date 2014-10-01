@@ -26,27 +26,6 @@ object GraphXPartition extends Logging {
       // TODO: add threshold option
       val options = mutable.Map(optionsList: _*)
 
-      def pickPartitioner(v: String): PartitionStrategy = {
-        // TODO: Use reflection rather than listing all the partitioning strategies here.
-        v match {
-          case "RandomVertexCut" => RandomVertexCut
-          case "EdgePartition1DSrc" => EdgePartition1DSrc
-          case "EdgePartition1DDst" => EdgePartition1DDst
-          case "EdgePartition2D" => EdgePartition2D
-          case "CanonicalEdgePartition2DV1" => CanonicalEdgePartition2DV1
-          case "CanonicalEdgePartition2DV2" => CanonicalEdgePartition2DV2
-          case "EdgePartition2DV1" => EdgePartition2DV1
-          case "EdgePartition2DV2" => EdgePartition2DV2
-          case "CanonicalRandomVertexCut" => CanonicalRandomVertexCut
-          case "HybridCut" => HybridCut
-          case "HybridCutPlus" => HybridCutPlus
-          case "GreedyHybridCut" => GreedyHybridCut
-          case "BiSrcCut" => BiSrcCut
-          case "BiDstCut" => BiDstCut
-          case _ => throw new IllegalArgumentException("Invalid PartitionStrategy: " + v)
-    }
-        }
-
       val conf = new SparkConf()
         .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
         .set("spark.kryo.registrator", "org.apache.spark.graphx.GraphKryoRegistrator")
@@ -61,7 +40,7 @@ object GraphXPartition extends Logging {
 
         val fname = args(0)
         val StrategyName = args(1)
-        val partitionStrategy: PartitionStrategy = pickPartitioner(StrategyName)
+        var partitionStrategy: Option[PartitionStrategy] = None
         val edgeStorageLevel = options.remove("edgeStorageLevel").map(StorageLevel.fromString(_)).getOrElse(StorageLevel.MEMORY_ONLY)
         val vertexStorageLevel = options.remove("vertexStorageLevel").map(StorageLevel.fromString(_)).getOrElse(StorageLevel.MEMORY_ONLY)
         val reverse = options.remove("reverse").map(_.toBoolean).getOrElse(false)
@@ -81,6 +60,8 @@ object GraphXPartition extends Logging {
             .set("spark.akka.frameSize","96")
             )
 
+        partitionStrategy = Some(PartitionStrategy.fromString(StrategyName))
+
         var unpartitionedGraph = GraphLoader.edgeListFile(sc, fname,
           minEdgePartitions = numEPart,
           edgeStorageLevel = edgeStorageLevel,
@@ -92,11 +73,8 @@ object GraphXPartition extends Logging {
           reverseString = "-reverse"
         }
         
-        val ccccc = unpartitionedGraph.inDegrees.count
-        logInfo("GRAPHX: ccccc " + ccccc)
-
-        val graph = unpartitionedGraph.partitionBy(partitionStrategy, numEPart, threshHold).cache()
-        // val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_))
+        //val graph = unpartitionedGraph.partitionBy(partitionStrategy, numEPart, threshHold).cache()
+        val graph = partitionStrategy.foldLeft(unpartitionedGraph)(_.partitionBy(_)).cache()
 
         if (run) {
           val pr = (
